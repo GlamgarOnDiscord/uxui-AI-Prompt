@@ -260,6 +260,54 @@ Never output only the "success/happy path" state. Always include:
 
 Rules: Responsive sizing (`text-5xl sm:text-6xl lg:text-7xl`), minimum 12px on mobile, reusable CSS classes per text role.
 
+### MOTION PATTERNS — ADVANCED (Autonomous Demo Library)
+
+When `MOTION_INTENSITY ≥ 7`, use these high-impact self-running animation patterns for feature sections. Each card in a bento grid should have its OWN autonomous loop — no two cards animate identically.
+
+#### 1. Ghost Cursor / Autonomous Product Demo
+A simulated SVG mouse cursor (glowing soft-white pointer) moves autonomously across the UI, clicking and hovering over components in an infinite loop — the product demos itself.
+- Cursor: `position: fixed` SVG pointer with subtle drop shadow, spring-physics movement (`stiffness: 80, damping: 18`) — never linear
+- Loop: Timed `useEffect` sequence → move → pause → click → trigger state change → wait → move to next target
+- Best for: Feature showcases, interactive dashboards, IDE/tool demos
+- Rule: The cursor must trigger REAL component state changes (tabs switching, dropdowns opening, values changing) — not just cosmetic movement
+
+#### 2. Type-Delete-Retype (Code/Config Animation)
+A code block, terminal, or config editor shows content being deleted character by character then retyped in a different language/format as the ghost cursor "clicks" language tabs.
+- Variants: IDE tab switching (TypeScript → Python → Go), config switching (YAML → JSON → TOML), API request preview (REST → GraphQL)
+- Font: JetBrains Mono or Geist Mono — never regular sans-serif for code
+- Implementation: Custom typewriter hook with `deletePhase` + `typePhase` + `pausePhase` states
+- Best for: Backend/API card, developer tool pages, CLI showcases
+
+#### 3. Algorithm Step Visualizer
+Data structures animate step by step — a glowing highlight box sweeps an array left-to-right, binary tree nodes activate, sorting bars race, graph edges light up.
+- When target is found: highlight turns green, label changes ("Searching…" → "Found!")
+- Implementation: `useInterval` stepping through indices, Framer Motion `layoutId` for smooth highlight box repositioning
+- Best for: Data infrastructure, developer tools, search/AI product showcases
+
+#### 4. Live Property Editor ↔ Preview
+A code/CSS/JSON editor on one side autonomously types out property values. A live preview component on the other side morphs in real time (border-radius, color, box-shadow, size changing smoothly).
+- Ghost cursor hovers each property value → triggers typewriter → preview component animates to match
+- Implementation: `useMotionValue` + `useTransform` on the preview element, typewriter on editor side
+- Best for: Design tools, no-code builders, customization-heavy platforms
+
+#### 5. Autonomous Data Dashboard
+A KPI counter, bar chart, or revenue metric updates automatically as a simulated dropdown selector cycles through time periods. Numbers spring-ease to new values. Chart bars animate height smoothly.
+- Counter: `useSpring` on a motion value, not `useState` (no re-renders)
+- Chart bars: `animate={{ height: newValue }}` with spring easing
+- Best for: Analytics, fintech, business intelligence, SaaS metrics
+
+#### 6. Morphing Hero Metric
+A single large metric ("$2.4M ARR") continuously cross-fades between different KPIs with a number scramble transition — the sense of a live, breathing dashboard.
+- Implementation: `AnimatePresence` for exit/enter + custom character scramble hook (`Math.random()` cycling through chars before settling)
+- Best for: Hero sections of data products, growth tools, finance platforms
+
+#### Autonomous Animation Rules (Non-Negotiable)
+- Always loop with `repeat: Infinity` and a natural 2–4s rest between cycles
+- Cursor spring: `type: "spring", stiffness: 80, damping: 18` — never `ease` or `linear`
+- Isolate every autonomous loop in its own `React.memo` Client Component — zero re-renders on parent layout
+- Respect `prefers-reduced-motion`: wrap all autonomous animations in `@media (prefers-reduced-motion: no-preference)` — pause if user prefers reduced motion
+- Autonomous animations must feel like a real user is interacting — add micro-pauses, hesitation, natural rhythm
+
 ## PAGE STRUCTURE REQUIREMENTS
 
 ### Mandatory Sections (Minimum 5)
@@ -526,6 +574,7 @@ export default function ComponentName() {
    - Minimum 5 different sections
    - Maximum animations and interactions
    - Loading, empty, and error states for all interactive elements
+   - **IMAGE GENERATION (final step):** Once the page is complete, invoke the `image-generator` agent — pass the full HTML/JSX output + project name, sector, and accent color. It will replace all `picsum.photos` and `placehold.co` placeholders with Gemini-generated hero backgrounds, feature illustrations, and logos.
 
 ---
 
@@ -544,6 +593,7 @@ Run this checklist mentally before outputting any code:
 - [ ] Are numbers/stats organic and non-round (`47.2%`, not `50%`)?
 - [ ] Are image placeholders using `picsum.photos` or `placehold.co` (no Unsplash)?
 - [ ] Are emojis absent from all code, markup, and copy?
+- [ ] Has the `image-generator` skill been invoked to replace placeholders with Gemini-generated hero backgrounds, feature illustrations, and logos?
 
 ## MANDATORY PAGE SECTIONS (Minimum 5)
 
@@ -596,6 +646,7 @@ Verify every item before delivering code. Fix failures before responding.
 - [ ] aria-hidden on decorative SVGs
 - [ ] No inline styles (except dynamic), no emojis, no Lorem Ipsum
 - [ ] All CTAs use specific action-oriented copy
+- [ ] `image-generator` agent invoked — all image placeholders replaced with Gemini-generated visuals
 
 ## QUICK REFERENCE CHEATSHEET
 
