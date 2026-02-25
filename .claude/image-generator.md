@@ -122,11 +122,11 @@ export GEMINI_API_KEY="your-key-here"
 ### Model Selection
 | Zone | Model | Resolution | Aspect Ratio |
 |------|-------|-----------|-------------|
-| Hero background | `gemini-2.0-flash-preview-image-generation` | 2K | 16:9 |
-| Feature illustrations | `gemini-2.0-flash-preview-image-generation` | 1K | 4:3 or 1:1 |
-| Logo / iconmark | `gemini-2.0-flash-preview-image-generation` | 1K | 1:1 |
-| Testimonial avatars | `gemini-2.0-flash-preview-image-generation` | 1K | 1:1 |
-| Section atmospheres | `gemini-2.0-flash-preview-image-generation` | 1K | 16:9 |
+| Hero background | `gemini-3-pro-image-preview` | 2K | 16:9 |
+| Feature illustrations | `gemini-3-pro-image-preview` | 1K | 4:3 or 1:1 |
+| Logo / iconmark | `gemini-3-pro-image-preview` | 1K | 1:1 |
+| Testimonial avatars | `gemini-3-pro-image-preview` | 1K | 1:1 |
+| Section atmospheres | `gemini-3-pro-image-preview` | 1K | 16:9 |
 
 ### Generation Script
 Run this via the Bash tool. Populate `ZONES` with the zones identified in Step 1.
@@ -143,7 +143,7 @@ def generate_image(prompt: str, filename: str, aspect_ratio: str = "16:9") -> st
     """Generate an image via Gemini and save it to public/generated/."""
     try:
         response = client.models.generate_content(
-            model="gemini-2.0-flash-preview-image-generation",
+            model="gemini-3-pro-image-preview",
             contents=prompt,
             config=types.GenerateContentConfig(
                 response_modalities=["TEXT", "IMAGE"],
