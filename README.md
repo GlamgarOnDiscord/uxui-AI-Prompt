@@ -1,177 +1,237 @@
+<div align="center">
+
+<img src="./assets/banner.jpg" alt="uxui-AI-Prompt Banner" width="100%" />
+
 # uxui-AI-Prompt
 
-> A Claude Code agent system that generates premium, dark-mode first SaaS interfaces — powered by a battle-tested design system and Gemini image generation.
+**The AI skill that builds premium SaaS interfaces — so you don't have to.**
 
-<p align="center">
-  <img src="https://img.shields.io/github/stars/GlamgarOnDiscord/uxui-AI-Prompt?style=social" alt="GitHub Stars" />
-  <img src="https://img.shields.io/github/issues/GlamgarOnDiscord/uxui-AI-Prompt" alt="Issues" />
-  <img src="https://img.shields.io/github/forks/GlamgarOnDiscord/uxui-AI-Prompt?style=social" alt="Forks" />
-  <img src="https://img.shields.io/badge/license-Open%20with%20credit-blue.svg" alt="License: Open with Credit" />
-  <img src="https://img.shields.io/badge/Claude%20Code-Agents-8a42f4" alt="Claude Code Agents" />
-  <img src="https://img.shields.io/badge/Image%20Gen-Gemini-4285F4" alt="Gemini Image Generation" />
-  <img src="https://img.shields.io/badge/built%20by-GlamgarOnDiscord-8a42f4" alt="Author" />
-</p>
+Dark-mode first · Animation-driven · Gemini-powered visuals
+
+<br />
+
+[![Stars](https://img.shields.io/github/stars/GlamgarOnDiscord/uxui-AI-Prompt?style=for-the-badge&logo=github&logoColor=f97316&color=18181b&labelColor=27272a)](https://github.com/GlamgarOnDiscord/uxui-AI-Prompt/stargazers)
+[![License](https://img.shields.io/badge/license-open_with_credit-18181b?style=for-the-badge&logo=creativecommons&logoColor=f97316&labelColor=27272a)](./LICENSE)
+
+[![Claude Code](https://img.shields.io/badge/Claude_Code-Skill-18181b?style=for-the-badge&logo=anthropic&logoColor=f97316&labelColor=27272a)](https://docs.anthropic.com/en/docs/claude-code)
+[![Gemini](https://img.shields.io/badge/Gemini-Image_Gen-18181b?style=for-the-badge&logo=googlegemini&logoColor=4285F4&labelColor=27272a)](https://ai.google.dev/gemini-api/docs/image-generation)
+[![Tailwind](https://img.shields.io/badge/Tailwind-CSS-18181b?style=for-the-badge&logo=tailwindcss&logoColor=06b6d4&labelColor=27272a)](https://tailwindcss.com)
+[![Next.js](https://img.shields.io/badge/Next.js-App_Router-18181b?style=for-the-badge&logo=nextdotjs&logoColor=white&labelColor=27272a)](https://nextjs.org)
+[![Agent Skills](https://img.shields.io/badge/Agent_Skills-Standard-18181b?style=for-the-badge&logo=opslevel&logoColor=10b981&labelColor=27272a)](https://agentskills.io/)
+
+<br />
+
+[Get Started](#-quick-start) · [Features](#-what-it-does) · [Install](#-install-anywhere) · [Contributing](#-contributing)
+
+</div>
+
+<br />
 
 ---
 
-## 🚀 Overview
+<br />
 
-**uxui-AI-Prompt** is a Claude Code agent system for building premium SaaS interfaces. It provides two specialized agents that work together: a `ux-ui-designer` agent that generates complete, production-ready UI code, and an `image-generator` agent that automatically replaces all image placeholders with Gemini-generated visuals.
+## ⚡ What is this?
 
-The system is inspired by industry leaders like **Vercel, Linear, Stripe, and Raycast** — dark-mode first, animation-driven, and grounded in real engineering constraints.
+A **plug-and-play AI skill** that turns any coding agent into a senior frontend engineer with the eye of a creative director.
 
----
+Drop it into Claude Code, Cursor, VS Code Copilot, or any compatible tool — and start building interfaces inspired by **Vercel, Linear, Stripe, and Raycast** in seconds.
 
-## 🏗️ Architecture
+> **Skill mode** (`uxui-designer/`) — modular, lazy-loaded, optimized for Claude Code & compatible agents.
+> **Prompt mode** (`prompt.md`) — single-file system prompt for ChatGPT, Windsurf, Aider, or anything else.
+
+<br />
+
+## 🎯 What it does
+
+<table>
+<tr>
+<td width="50%">
+
+### 🎨 Design System
+- Zinc/Slate dark-mode palette — never pure black
+- Geist, Satoshi, Cabinet Grotesk typography
+- Shimmer Buttons, Bento Grids, Liquid Glass Cards
+- WCAG AAA contrast (7:1 normal, 4.5:1 large)
+- Strict anti-patterns enforced automatically
+
+</td>
+<td width="50%">
+
+### 🎛️ 3 Design Dials
+```
+DESIGN_VARIANCE  = 8   (symmetry → chaos)
+MOTION_INTENSITY = 6   (static → cinematic)
+VISUAL_DENSITY   = 4   (gallery → cockpit)
+```
+Change a dial in chat → the entire output adapts.
+
+</td>
+</tr>
+<tr>
+<td>
+
+### 🎬 6 Motion Patterns
+| | |
+|-|-|
+| Ghost Cursor | SVG cursor clicks real UI |
+| Type-Delete-Retype | Code rewrites itself |
+| Algorithm Viz | Data structure animates |
+| Live Editor | Code → preview morphs live |
+| Auto Dashboard | KPIs cycle with spring physics |
+| Morphing Metric | Stats scramble & cross-fade |
+
+</td>
+<td>
+
+### 🖼️ Gemini Image Generation
+Runs automatically at the end of every build:
+1. Audits all image zones in the page
+2. Crafts cinematic prompts per zone
+3. Generates via REST API or Python SDK
+4. Integrates with overlays & `alt` attrs
+5. Falls back gracefully if no API key
+
+**Models:** `gemini-3.1-flash-image-preview` (default) · `gemini-3-pro-image-preview` (complex scenes)
+
+</td>
+</tr>
+</table>
+
+<br />
+
+## 📁 Architecture
 
 ```
 uxui-AI-Prompt/
-├── prompt.md              ← Standalone system prompt (ChatGPT, Copilot, etc.)
-└── .claude/
-    ├── ux-ui-designer.md  ← Main Claude Code agent
-    └── image-generator.md ← Satellite agent (Gemini-powered)
+│
+├── prompt.md                      ← Standalone prompt (any AI tool)
+│
+└── uxui-designer/                 ← Skill (Claude Code & compatible agents)
+    ├── SKILL.md                   ← Entry point — loads references on demand
+    └── references/
+        ├── design-system.md       ← Colors · Typography · Layout · Components
+        ├── motion-patterns.md     ← Framer Motion · GSAP · 6 autonomous demos
+        ├── copywriting.md         ← Copy rules · CTAs · Anti-patterns
+        ├── page-structure.md      ← 8 mandatory sections with specs
+        └── image-generator.md     ← Gemini API pipeline (REST + SDK)
 ```
 
-### Agent Pipeline
-
 ```
-User request
-     │
-     ▼
-┌─────────────────────┐
-│   ux-ui-designer    │  React/Next.js · Tailwind · Framer Motion
-│   (Claude Opus)     │  Design system · Dials · Anti-patterns
-└──────────┬──────────┘
-           │  page complete → invokes automatically
-           ▼
-┌─────────────────────┐
-│  image-generator    │  Gemini API · Cinematic prompts
-│  (Claude Opus)      │  Hero bg · Feature cards · Avatars · Logos
-└─────────────────────┘
+ User prompt → SKILL.md → lazy-load references → build page → image-generator → done
 ```
 
----
+<br />
 
-## ✨ Key Features
+## 🚀 Quick Start
 
-### 🎛️ Design Dials System
-Three global variables that drive every layout, motion, and density decision — no manual tuning needed:
-
-| Dial | Default | Scale |
-|------|---------|-------|
-| `DESIGN_VARIANCE` | **8** | 1 = Perfect symmetry → 10 = Artsy chaos |
-| `MOTION_INTENSITY` | **6** | 1 = Static → 10 = Cinematic physics |
-| `VISUAL_DENSITY` | **4** | 1 = Art gallery airy → 10 = Cockpit packed |
-
-The agent adapts automatically — change a dial in chat and the whole output shifts accordingly.
-
-### 🎨 Design System
-- **Dark-mode first** — Zinc/Slate palette, never pure black or neon
-- **Multi-font system** — Geist, Satoshi, Cabinet Grotesk + Geist Mono for data
-- **Component library** — Shimmer Buttons, Bento Grids, Liquid Glass Cards, Marquees, Accordions
-- **Strict anti-patterns** — No Web3 glows, no neon accents, no centered heroes, no `h-screen`
-- **WCAG AAA** contrast targets (7:1 normal text, 4.5:1 large text)
-
-### 🎬 Advanced Motion Patterns (MOTION_INTENSITY ≥ 7)
-Six autonomous animation patterns for feature cards — each with its own infinite loop, never two identical:
-
-| Pattern | Description |
-|---------|-------------|
-| **Ghost Cursor Demo** | SVG cursor moves autonomously, clicks real UI components |
-| **Type-Delete-Retype** | Code block rewrites itself between languages (TS → Python → Go) |
-| **Algorithm Visualizer** | Data structure animates step-by-step with highlight sweep |
-| **Live Property Editor** | Code editor types → preview component morphs in real time |
-| **Autonomous Dashboard** | KPI counters spring to new values as dropdown cycles time periods |
-| **Morphing Hero Metric** | Large stat cross-fades between KPIs with character scramble |
-
-### 🖼️ Gemini Image Generation
-The `image-generator` agent runs automatically at the end of every build:
-1. **Audits** all image zones (hero bg, feature cards, avatars, logos, section atmospheres)
-2. **Crafts** narrative, cinematic Gemini prompts tailored to each zone
-3. **Generates** via `gemini-3-pro-image-preview` at appropriate resolutions
-4. **Integrates** the results back into the HTML/JSX with correct overlays and `alt` attributes
-5. **Falls back gracefully** — keeps placeholders with `<!-- TODO: Gemini prompt -->` comments if the API is unavailable
-
----
-
-## 🛠️ Getting Started
-
-### With Claude Code (Recommended)
+**Claude Code — one command:**
 
 ```bash
 git clone https://github.com/GlamgarOnDiscord/uxui-AI-Prompt.git
-cd uxui-AI-Prompt
+cp -r uxui-AI-Prompt/uxui-designer ~/.claude/skills/uxui-designer
 ```
 
-The `.claude/` folder is automatically detected by Claude Code. Just open the project and invoke the agent:
-
-```
-/ux-ui-designer
-```
-
-For image generation (runs automatically, or manually):
-```
-/image-generator
-```
-
-**Optional — Gemini image generation:**
-```bash
-pip install google-genai
-export GEMINI_API_KEY="your-key-here"
-```
-
-### With Other AI Tools (ChatGPT, Copilot, etc.)
-
-Copy the contents of [`prompt.md`](./prompt.md) and paste it as a system prompt in your AI tool of choice. The full design system, dials, anti-patterns, and workflow are self-contained in that file.
-
----
-
-## 💡 Usage Example
-
-Start a session with Claude Code in this project and describe what you want to build:
+Then just ask Claude to build any UI:
 
 ```
 Build a landing page for a developer analytics SaaS.
-Tech stack: Next.js + Tailwind. Dark mode. Emphasize the real-time dashboard.
+Next.js + Tailwind. Dark mode. Emphasize the real-time dashboard.
 ```
 
-The `ux-ui-designer` agent will:
-1. Ask 5 scoped onboarding questions
-2. Choose the right design dials for the use case
-3. Generate a complete page (min. 7 sections) with animations, accessibility, and social proof
-4. Invoke `image-generator` to replace all placeholders with Gemini visuals
+The skill handles everything: onboarding questions → design dials → layout → animations → Gemini visuals.
 
----
+<details>
+<summary><strong>Optional — Enable Gemini image generation</strong></summary>
 
-## 📦 Tech Stack Supported
+Get a free API key at [aistudio.google.com/apikey](https://aistudio.google.com/apikey), then:
 
-| Category | Options |
-|----------|---------|
-| Framework | React · Next.js App Router (preferred) · Static HTML/CSS/JS |
-| Styling | Tailwind CSS (mandatory) |
-| Animation | Framer Motion · GSAP/ScrollTrigger · Tailwind Animate |
-| Icons | `@phosphor-icons/react` (preferred) · `lucide-react` · HugeIcons |
-| Components | Magic UI · Aceternity UI · ShadCN UI · Reactbits |
-| Images | Gemini `gemini-3-pro-image-preview` |
+```bash
+export GEMINI_API_KEY="your-key-here"     # Linux / macOS
+$env:GEMINI_API_KEY = "your-key-here"     # PowerShell
+```
 
----
+**Zero dependencies (REST API)** — works with just `curl`. No Python needed.
+**Or with Python SDK** — `pip install google-genai Pillow` for batch generation.
+
+</details>
+
+<br />
+
+## 🔌 Install Anywhere
+
+<details>
+<summary><strong>Claude Code</strong></summary>
+
+| Scope | Command |
+|-------|---------|
+| Personal (all projects) | `cp -r uxui-designer ~/.claude/skills/uxui-designer` |
+| Project (team-shared) | `mkdir -p .claude/skills && cp -r uxui-designer .claude/skills/uxui-designer` |
+| Session (temporary) | `claude --add-dir /path/to/uxui-designer` |
+
+</details>
+
+<details>
+<summary><strong>Cursor · VS Code Copilot · Amp · Junie · Goose</strong></summary>
+
+Copy the `uxui-designer/` folder into your tool's skill directory:
+
+| Tool | Path |
+|------|------|
+| Cursor | `.cursor/skills/uxui-designer/` |
+| VS Code Copilot | `.github/skills/uxui-designer/` |
+| Amp | `.amp/skills/uxui-designer/` |
+| Junie (JetBrains) | `.junie/skills/uxui-designer/` |
+| Goose | `.goose/skills/uxui-designer/` |
+
+> Follows the open [Agent Skills](https://agentskills.io/) standard — any compatible tool auto-discovers `SKILL.md`.
+
+</details>
+
+<details>
+<summary><strong>Windsurf · Aider · ChatGPT · Others</strong></summary>
+
+These tools don't support skills — use the standalone prompt instead:
+
+| Tool | How |
+|------|-----|
+| Windsurf | Paste `prompt.md` contents into `.windsurfrules` |
+| Aider | `aider --read prompt.md` |
+| ChatGPT / Other | Paste `prompt.md` as system prompt |
+
+</details>
+
+<br />
+
+## 📦 Tech Stack
+
+| | |
+|-|-|
+| **Framework** | React · Next.js App Router (preferred) · Static HTML |
+| **Styling** | Tailwind CSS |
+| **Animation** | Framer Motion · GSAP / ScrollTrigger · Tailwind Animate |
+| **Icons** | Phosphor Icons (preferred) · Lucide · HugeIcons |
+| **Components** | Magic UI · Aceternity UI · ShadCN · Reactbits |
+| **Images** | Gemini `gemini-3.1-flash-image-preview` / `gemini-3-pro-image-preview` |
+
+<br />
 
 ## 🤝 Contributing
 
-Pull Requests, ideas, and issues are always welcome!
-1. Fork the repo
-2. Create your branch: `git checkout -b my-feature`
-3. Submit your PR
+PRs, ideas, and issues welcome. You can improve the design system, add motion patterns, or refine the Gemini prompting logic.
 
-You can improve the design system, add new motion patterns, add satellite agents, or improve the Gemini prompting logic.
+```bash
+fork → git checkout -b my-feature → PR
+```
 
----
+<br />
 
 ## 📜 License
 
-**Open License**
-Use, modify, and share this project freely with mandatory credit to [GlamgarOnDiscord/uxui-AI-Prompt](https://github.com/GlamgarOnDiscord/uxui-AI-Prompt).
+Open License — use, modify, and share freely with credit to [GlamgarOnDiscord/uxui-AI-Prompt](https://github.com/GlamgarOnDiscord/uxui-AI-Prompt).
 
 ---
 
-*Build interfaces that feel alive — with the precision of a senior engineer and the eye of a creative director.*
+<div align="center">
+<sub>Build interfaces that feel alive — with the precision of a senior engineer and the eye of a creative director.</sub>
+</div>
