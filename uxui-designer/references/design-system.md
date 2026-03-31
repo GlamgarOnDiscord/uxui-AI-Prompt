@@ -111,6 +111,67 @@ Only if requested by the user.
 - Based on 4px increments
 - Generous vertical margins between sections (`py-24`, `py-32`)
 - Consistent padding adapted to content
+
+#### Spacing Cheatsheet — Règle de Proximité
+Les éléments proches sont perçus comme appartenant au même groupe. Utilise ce système cohérent :
+
+| Usage | Valeur Tailwind | px |
+|---|---|---|
+| Intra-composant (label → input) | `gap-1` / `space-y-1` | 4px |
+| Éléments liés (icône → texte) | `gap-2` / `space-y-2` | 8px |
+| Groupe compact | `gap-3` / `space-y-3` | 12px |
+| Séparation standard | `gap-4` / `space-y-4` | 16px |
+| Groupes distincts | `gap-6` / `space-y-6` | 24px |
+| Sections proches | `gap-8` / `space-y-8` | 32px |
+| Sections distinctes | `gap-12` / `space-y-12` | 48px |
+| Sections majeures | `gap-16` / `space-y-16` | 64px |
+
+**Règle clé** : l'espacement entre deux groupes doit toujours être plus grand que l'espacement à l'intérieur d'un groupe.
+
+#### Dark Mode via CSS Variables (recommandé vs `dark:` Tailwind)
+Plutôt que de préfixer chaque style avec `dark:`, définir des CSS vars globales — bien plus maintenable :
+
+```css
+/* globals.css */
+:root {
+  --background: 0 0% 100%;
+  --foreground: 222.2 84% 4.9%;
+  --muted: 210 40% 96.1%;
+  --border: 214.3 31.8% 91.4%;
+}
+
+.dark {
+  --background: 222.2 84% 4.9%;
+  --foreground: 210 40% 98%;
+  --muted: 217.2 32.6% 17.5%;
+  --border: 217.2 32.6% 17.5%;
+}
+```
+
+```js
+// tailwind.config.js
+colors: {
+  background: 'hsl(var(--background) / <alpha-value>)',
+  foreground: 'hsl(var(--foreground) / <alpha-value>)',
+  border: 'hsl(var(--border) / <alpha-value>)',
+}
+```
+
+**Important** : toujours inclure `/ <alpha-value>` dans les CSS vars Tailwind pour que les utilitaires d'opacité (`bg-background/50`) continuent de fonctionner.
+
+#### Semantic Color Palette
+Nommer les couleurs par **usage** plutôt que par valeur :
+
+| Token | Rôle | Exemple dark |
+|---|---|---|
+| `--background` | Fond de page | `#09090b` |
+| `--surface` | Cards, panels | `#18181b` |
+| `--border` | Bordures | `rgba(255,255,255,0.08)` |
+| `--text-primary` | Titres | `#fafafa` |
+| `--text-secondary` | Corps | `#a1a1aa` |
+| `--text-muted` | Labels, captions | `#71717a` |
+| `--accent` | CTA, highlights | `#10b981` |
+| `--destructive` | Erreurs | `#ef4444` |
 - Border-radius boomerang rule: parent radius = child radius + inner spacing
 
 ### Responsive Breakpoints

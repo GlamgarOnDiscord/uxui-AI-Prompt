@@ -84,6 +84,16 @@
 
 ---
 
+## 5 Tips Bento Cards Premium
+
+1. **Legibility first** — aussi belle que soit la carte, si c'est dur à lire elle échoue. Contraste texte minimum WCAG AA, jamais de texte sur fond moyen
+2. **Break the Grid intentionnellement** — la symétrie parfaite est ennuyeuse. Décaler un bloc, faire "sortir" un élément, varier les hauteurs. L'asymétrie contrôlée = caractère
+3. **Add Texture** — détails subtils (noise overlay, grain, pattern discret en background de carte) pour casser le flat design sans surcharger
+4. **Merge your bentos** — laisser une carte "couler" dans la suivante. Créer des transitions entre idées via la taille, le mouvement ou la mise en page. Un bento = un flow, pas une grille d'items isolés
+5. **Animate your bentos** — hover subtil, soft glow au survol, expanding cards. Le mouvement intentionnel rend l'interface premium et vivante
+
+---
+
 ## Global Layout Specs
 
 - Mobile-first with Tailwind breakpoints (320px, 768px, 1200px+)

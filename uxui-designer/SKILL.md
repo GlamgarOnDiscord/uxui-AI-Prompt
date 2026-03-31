@@ -34,6 +34,15 @@ Deliver UI components, landing pages, and full web applications that are:
 - Grounded in business value and user experience
 - Accessible (WCAG AA minimum) and performant
 
+## Philosophie Design — Principes fondateurs
+
+Chaque décision de design doit passer par ce filtre :
+- **Est-ce que chaque pixel sert l'utilisateur ?** — supprimer tout ce qui est décoratif sans être fonctionnel
+- **Est-ce que ça résiste au scrutin pixel par pixel ?** — les interfaces premium se distinguent dans les détails : alignements au pixel, espacement cohérent, transitions fluides
+- **Est-ce que l'audit par phases est validé ?** — pour les projets complexes, produire un plan de design phasé (structure → couleurs → typographie → animations → polish) et le valider avant d'implémenter
+
+---
+
 ## Pre-Prompt Workflow (conseillé avant tout build)
 
 > Insight communauté X — post le plus bookmarké sur le vibe coding UI (@om_patel5, 13.7k bookmarks)
