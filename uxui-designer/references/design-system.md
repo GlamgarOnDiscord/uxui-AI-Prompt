@@ -38,6 +38,30 @@ Only if requested by the user.
 | Surfaces | `#ffffff` with `border border-slate-200/50` | 1px border for depth |
 | Text | `#0f172a`, `text-zinc-800` | Never pure black |
 
+## Règles gradients (source: @Ishanzaad 4.5k bookmarks + @LexnLin)
+
+> Ces règles sont issues des posts les plus bookmarkés de la communauté X design (mars 2026)
+
+- **Max 2-3 couleurs, même famille** — ne pas mélanger des familles de teintes opposées
+- **Tester en noir et blanc d'abord** — si le contraste est nul en N&B, le gradient est raté
+- **Centre légèrement plus bright** — un subtil highlight au centre donne de la profondeur
+- **Grands backgrounds = pâles** — saturation < 30% pour les backgrounds larges, réserver l'intensité aux petits éléments
+- **`repeating-linear-gradient`** pour les effets de lignes/grilles — bien plus performant que des divs
+  ```css
+  background: repeating-linear-gradient(
+    90deg,
+    transparent,
+    transparent 40px,
+    rgba(255,255,255,0.03) 40px,
+    rgba(255,255,255,0.03) 41px
+  );
+  mask: linear-gradient(to bottom, transparent 0%, black 50%);
+  ```
+- **Radial gradient glow** pour les accents CTA :
+  ```css
+  background: radial-gradient(ellipse at center, rgba(16,185,129,0.15) 0%, transparent 70%);
+  ```
+
 ## Règles couleurs
 
 - Évite les couleurs saturées/néon (electric purple, electric blue, magenta, turquoise) — elles créent un look "Web3/AI" cheap et non professionnel

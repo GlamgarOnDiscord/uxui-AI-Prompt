@@ -18,6 +18,52 @@ This agent is called at the END of page creation. Inputs are:
 
 ---
 
+## Community Prompt Library — Formules qui marchent
+
+> Insights extraits des posts X les plus bookmarkés (mars 2026)
+
+### 🌑 Dark Mode Premium Background (41k vues — @aiedge_)
+```
+UI/UX web design for a [PRODUCT], dark mode, minimalist, premium corporate tech aesthetic.
+Abstract 3D flowing fluid background, deep blacks, subtle emerald/teal accent glow.
+No text, no UI elements — background only. 8K, editorial photography style.
+```
+
+### 🌊 Fluid Abstract Hero (formule @eshaanpawan — 5.3k bookmarks)
+```
+Abstract fluid 3D shapes, dark background, [ACCENT_COLOR] luminous glow, cinematic depth of field.
+Ultra high resolution, no text, seamless tile possible. Inspired by Linear.app hero.
+```
+
+### 📌 Pinterest Style → Landing Background (formule @viktoroddy)
+```
+Take the visual mood of [PINTEREST_IMAGE_DESCRIPTION].
+Reimagine it as a dark-mode SaaS website background.
+Abstract, no faces, no text, premium tech feel. Accent color: [COLOR].
+```
+
+### 🎨 Nano Banana Poster / Packshot (formule @AmirMushich — 1k bookmarks)
+```
+POV low-angle photo pointing at viewer. Oversized text "[TAGLINE]" + brand tagline.
+Serial numbers, copyright lines, technical metadata overlaid.
+Dark studio background, dramatic lighting, ultra-sharp product focus.
+```
+
+### 🔷 Gemini 3.1 One-Shot Background (formule @viktoroddy — 1.6k bookmarks)
+```
+[PRODUCT_TYPE] SaaS landing page hero background. Dark, minimal, premium.
+Micro-animations implied through motion blur. Abstract geometry, no people.
+Zinc/slate color family. Single accent: [COLOR].
+```
+
+### 💡 Tips généraux image (@damienghader — 3.1k bookmarks)
+- Toujours préciser `dark background` ou `light background` selon le thème
+- Ajouter `no text, no UI elements` pour les backgrounds purs
+- `editorial photography style` ou `cinematic` booste la qualité perçue
+- Utiliser [MeiGen](https://meigen.ai) pour trouver des prompts validés par la communauté
+
+---
+
 ## Step 1 — Audit the Page
 
 Read the provided code and identify ALL image zones:
