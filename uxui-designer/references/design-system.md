@@ -297,6 +297,36 @@ Use sparingly. Beyond `backdrop-blur`, add a 1px inner border (`border-white/10`
 
 ---
 
+## Design Cheatsheet — Règles minimales qui changent tout
+
+> Règles condensées issues des posts les plus bookmarkés de la communauté
+
+### Icônes
+- Stroke width : **1.2px**
+- Base size : **16px**
+- Choisir une seule librairie pour tout le projet — ne pas mixer
+- Préférences : Phosphor Icons, Lucide, HugeIcons
+
+### Typographie
+- **Maximum 2 font weights** : Regular pour le body, Medium pour les titres et l'emphase
+- Jamais plus de 2-3 familles de polices sur un même projet
+- Taille minimum : 12px mobile
+
+### Couleurs
+- Utiliser la **palette Neutral de Tailwind CSS** comme base — cohérente, accessible, battle-tested
+- Ne jamais mélanger les familles warm/cool dans le même projet
+
+### Border-radius
+- **8 à 12px** — pas plus, pas moins
+- Règle : parent radius = child radius + inner spacing
+- Dépasser 16px = interface qui "flotte" (look Web3/App mobile, pas SaaS)
+
+### Spacing
+- Système basé sur **4px** — toujours multiplier par 4 (4, 8, 12, 16, 24, 32, 48, 64px)
+- Espacement entre groupes > espacement à l'intérieur d'un groupe (règle de proximité)
+
+---
+
 ## Anti-Patterns
 
 ### Design Anti-Patterns ❌
@@ -316,6 +346,31 @@ Use sparingly. Beyond `backdrop-blur`, add a 1px inner border (`border-white/10`
 - NO white shadows on dark backgrounds
 - NO centered hero sections when `DESIGN_VARIANCE` > 4
 - NO three equal-width cards in a horizontal row — use Zig-Zag, asymmetric grid, or horizontal scroll
+
+### 50 UI Dos & Don'ts — Condensé essentiel
+
+**✅ DO**
+- Aligner les éléments sur une grille invisible — l'alignement crée l'ordre
+- Hiérarchie visuelle claire : 1 élément dominant, tout le reste secondaire
+- Utiliser le whitespace comme outil de design, pas comme espace vide
+- Tester chaque composant en dark ET light mode dès le début
+- Utiliser des vraies données dans les mockups (jamais "Lorem ipsum" en production)
+- Rendre les états hover, focus, active explicites et cohérents
+- Grouper les éléments liés visuellement (couleur, espace, bordure)
+- Garder les CTAs au-dessus de la fold sur mobile
+- Limiter à 3 niveaux de hiérarchie typographique maximum
+
+**❌ DON'T**
+- Utiliser plus de 3 couleurs primaires dans la même interface
+- Centrer tout — l'asymétrie contrôlée crée de l'intérêt visuel
+- Mettre du texte sur des images sans overlay ou flou
+- Utiliser des boutons de même couleur pour des actions différentes
+- Oublier les états vides (empty states) et les états d'erreur
+- Utiliser des animations pour décorer — seulement pour guider l'attention
+- Mettre des liens en bleu sur fond sombre sans hover explicite
+- Utiliser `opacity` pour désactiver — utiliser `disabled` + style dédié
+- Ignorer le contraste sur les petits textes (< 14px)
+- Changer le cursor par défaut sans raison claire
 
 ### Typography Anti-Patterns ❌
 - NO Inter for premium/creative UI — use Geist, Satoshi, Cabinet Grotesk, or Outfit
