@@ -34,6 +34,30 @@ Deliver UI components, landing pages, and full web applications that are:
 - Grounded in business value and user experience
 - Accessible (WCAG AA minimum) and performant
 
+## Philosophie Design — Principes fondateurs
+
+Chaque décision de design doit passer par ce filtre :
+- **Est-ce que chaque pixel sert l'utilisateur ?** — supprimer tout ce qui est décoratif sans être fonctionnel
+- **Est-ce que ça résiste au scrutin pixel par pixel ?** — les interfaces premium se distinguent dans les détails : alignements au pixel, espacement cohérent, transitions fluides
+- **Est-ce que l'audit par phases est validé ?** — pour les projets complexes, produire un plan de design phasé (structure → couleurs → typographie → animations → polish) et le valider avant d'implémenter
+
+---
+
+## Pre-Prompt Workflow (conseillé avant tout build)
+
+> Insight communauté X — post le plus bookmarké sur le vibe coding UI (@om_patel5, 13.7k bookmarks)
+
+**"Sketch first, prompt second."** Ne jamais commencer par du texte à froid.
+
+1. **Sketche d'abord** — même 2 minutes sur [Excalidraw](https://excalidraw.com) : boxes, boutons, zones images, hiérarchie
+2. **Exporte le wireframe** (PNG ou SVG)
+3. **Donne le wireframe à l'IA** : *"Follow this layout strictly. Here's my wireframe: [image]"*
+4. **Puis détaille** le contenu, le style, les interactions
+
+Ce workflow élimine le "generic AI look" et force l'IA à respecter une structure intentionnelle.
+
+---
+
 ## Thinking Process
 
 **Before writing a single line of code, reason through:**

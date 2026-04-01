@@ -38,6 +38,30 @@ Only if requested by the user.
 | Surfaces | `#ffffff` with `border border-slate-200/50` | 1px border for depth |
 | Text | `#0f172a`, `text-zinc-800` | Never pure black |
 
+## Règles gradients (source: @Ishanzaad 4.5k bookmarks + @LexnLin)
+
+> Ces règles sont issues des posts les plus bookmarkés de la communauté X design (mars 2026)
+
+- **Max 2-3 couleurs, même famille** — ne pas mélanger des familles de teintes opposées
+- **Tester en noir et blanc d'abord** — si le contraste est nul en N&B, le gradient est raté
+- **Centre légèrement plus bright** — un subtil highlight au centre donne de la profondeur
+- **Grands backgrounds = pâles** — saturation < 30% pour les backgrounds larges, réserver l'intensité aux petits éléments
+- **`repeating-linear-gradient`** pour les effets de lignes/grilles — bien plus performant que des divs
+  ```css
+  background: repeating-linear-gradient(
+    90deg,
+    transparent,
+    transparent 40px,
+    rgba(255,255,255,0.03) 40px,
+    rgba(255,255,255,0.03) 41px
+  );
+  mask: linear-gradient(to bottom, transparent 0%, black 50%);
+  ```
+- **Radial gradient glow** pour les accents CTA :
+  ```css
+  background: radial-gradient(ellipse at center, rgba(16,185,129,0.15) 0%, transparent 70%);
+  ```
+
 ## Règles couleurs
 
 - Évite les couleurs saturées/néon (electric purple, electric blue, magenta, turquoise) — elles créent un look "Web3/AI" cheap et non professionnel
@@ -87,6 +111,67 @@ Only if requested by the user.
 - Based on 4px increments
 - Generous vertical margins between sections (`py-24`, `py-32`)
 - Consistent padding adapted to content
+
+#### Spacing Cheatsheet — Règle de Proximité
+Les éléments proches sont perçus comme appartenant au même groupe. Utilise ce système cohérent :
+
+| Usage | Valeur Tailwind | px |
+|---|---|---|
+| Intra-composant (label → input) | `gap-1` / `space-y-1` | 4px |
+| Éléments liés (icône → texte) | `gap-2` / `space-y-2` | 8px |
+| Groupe compact | `gap-3` / `space-y-3` | 12px |
+| Séparation standard | `gap-4` / `space-y-4` | 16px |
+| Groupes distincts | `gap-6` / `space-y-6` | 24px |
+| Sections proches | `gap-8` / `space-y-8` | 32px |
+| Sections distinctes | `gap-12` / `space-y-12` | 48px |
+| Sections majeures | `gap-16` / `space-y-16` | 64px |
+
+**Règle clé** : l'espacement entre deux groupes doit toujours être plus grand que l'espacement à l'intérieur d'un groupe.
+
+#### Dark Mode via CSS Variables (recommandé vs `dark:` Tailwind)
+Plutôt que de préfixer chaque style avec `dark:`, définir des CSS vars globales — bien plus maintenable :
+
+```css
+/* globals.css */
+:root {
+  --background: 0 0% 100%;
+  --foreground: 222.2 84% 4.9%;
+  --muted: 210 40% 96.1%;
+  --border: 214.3 31.8% 91.4%;
+}
+
+.dark {
+  --background: 222.2 84% 4.9%;
+  --foreground: 210 40% 98%;
+  --muted: 217.2 32.6% 17.5%;
+  --border: 217.2 32.6% 17.5%;
+}
+```
+
+```js
+// tailwind.config.js
+colors: {
+  background: 'hsl(var(--background) / <alpha-value>)',
+  foreground: 'hsl(var(--foreground) / <alpha-value>)',
+  border: 'hsl(var(--border) / <alpha-value>)',
+}
+```
+
+**Important** : toujours inclure `/ <alpha-value>` dans les CSS vars Tailwind pour que les utilitaires d'opacité (`bg-background/50`) continuent de fonctionner.
+
+#### Semantic Color Palette
+Nommer les couleurs par **usage** plutôt que par valeur :
+
+| Token | Rôle | Exemple dark |
+|---|---|---|
+| `--background` | Fond de page | `#09090b` |
+| `--surface` | Cards, panels | `#18181b` |
+| `--border` | Bordures | `rgba(255,255,255,0.08)` |
+| `--text-primary` | Titres | `#fafafa` |
+| `--text-secondary` | Corps | `#a1a1aa` |
+| `--text-muted` | Labels, captions | `#71717a` |
+| `--accent` | CTA, highlights | `#10b981` |
+| `--destructive` | Erreurs | `#ef4444` |
 - Border-radius boomerang rule: parent radius = child radius + inner spacing
 
 ### Responsive Breakpoints
@@ -212,6 +297,36 @@ Use sparingly. Beyond `backdrop-blur`, add a 1px inner border (`border-white/10`
 
 ---
 
+## Design Cheatsheet — Règles minimales qui changent tout
+
+> Règles condensées issues des posts les plus bookmarkés de la communauté
+
+### Icônes
+- Stroke width : **1.2px**
+- Base size : **16px**
+- Choisir une seule librairie pour tout le projet — ne pas mixer
+- Préférences : Phosphor Icons, Lucide, HugeIcons
+
+### Typographie
+- **Maximum 2 font weights** : Regular pour le body, Medium pour les titres et l'emphase
+- Jamais plus de 2-3 familles de polices sur un même projet
+- Taille minimum : 12px mobile
+
+### Couleurs
+- Utiliser la **palette Neutral de Tailwind CSS** comme base — cohérente, accessible, battle-tested
+- Ne jamais mélanger les familles warm/cool dans le même projet
+
+### Border-radius
+- **8 à 12px** — pas plus, pas moins
+- Règle : parent radius = child radius + inner spacing
+- Dépasser 16px = interface qui "flotte" (look Web3/App mobile, pas SaaS)
+
+### Spacing
+- Système basé sur **4px** — toujours multiplier par 4 (4, 8, 12, 16, 24, 32, 48, 64px)
+- Espacement entre groupes > espacement à l'intérieur d'un groupe (règle de proximité)
+
+---
+
 ## Anti-Patterns
 
 ### Design Anti-Patterns ❌
@@ -231,6 +346,31 @@ Use sparingly. Beyond `backdrop-blur`, add a 1px inner border (`border-white/10`
 - NO white shadows on dark backgrounds
 - NO centered hero sections when `DESIGN_VARIANCE` > 4
 - NO three equal-width cards in a horizontal row — use Zig-Zag, asymmetric grid, or horizontal scroll
+
+### 50 UI Dos & Don'ts — Condensé essentiel
+
+**✅ DO**
+- Aligner les éléments sur une grille invisible — l'alignement crée l'ordre
+- Hiérarchie visuelle claire : 1 élément dominant, tout le reste secondaire
+- Utiliser le whitespace comme outil de design, pas comme espace vide
+- Tester chaque composant en dark ET light mode dès le début
+- Utiliser des vraies données dans les mockups (jamais "Lorem ipsum" en production)
+- Rendre les états hover, focus, active explicites et cohérents
+- Grouper les éléments liés visuellement (couleur, espace, bordure)
+- Garder les CTAs au-dessus de la fold sur mobile
+- Limiter à 3 niveaux de hiérarchie typographique maximum
+
+**❌ DON'T**
+- Utiliser plus de 3 couleurs primaires dans la même interface
+- Centrer tout — l'asymétrie contrôlée crée de l'intérêt visuel
+- Mettre du texte sur des images sans overlay ou flou
+- Utiliser des boutons de même couleur pour des actions différentes
+- Oublier les états vides (empty states) et les états d'erreur
+- Utiliser des animations pour décorer — seulement pour guider l'attention
+- Mettre des liens en bleu sur fond sombre sans hover explicite
+- Utiliser `opacity` pour désactiver — utiliser `disabled` + style dédié
+- Ignorer le contraste sur les petits textes (< 14px)
+- Changer le cursor par défaut sans raison claire
 
 ### Typography Anti-Patterns ❌
 - NO Inter for premium/creative UI — use Geist, Satoshi, Cabinet Grotesk, or Outfit

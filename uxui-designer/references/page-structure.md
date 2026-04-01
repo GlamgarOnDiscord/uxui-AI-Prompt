@@ -27,6 +27,26 @@
 - Handwritten text annotation and arrow pointing to the CTA
 - **Asymmetric layout** — no centered text blocks (see `design-system.md` § Layout rules)
 
+#### 6 règles hero section (source: @jameslaurents — 6.2k bookmarks)
+1. **Le titre doit survivre sans sous-titre** — si le message n'est pas clair en 3 mots, retravailler
+2. **CTA above the fold toujours** — jamais forcer le scroll pour trouver l'action principale
+3. **Une seule direction visuelle** — l'œil doit savoir où aller immédiatement (haut gauche → CTA)
+4. **Le background sert le texte** — jamais l'inverse. Si le background attire plus que le titre, le réduire
+5. **Social proof dans le hero lui-même** — avatars + stats + logos = confiance immédiate avant le scroll
+6. **Mobile first pour le hero** — concevoir d'abord en 375px, puis scaler. Le hero mobile casse toujours en premier
+
+#### 10 sections d'une landing high-converting (source: @namyakhann — 6.2k bookmarks)
+1. Hero — valeur + CTA immédiat
+2. Social proof — logos clients / stats
+3. Problem — douleur que tu résous
+4. Solution — ton produit comme réponse
+5. Features — bento grid ou liste avec icônes
+6. How it works — 3 étapes max, visuel
+7. Testimonials — vrais noms, vrais résultats chiffrés
+8. Pricing — 3 tiers, mettre en avant le middle
+9. FAQ — objections réelles des prospects
+10. Final CTA — répéter la proposition de valeur + urgence
+
 ### 3. Social Proof Section
 - Client testimonials with ratings
 - Company logos (marquee or grid)
@@ -61,6 +81,16 @@
 - Social media icons
 - Legal links
 - Copyright
+
+---
+
+## 5 Tips Bento Cards Premium
+
+1. **Legibility first** — aussi belle que soit la carte, si c'est dur à lire elle échoue. Contraste texte minimum WCAG AA, jamais de texte sur fond moyen
+2. **Break the Grid intentionnellement** — la symétrie parfaite est ennuyeuse. Décaler un bloc, faire "sortir" un élément, varier les hauteurs. L'asymétrie contrôlée = caractère
+3. **Add Texture** — détails subtils (noise overlay, grain, pattern discret en background de carte) pour casser le flat design sans surcharger
+4. **Merge your bentos** — laisser une carte "couler" dans la suivante. Créer des transitions entre idées via la taille, le mouvement ou la mise en page. Un bento = un flow, pas une grille d'items isolés
+5. **Animate your bentos** — hover subtil, soft glow au survol, expanding cards. Le mouvement intentionnel rend l'interface premium et vivante
 
 ---
 

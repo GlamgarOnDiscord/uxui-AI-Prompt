@@ -137,6 +137,21 @@ A single large metric ("$2.4M ARR") continuously cross-fades between different K
 
 ## Autonomous Animation Rules
 
+## Framer Page Transitions — Settings Buttery Smooth
+
+Pour des transitions de pages ultra-fluides dans Framer, voici la procédure exacte (4 étapes) :
+
+1. **Desktop breakpoint** → Effects → **All Pages**
+2. **"This Page"** → copier ces settings de courbe ease :
+   - Utiliser [easings.net](https://easings.net) pour trouver des courbes ultra-smooth
+   - Recommandé : `easeInOutQuart` ou custom cubic-bezier `(0.76, 0, 0.24, 1)`
+3. **"Any Page"** → appliquer les mêmes settings
+4. **Pro tip** : Sélectionner la navigation et **l'exclure du Page Effect** — sinon elle entre/sort à chaque changement de page, ce qui casse l'illusion de fluidité
+
+Ces settings prennent 60 secondes à appliquer et transforment complètement la perception de qualité du site.
+
+---
+
 These rules are non-negotiable for all autonomous animation patterns:
 
 - Always loop with `repeat: Infinity` and a natural **2–4s rest** between cycles — continuous motion without breaks feels frantic and tiring
