@@ -1,0 +1,31 @@
+/*
+ * Invalid CSS fixture — contains known violations.
+ *
+ * Violations expected:
+ *   1. spacing-scale: padding: 14px — not on 4px grid
+ *   2. spacing-scale: margin: 10px — not on 4px grid
+ *   3. font-family: "Roboto" — not in DESIGN.md
+ *   4. contrast-ratio: color #71717a on background-color #27272a — ratio ~2.9:1
+ */
+
+.bad-spacing {
+  padding: 14px;
+  margin: 10px;
+  gap: 6px;
+}
+
+.low-contrast {
+  color: #71717a;
+  background-color: #27272a;
+}
+
+.wrong-font {
+  font-family: "Roboto", sans-serif;
+}
+
+/* These are valid — 4px grid */
+.valid-spacing {
+  padding: 8px;
+  margin: 16px;
+  gap: 4px;
+}

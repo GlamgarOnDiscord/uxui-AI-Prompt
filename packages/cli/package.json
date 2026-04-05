@@ -1,0 +1,37 @@
+{
+  "name": "@design-md/cli",
+  "version": "0.1.0",
+  "description": "design-md CLI — npx design-md add <brand>, list, init, lint.",
+  "type": "module",
+  "bin": {
+    "design-md": "./dist/bin.js",
+    "dmk": "./dist/bin.js"
+  },
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": { "types": "./dist/index.d.ts", "import": "./dist/index.js" }
+  },
+  "files": ["dist"],
+  "scripts": {
+    "build": "tsup src/bin.ts src/index.ts --format esm --dts --clean",
+    "dev": "tsup src/bin.ts --format esm --watch",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run --passWithNoTests"
+  },
+  "dependencies": {
+    "@design-md/exporters": "workspace:*",
+    "@design-md/parser": "workspace:*",
+    "@design-md/schema": "workspace:*",
+    "@design-md/validator": "workspace:*",
+    "chalk": "^5.3.0",
+    "commander": "^12.1.0",
+    "prompts": "^2.4.2"
+  },
+  "devDependencies": {
+    "@types/prompts": "^2.4.9",
+    "tsup": "^8.3.0",
+    "typescript": "^5.6.3",
+    "vitest": "^2.1.3"
+  }
+}

@@ -1,0 +1,50 @@
+{
+  "version": "0.1.0",
+  "brands": {
+    "uxui-designer": {
+      "name": "uxui-designer",
+      "description": "Glamgar's premium SaaS dark-first system — Zinc/Slate, Geist, emerald accent.",
+      "path": "brands/uxui-designer/DESIGN.md",
+      "source": "https://github.com/GlamgarOnDiscord/uxui-AI-Prompt",
+      "license": "MIT",
+      "author": "GlamgarOnDiscord",
+      "tags": ["dark", "saas", "zinc", "geist", "premium"]
+    },
+    "linear": {
+      "name": "linear",
+      "description": "Linear's clean, fast product UI — violet accent, tight spacing.",
+      "path": "brands/linear/DESIGN.md",
+      "source": "https://github.com/VoltAgent/awesome-design-md",
+      "license": "MIT",
+      "author": "VoltAgent",
+      "tags": ["dark", "product", "violet", "dense"]
+    },
+    "vercel": {
+      "name": "vercel",
+      "description": "Vercel's monochromatic B&W system — minimal, developer-first.",
+      "path": "brands/vercel/DESIGN.md",
+      "source": "https://github.com/VoltAgent/awesome-design-md",
+      "license": "MIT",
+      "author": "VoltAgent",
+      "tags": ["dark", "monochrome", "minimal", "developer"]
+    },
+    "stripe": {
+      "name": "stripe",
+      "description": "Stripe's polished fintech UI — Slate tones, indigo accent.",
+      "path": "brands/stripe/DESIGN.md",
+      "source": "https://github.com/VoltAgent/awesome-design-md",
+      "license": "MIT",
+      "author": "VoltAgent",
+      "tags": ["dark", "fintech", "slate", "indigo"]
+    },
+    "raycast": {
+      "name": "raycast",
+      "description": "Raycast's launcher aesthetic — ultra-dark, keyboard-first, red accent.",
+      "path": "brands/raycast/DESIGN.md",
+      "source": "https://github.com/VoltAgent/awesome-design-md",
+      "license": "MIT",
+      "author": "VoltAgent",
+      "tags": ["dark", "tool", "launcher", "red"]
+    }
+  }
+}
