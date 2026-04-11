@@ -18,10 +18,11 @@ Dark-mode first · Animation-driven · Gemini-powered visuals
 [![Tailwind](https://img.shields.io/badge/Tailwind-CSS-18181b?style=for-the-badge&logo=tailwindcss&logoColor=06b6d4&labelColor=27272a)](https://tailwindcss.com)
 [![Next.js](https://img.shields.io/badge/Next.js-App_Router-18181b?style=for-the-badge&logo=nextdotjs&logoColor=white&labelColor=27272a)](https://nextjs.org)
 [![Agent Skills](https://img.shields.io/badge/Agent_Skills-Standard-18181b?style=for-the-badge&logo=opslevel&logoColor=10b981&labelColor=27272a)](https://agentskills.io/)
+[![DESIGN.md](https://img.shields.io/badge/DESIGN.md-Stitch_compatible-18181b?style=for-the-badge&logo=googlecloud&logoColor=34d399&labelColor=27272a)](./DESIGN.md)
 
 <br />
 
-[Get Started](#-quick-start) · [Features](#-what-it-does) · [Install](#-install-anywhere) · [Contributing](#-contributing)
+[Get Started](#-quick-start) · [Commands](#-slash-commands) · [Presets](#-brand-presets) · [Install](#-install-anywhere) · [Contributing](#-contributing)
 
 </div>
 
@@ -37,7 +38,7 @@ A **plug-and-play AI skill** that turns any coding agent into a senior frontend 
 
 Drop it into Claude Code, Cursor, VS Code Copilot, or any compatible tool — and start building interfaces inspired by **Vercel, Linear, Stripe, and Raycast** in seconds.
 
-> **Skill mode** (`uxui-designer/`) — modular, lazy-loaded, optimized for Claude Code & compatible agents.
+> **Skill mode** (`skills/uxui-designer/`) — modular, lazy-loaded, optimized for Claude Code & compatible agents.
 > **Prompt mode** (`prompt.md`) — single-file system prompt for ChatGPT, Windsurf, Aider, or anything else.
 
 <br />
@@ -100,46 +101,121 @@ Runs automatically at the end of every build:
 
 <br />
 
+## ⌨️ Slash Commands
+
+8 focused commands tuned for premium SaaS work — just type them in chat:
+
+| Command | What it does |
+|---------|-------------|
+| `/build <type> <desc>` | Generate a full page from scratch — dark-mode premium by default |
+| `/polish` | Final pre-ship pass: contrast, spacing, copy, micro-interactions |
+| `/audit` | WCAG 2.2 AA + anti-slop report — outputs `file:line` violations, no edits |
+| `/critique` | UX review as a principal designer — Nielsen heuristics, no edits |
+| `/animate [intensity]` | Add motion patterns — perpetual micro-interactions, spring physics |
+| `/imagify [mood]` | Run Gemini pipeline — replace placeholders with cinematic AI images |
+| `/dials variance=N motion=N density=N` | Adjust the 3 design dials on the fly |
+| `/variant <preset>` | Swap brand preset — re-theme colors, type, spacing, motion |
+
+<br />
+
+## 🎨 Brand Presets
+
+Drop-in brand aesthetics. Each is a standalone [`DESIGN.md`](./DESIGN.md)-compatible file in `design-presets/`.
+
+| Preset | Vibe | Typography | Accent |
+|--------|------|-----------|--------|
+| `vercel` | Monochrome precision, surgical | Geist | White on black |
+| `linear` | Near-black, ultra-tight, electric | Geist | Indigo `#6366f1` |
+| `stripe` | Bright canvas, prismatic gradients | Söhne-like | Violet `#635bff` |
+| `raycast` | Dark chrome, vibrant multi-hue | Geist Mono + Geist | Multi-gradient |
+| `superhuman` | Deep purple glow, keyboard-first | Geist Mono | Purple `#7c3aed` |
+| `notion` | Warm off-white, editorial | Serif display + sans | Minimal |
+| `vs-code` | Editor-dark, syntax-rainbow | Geist Mono | Syntax-matched |
+
+```
+/variant linear   ← re-themes your entire page in one command
+```
+
+> The root [`DESIGN.md`](./DESIGN.md) is [Google Stitch](https://stitch.withgoogle.com) compatible — any DESIGN.md-aware tool reads it automatically.
+
+<br />
+
 ## 📁 Architecture
 
 ```
 uxui-AI-Prompt/
 │
+├── DESIGN.md                      ← Stitch-compatible root design spec
 ├── prompt.md                      ← Standalone prompt (any AI tool)
+├── install.sh                     ← One-liner installer
 │
-└── uxui-designer/                 ← Skill (Claude Code & compatible agents)
-    ├── SKILL.md                   ← Entry point — loads references on demand
-    └── references/
-        ├── design-system.md       ← Colors · Typography · Layout · Components
-        ├── motion-patterns.md     ← Framer Motion · GSAP · 6 autonomous demos
-        ├── copywriting.md         ← Copy rules · CTAs · Anti-patterns
-        ├── page-structure.md      ← 8 mandatory sections with specs
-        └── image-generator.md     ← Gemini API pipeline (REST + SDK)
+├── design-presets/                ← 7 brand presets (DESIGN.md format)
+│   ├── vercel.md
+│   ├── linear.md
+│   ├── stripe.md
+│   ├── raycast.md
+│   ├── superhuman.md
+│   ├── notion.md
+│   └── vs-code.md
+│
+├── skills/
+│   ├── uxui-designer/             ← Main skill — build pages & components
+│   │   ├── SKILL.md
+│   │   └── references/
+│   │       ├── design-system.md
+│   │       ├── motion-patterns.md
+│   │       ├── copywriting.md
+│   │       ├── page-structure.md
+│   │       ├── dashboard.md       ← Dashboard-specific rulebook
+│   │       ├── image-generator.md
+│   │       ├── slash-commands.md
+│   │       └── ux-audit.md
+│   │
+│   ├── uxui-audit/                ← Audit-only skill (WCAG + Nielsen)
+│   │   ├── SKILL.md
+│   │   └── references/
+│   │       └── ux-audit.md
+│   │
+│   └── uxui-imagify/              ← Gemini pipeline, standalone
+│       ├── SKILL.md
+│       └── references/
+│           └── image-generator.md
+│
+└── examples/                      ← Reference outputs
+    ├── landing-page.md
+    ├── dashboard.md
+    ├── pricing-page.md
+    └── auth-page.md
 ```
 
 ```
- User prompt → SKILL.md → lazy-load references → build page → image-generator → done
+User prompt → SKILL.md → lazy-load references → /build → /polish → /imagify → done
 ```
 
 <br />
 
 ## 🚀 Quick Start
 
-**Claude Code — one command:**
+**One-liner:**
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/GlamgarOnDiscord/uxui-AI-Prompt/main/install.sh | bash
+```
+
+**Or manual — Claude Code:**
 
 ```bash
 git clone https://github.com/GlamgarOnDiscord/uxui-AI-Prompt.git
-cp -r uxui-AI-Prompt/uxui-designer ~/.claude/skills/uxui-designer
+cp -r uxui-AI-Prompt/skills/uxui-designer ~/.claude/skills/uxui-designer
 ```
 
 Then just ask Claude to build any UI:
 
 ```
-Build a landing page for a developer analytics SaaS.
-Next.js + Tailwind. Dark mode. Emphasize the real-time dashboard.
+/build landing Developer analytics SaaS — real-time dashboard, dark mode, Series A target.
 ```
 
-The skill handles everything: onboarding questions → design dials → layout → animations → Gemini visuals.
+The skill handles everything: design dials → layout → animations → Gemini visuals.
 
 <details>
 <summary><strong>Optional — Enable Gemini image generation</strong></summary>
@@ -165,8 +241,8 @@ $env:GEMINI_API_KEY = "your-key-here"     # PowerShell
 
 | Scope | Command |
 |-------|---------|
-| Personal (all projects) | `cp -r uxui-designer ~/.claude/skills/uxui-designer` |
-| Project (team-shared) | `mkdir -p .claude/skills && cp -r uxui-designer .claude/skills/uxui-designer` |
+| Personal (all projects) | `cp -r skills/uxui-designer ~/.claude/skills/uxui-designer` |
+| Project (team-shared) | `mkdir -p .claude/skills && cp -r skills/uxui-designer .claude/skills/uxui-designer` |
 | Session (temporary) | `claude --add-dir /path/to/uxui-designer` |
 
 </details>
@@ -174,7 +250,7 @@ $env:GEMINI_API_KEY = "your-key-here"     # PowerShell
 <details>
 <summary><strong>Cursor · VS Code Copilot · Amp · Junie · Goose</strong></summary>
 
-Copy the `uxui-designer/` folder into your tool's skill directory:
+Copy the `skills/uxui-designer/` folder into your tool's skill directory:
 
 | Tool | Path |
 |------|------|
@@ -218,7 +294,9 @@ These tools don't support skills — use the standalone prompt instead:
 
 ## 🤝 Contributing
 
-PRs, ideas, and issues welcome. You can improve the design system, add motion patterns, or refine the Gemini prompting logic.
+PRs, ideas, and issues welcome. You can improve the design system, add motion patterns, refine Gemini prompting, or submit new brand presets.
+
+See [CONTRIBUTING.md](./CONTRIBUTING.md) for details.
 
 ```bash
 fork → git checkout -b my-feature → PR
