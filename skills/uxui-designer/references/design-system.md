@@ -51,7 +51,7 @@ Only if requested by the user.
 
 ---
 
-## Typographie
+## Typography
 
 ### Multi-font system (2-3 fonts maximum)
 
@@ -192,7 +192,7 @@ Use sparingly. Beyond `backdrop-blur`, add a 1px inner border (`border-white/10`
 
 ---
 
-## Accessibilité (WCAG)
+## Accessibility (WCAG)
 
 ### Contrast Targets
 - **WCAG AA minimum:** 4.5:1 for normal text, 3:1 for large text
