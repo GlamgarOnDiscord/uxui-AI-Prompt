@@ -247,7 +247,7 @@ Use sparingly. Beyond `backdrop-blur`, add a 1px inner border (`border-white/10`
 - NO arbitrary z-index values — systemic contexts only
 - NO uncompressed oversized images
 - NO horizontal scroll
-- NO `window.addEventListener('scroll')` for scroll animations — use Framer Motion or GSAP ScrollTrigger instead (they handle cleanup, RAF batching, and intersection observation automatically)
+- NO `window.addEventListener('scroll')` for scroll animations — use Framer Motion or GSAP ScrollTrigger instead (RAF batching and intersection observation handled; **GSAP ScrollTrigger requires explicit cleanup in `useEffect` return: `return () => ScrollTrigger.getAll().forEach(t => t.kill())`**)
 
 ---
 

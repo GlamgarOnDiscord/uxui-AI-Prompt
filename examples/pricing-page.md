@@ -10,7 +10,7 @@ Plans: Free, Pro ($29/mo), Team ($99/mo).
 
 A dark-mode pricing page with:
 
-### Sections (6)
+### Sections (7)
 1. **Header** — Sticky glass navbar with logo, nav, CTA
 2. **Hero** — Left-aligned: "Pricing that scales with you" + subtitle + monthly/yearly toggle (Save 20% on yearly)
 3. **Pricing Cards** — 3 cards, asymmetric: Pro card elevated (`scale-[1.02]`, accent border, "Most popular" badge). Each card: plan name, price with monospace digits, feature list with checkmarks, CTA button
@@ -27,7 +27,7 @@ A dark-mode pricing page with:
 
 ### Interactive States
 - Monthly/yearly toggle updates all prices with number scramble animation
-- Accordion: only one open at a time, `max-height` transition
+- Accordion: only one open at a time, `grid-template-rows: 0fr → 1fr` transition (avoids layout-triggering `max-height`)
 - Hover on cards: subtle `translateY(-4px)` + border brightness
 
 ### Anti-Slop Checks

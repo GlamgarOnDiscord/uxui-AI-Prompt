@@ -55,7 +55,9 @@ Run Gemini pipeline only. Loads [image-generator.md](references/image-generator.
 Adjust design dials mid-session. Accepts partial sets. Changes apply to all subsequent generation.
 
 ### `/variant <preset-name>`
-Swap brand preset. Loads `design-presets/<name>.md` and re-themes current output: colors, typography, spacing, motion intensity. Available: `vercel`, `linear`, `stripe`, `raycast`, `superhuman`, `notion`, `vs-code`.
+Swap brand preset. Loads the preset file and re-themes current output: colors, typography, spacing, motion intensity. Available: `vercel`, `linear`, `stripe`, `raycast`, `superhuman`, `notion`, `vs-code`.
+
+> **Path resolution:** look for `design-presets/<name>.md` relative to the agent config root (e.g. `~/.claude/design-presets/` for a global install, `.claude/design-presets/` for a project install). The installer places presets there automatically.
 
 ## Primary Goal
 

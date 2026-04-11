@@ -29,9 +29,9 @@
 
 | Role | Font | Weight |
 |------|------|--------|
-| Display | Inter | 700 |
-| Body | Inter | 400 |
-| Monospace | JetBrains Mono | 400 |
+| Display | Geist | 700 |
+| Body | Geist | 400 |
+| Monospace | Geist Mono | 400 |
 
 Tracking: `tracking-tight` on display. Standard elsewhere.
 

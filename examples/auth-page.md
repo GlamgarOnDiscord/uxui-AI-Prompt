@@ -31,7 +31,7 @@ A dark-mode auth page with:
 - Helper links: "Forgot password?" / "Terms of Service"
 
 ### States
-- **Loading**: Spinner inside button + disabled state + "Signing in..." text
+- **Loading**: Button enters disabled state with animated dots (`···`) + "Signing in..." text — no generic spinner
 - **Error**: Inline red message below input ("Invalid email or password") + shake animation on form
 - **Success**: Button morphs to checkmark icon → redirect animation
 

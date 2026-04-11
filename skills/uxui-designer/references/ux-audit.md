@@ -65,7 +65,7 @@ Easy to search, focused on the task, concrete steps.
 | 1.3.5 | Input purpose identified | `autocomplete` attributes on common fields (name, email, address) |
 | 1.4.1 | Color not sole indicator | Don't rely on color alone for errors — add icon or text |
 | 1.4.3 | Contrast minimum | **4.5:1** for normal text, **3:1** for large text (18px+ or 14px+ bold) |
-| 1.4.4 | Resize text | Page usable at 200% zoom without horizontal scroll |
+| 1.4.4 | Resize text | Text resizable up to 200% without assistive technology, without loss of content or functionality |
 | 1.4.11 | Non-text contrast | **3:1** for UI components and graphical objects |
 | 1.4.12 | Text spacing | Content usable with line-height 1.5x, paragraph spacing 2x, letter-spacing 0.12em, word-spacing 0.16em |
 
@@ -79,8 +79,8 @@ Easy to search, focused on the task, concrete steps.
 | 2.4.4 | Link purpose | Link text describes destination (not "click here") |
 | 2.4.7 | Focus visible | All interactive elements have visible focus indicator (`ring-2`) |
 | 2.4.11 | Focus not obscured | Focus indicator not hidden by sticky headers or overlays |
-| 2.5.5 | Target size | Interactive targets minimum **24x24px** (44x44px recommended) |
-| 2.5.8 | Target spacing | Minimum 8px between adjacent targets |
+| 2.5.5 | Target size (AAA) | Interactive targets minimum **44x44px** — Level AAA, best practice |
+| 2.5.8 | Target Size Minimum (AA) | Interactive targets minimum **24x24px**. Exceptions: spacing, equivalent control, inline text, user-agent-set, essential |
 
 ### Understandable
 

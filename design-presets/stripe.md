@@ -38,7 +38,7 @@ Everything breathes.
 
 ## Motion
 `MOTION_INTENSITY` override: **5**.
-Smooth reveals, parallax depth. Horizontal scroll for feature showcases.
+Smooth reveals, parallax depth. Feature showcases use scrollable card carousels with prev/next arrow controls — no passive horizontal scroll.
 Signature: gradient mesh background that subtly shifts on scroll.
 
 ## Signature Patterns

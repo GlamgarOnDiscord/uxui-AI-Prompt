@@ -17,59 +17,63 @@ echo -e "${CYAN}║   uxui-AI-Prompt — Premium UI Skill  ║${NC}"
 echo -e "${CYAN}╚══════════════════════════════════════╝${NC}"
 echo ""
 
-INSTALLED=0
+TARGETS=()
 
-# Detect and install to Claude Code
-if [ -d "$HOME/.claude" ] || [ -d ".claude" ]; then
-  TARGET="${HOME}/.claude/skills/uxui-designer"
-  mkdir -p "$TARGET/references"
-  echo -e "${GREEN}✓${NC} Detected Claude Code → installing to $TARGET"
-  INSTALLED=1
+# Detect local project .claude (priority over global)
+if [ -d ".claude" ]; then
+  TARGETS+=(".claude/skills/uxui-designer")
+  echo -e "${GREEN}✓${NC} Detected local Claude Code project → .claude/skills/uxui-designer"
+# Fallback to global ~/.claude
+elif [ -d "$HOME/.claude" ]; then
+  TARGETS+=("${HOME}/.claude/skills/uxui-designer")
+  echo -e "${GREEN}✓${NC} Detected global Claude Code → ${HOME}/.claude/skills/uxui-designer"
 fi
 
 # Detect Cursor
 if [ -d ".cursor" ]; then
-  TARGET=".cursor/skills/uxui-designer"
-  mkdir -p "$TARGET/references"
-  echo -e "${GREEN}✓${NC} Detected Cursor → installing to $TARGET"
-  INSTALLED=1
+  TARGETS+=(".cursor/skills/uxui-designer")
+  echo -e "${GREEN}✓${NC} Detected Cursor → .cursor/skills/uxui-designer"
 fi
 
 # Detect Codex
 if [ -d ".codex" ]; then
-  TARGET=".codex/skills/uxui-designer"
-  mkdir -p "$TARGET/references"
-  echo -e "${GREEN}✓${NC} Detected Codex → installing to $TARGET"
-  INSTALLED=1
+  TARGETS+=(".codex/skills/uxui-designer")
+  echo -e "${GREEN}✓${NC} Detected Codex → .codex/skills/uxui-designer"
 fi
 
 # Detect OpenCode
 if [ -d ".opencode" ]; then
-  TARGET=".opencode/skills/uxui-designer"
-  mkdir -p "$TARGET/references"
-  echo -e "${GREEN}✓${NC} Detected OpenCode → installing to $TARGET"
-  INSTALLED=1
+  TARGETS+=(".opencode/skills/uxui-designer")
+  echo -e "${GREEN}✓${NC} Detected OpenCode → .opencode/skills/uxui-designer"
 fi
 
-if [ "$INSTALLED" -eq 0 ]; then
+if [ "${#TARGETS[@]}" -eq 0 ]; then
   echo -e "${YELLOW}No agent directory detected (.claude, .cursor, .codex, .opencode)${NC}"
-  echo "Creating .claude/skills/uxui-designer/ by default..."
-  TARGET="${HOME}/.claude/skills/uxui-designer"
-  mkdir -p "$TARGET/references"
+  echo "Creating ${HOME}/.claude/skills/uxui-designer/ by default..."
+  TARGETS+=("${HOME}/.claude/skills/uxui-designer")
 fi
 
 echo ""
 echo "Downloading skill files..."
 
-# Core SKILL.md
-curl -fsSL "$RAW/skills/uxui-designer/SKILL.md" -o "$TARGET/SKILL.md"
+# Pre-fetch files once, install to all detected targets
+TMPDIR_SKILL=$(mktemp -d)
+curl -fsSL "$RAW/skills/uxui-designer/SKILL.md" -o "$TMPDIR_SKILL/SKILL.md"
 echo -e "  ${GREEN}✓${NC} SKILL.md"
 
-# References
+mkdir -p "$TMPDIR_SKILL/references"
 for ref in design-system.md motion-patterns.md copywriting.md page-structure.md dashboard.md image-generator.md slash-commands.md ux-audit.md; do
-  curl -fsSL "$RAW/skills/uxui-designer/references/$ref" -o "$TARGET/references/$ref"
+  curl -fsSL "$RAW/skills/uxui-designer/references/$ref" -o "$TMPDIR_SKILL/references/$ref"
   echo -e "  ${GREEN}✓${NC} references/$ref"
 done
+
+# Copy to each target
+for TARGET in "${TARGETS[@]}"; do
+  mkdir -p "$TARGET/references"
+  cp "$TMPDIR_SKILL/SKILL.md" "$TARGET/SKILL.md"
+  cp "$TMPDIR_SKILL/references/"* "$TARGET/references/"
+done
+rm -rf "$TMPDIR_SKILL"
 
 # DESIGN.md to project root
 if [ ! -f "DESIGN.md" ]; then
@@ -77,8 +81,9 @@ if [ ! -f "DESIGN.md" ]; then
   echo -e "  ${GREEN}✓${NC} DESIGN.md (project root)"
 fi
 
-# Design presets
-PRESET_DIR="$TARGET/../../design-presets"
+# Design presets — install relative to first target's agent config root
+AGENT_ROOT=$(dirname "$(dirname "${TARGETS[0]}")")
+PRESET_DIR="${AGENT_ROOT}/design-presets"
 mkdir -p "$PRESET_DIR"
 for preset in vercel.md linear.md stripe.md raycast.md superhuman.md notion.md vs-code.md; do
   curl -fsSL "$RAW/design-presets/$preset" -o "$PRESET_DIR/$preset"

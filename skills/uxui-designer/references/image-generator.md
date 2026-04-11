@@ -144,13 +144,13 @@ Available aspect ratios: `1:1`, `1:4`, `1:8`, `2:3`, `3:2`, `3:4`, `4:1`, `4:3`,
 
 ---
 
-### Method A — Direct REST API (Zero Dependencies)
+### Method A — REST API + Python (curl + python3)
 
-This approach needs only `curl` and `base64` — works on any machine with no Python or SDK install. **Prefer this method when the project has no Python in its stack.**
+This approach uses `curl` to call the API and `python3` to decode the base64 image from the response. **Requires python3.** Prefer this when the project already has Python in its stack.
 
 ```bash
 # Generate a single image via the Gemini REST API
-# Usage: GEMINI_API_KEY must be set in the environment
+# Requirements: curl, python3, GEMINI_API_KEY set in environment
 
 PROMPT="A vast underground data center corridor stretching into darkness, captured at blue hour, rows of server racks casting deep geometric shadows, a single column of soft teal light cuts through volumetric fog from the far end, ultra-wide shot, 24mm lens, long-exposure glow on indicator LEDs, award-winning architectural photography composition, no text, no UI, no people"
 MODEL="gemini-3.1-flash-image-preview"
@@ -160,19 +160,17 @@ OUTPUT="public/generated/hero-background.png"
 
 mkdir -p "$(dirname "$OUTPUT")"
 
+# Use jq to build the JSON payload so that $PROMPT is safely escaped
+PAYLOAD=$(jq -n \
+  --arg prompt "$PROMPT" \
+  --arg aspect "$ASPECT" \
+  --arg size "$RESOLUTION" \
+  '{contents:[{parts:[{text:$prompt}]}],generationConfig:{responseModalities:["TEXT","IMAGE"],imageConfig:{aspectRatio:$aspect,imageSize:$size}}}')
+
 curl -s "https://generativelanguage.googleapis.com/v1beta/models/${MODEL}:generateContent?key=${GEMINI_API_KEY}" \
   -H "Content-Type: application/json" \
-  -d "{
-    \"contents\": [{\"parts\": [{\"text\": \"${PROMPT}\"}]}],
-    \"generationConfig\": {
-      \"responseModalities\": [\"TEXT\", \"IMAGE\"],
-      \"imageConfig\": {
-        \"aspectRatio\": \"${ASPECT}\",
-        \"imageSize\": \"${RESOLUTION}\"
-      }
-    }
-  }" | python3 -c "
-import sys, json, base64, os
+  -d "$PAYLOAD" | python3 -c "
+import sys, json, base64
 resp = json.load(sys.stdin)
 for part in resp.get('candidates', [{}])[0].get('content', {}).get('parts', []):
     if 'inlineData' in part:

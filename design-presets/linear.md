@@ -25,9 +25,9 @@
 
 | Role | Font | Weight |
 |------|------|--------|
-| Display | Inter | 600 |
-| Body | Inter | 400 |
-| Monospace | JetBrains Mono | 400 |
+| Display | Geist | 600 |
+| Body | Geist | 400 |
+| Monospace | Geist Mono | 400 |
 
 Tracking: `tracking-[-0.02em]` on all headings. Body: `tracking-[-0.01em]`. Tighter than default everywhere.
 

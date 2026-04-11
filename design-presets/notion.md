@@ -10,7 +10,7 @@
 
 | Token | Hex | Usage |
 |-------|-----|-------|
-| `--bg-primary` | `#ffffff` | Page background |
+| `--bg-primary` | `#fdfdfc` | Page background — near-white, not pure white |
 | `--bg-surface` | `#f7f6f3` | Warm off-white panels |
 | `--bg-elevated` | `#eeedea` | Hover, sidebars |
 | `--border-subtle` | `rgba(0,0,0,0.06)` | Borders |

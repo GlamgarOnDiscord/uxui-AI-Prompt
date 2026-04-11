@@ -79,7 +79,7 @@ Easy to search, focused on the task, concrete steps.
 | 2.4.4 | Link purpose | Link text describes destination (not "click here") |
 | 2.4.7 | Focus visible | All interactive elements have visible focus indicator (`ring-2`) |
 | 2.4.11 | Focus not obscured | Focus indicator not hidden by sticky headers or overlays |
-| 2.5.5 | Target size | Interactive targets minimum **24x24px** (44x44px recommended) |
+| 2.5.5 | Target size (AAA) | Interactive targets minimum **44x44px** — Level AAA, best practice |
 | 2.5.8 | Target Size (Minimum) | Interactive targets minimum **24x24px**. Exceptions: (1) **Spacing** — undersized target is surrounded by enough space that a 24px circle centered on it doesn't intersect another target; (2) **Equivalent** — another control on the page achieves the same function and meets this criterion; (3) **Inline** — target is within a sentence or constrained by surrounding line-height; (4) **User agent** — size is set by the browser, not the author; (5) **Essential** — the specific size is legally or functionally required |
 
 ### Understandable

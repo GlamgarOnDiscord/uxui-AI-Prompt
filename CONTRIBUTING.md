@@ -13,7 +13,7 @@ Thanks for wanting to improve this skill! Here's how.
 ## What We Welcome
 
 ### Brand Presets
-New presets go in `design-presets/community/`. Follow the existing preset format:
+New presets go in `design-presets/`. Follow the existing preset format:
 - Theme atmosphere and mood
 - Complete color palette with hex values
 - Typography (font, weight, role)
@@ -57,4 +57,4 @@ Before submitting, verify:
 
 ## License
 
-By contributing, you agree that your contributions will be licensed under MIT.
+By contributing, you agree that your contributions will be released under the same open license as this repository (use, modify, and share freely with credit).

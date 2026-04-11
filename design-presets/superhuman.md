@@ -17,8 +17,8 @@
 | `--text-primary` | `#f3f0ff` | Headings |
 | `--text-secondary` | `#9f95b8` | Body |
 | `--text-tertiary` | `#6b6082` | Captions |
-| `--accent` | `#8b5cf6` | Purple — CTAs, active |
-| `--accent-glow` | `rgba(139,92,246,0.25)` | Glow behind accent elements |
+| `--accent` | `#7c3aed` | Purple — CTAs, active |
+| `--accent-glow` | `rgba(124,58,237,0.25)` | Glow behind accent elements |
 
 ## Typography
 
@@ -26,8 +26,8 @@
 |------|------|--------|
 | Display | Inter | 700 |
 | Body | Inter | 400 |
-| Metadata | JetBrains Mono | 400 |
-| Timestamps | JetBrains Mono | 300 |
+| Metadata | Geist Mono | 400 |
+| Timestamps | Geist Mono | 300 |
 
 **Signature:** All metadata (dates, counts, IDs, shortcuts) in monospace. Body stays sans-serif.
 
