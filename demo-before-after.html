@@ -1,0 +1,1390 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>uxui-AI-Prompt — Before / After</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg-primary: #09090b;
+      --bg-surface: #18181b;
+      --bg-elevated: #27272a;
+      --border-subtle: rgba(255,255,255,0.06);
+      --border-visible: rgba(255,255,255,0.12);
+      --text-primary: #fafafa;
+      --text-secondary: #a1a1aa;
+      --text-tertiary: #71717a;
+      --accent: #34d399;
+      --accent-muted: rgba(52,211,153,0.12);
+      --danger: #f87171;
+      --font: 'Geist', system-ui, sans-serif;
+      --font-mono: 'Geist Mono', ui-monospace, monospace;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--font);
+      background: var(--bg-primary);
+      color: var(--text-primary);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* ── INTRO ── */
+    .intro {
+      text-align: center;
+      padding: 80px 24px 60px;
+      position: relative;
+    }
+    .intro::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 50%;
+      transform: translateX(-50%);
+      width: 600px; height: 400px;
+      background: radial-gradient(ellipse at 50% 0%, rgba(52,211,153,0.08) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .badge {
+      display: inline-flex; align-items: center; gap: 6px;
+      padding: 4px 12px;
+      border: 1px solid var(--border-visible);
+      border-radius: 999px;
+      font-size: 12px; font-weight: 500;
+      color: var(--accent);
+      background: var(--accent-muted);
+      margin-bottom: 24px;
+      font-family: var(--font-mono);
+      letter-spacing: 0.05em;
+    }
+    .badge-dot {
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: var(--accent);
+      animation: pulse 2s ease-in-out infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.5; transform: scale(0.8); }
+    }
+    .intro h1 {
+      font-size: clamp(36px, 5vw, 60px);
+      font-weight: 700;
+      letter-spacing: -0.04em;
+      line-height: 1.05;
+      margin-bottom: 16px;
+    }
+    .intro h1 em {
+      font-style: normal;
+      color: var(--accent);
+    }
+    .intro p {
+      font-size: 18px;
+      color: var(--text-secondary);
+      max-width: 520px;
+      margin: 0 auto 40px;
+      line-height: 1.6;
+    }
+    .intro-meta {
+      display: flex; align-items: center; justify-content: center; gap: 24px;
+      font-size: 13px; color: var(--text-tertiary);
+      font-family: var(--font-mono);
+    }
+    .intro-meta span { display: flex; align-items: center; gap: 6px; }
+    .dot-sep { width: 3px; height: 3px; border-radius: 50%; background: var(--text-tertiary); }
+
+    /* ── SECTION LABELS ── */
+    .section-label {
+      text-align: center;
+      padding: 48px 24px 32px;
+    }
+    .section-label h2 {
+      font-size: 13px;
+      font-family: var(--font-mono);
+      color: var(--text-tertiary);
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      margin-bottom: 8px;
+    }
+    .section-label p {
+      font-size: 15px;
+      color: var(--text-secondary);
+    }
+    .section-label strong { color: var(--text-primary); }
+
+    /* ── COMPARISON WRAPPER ── */
+    .comparison-block {
+      max-width: 1300px;
+      margin: 0 auto 80px;
+      padding: 0 24px;
+    }
+
+    /* ── COMPARISON LABELS ── */
+    .comp-labels {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-bottom: 12px;
+    }
+    .comp-label {
+      display: flex; align-items: center; gap: 8px;
+      font-size: 12px; font-weight: 500;
+      font-family: var(--font-mono);
+      letter-spacing: 0.08em;
+    }
+    .comp-label.before { color: var(--danger); }
+    .comp-label.after  { color: var(--accent); }
+    .comp-label-icon {
+      width: 20px; height: 20px;
+      border-radius: 4px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 11px;
+    }
+    .comp-label.before .comp-label-icon { background: rgba(248,113,113,0.15); }
+    .comp-label.after  .comp-label-icon { background: var(--accent-muted); }
+
+    /* ── SLIDER CONTAINER ── */
+    .slider-container {
+      position: relative;
+      border: 1px solid var(--border-subtle);
+      border-radius: 16px;
+      overflow: hidden;
+      user-select: none;
+      cursor: ew-resize;
+    }
+    .slider-container:hover { border-color: var(--border-visible); }
+
+    .slider-after {
+      position: relative;
+      width: 100%;
+    }
+    .slider-before {
+      position: absolute;
+      top: 0; left: 0;
+      height: 100%;
+      overflow: hidden;
+      z-index: 2;
+    }
+    .slider-before-inner {
+      width: 100vw; /* will be constrained by JS */
+      min-width: 650px;
+    }
+
+    /* The drag handle */
+    .slider-handle {
+      position: absolute;
+      top: 0;
+      width: 2px;
+      height: 100%;
+      background: white;
+      z-index: 10;
+      cursor: ew-resize;
+      transition: none;
+    }
+    .slider-handle::before,
+    .slider-handle::after {
+      content: '';
+      position: absolute;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+    }
+    .slider-handle::before {
+      width: 40px; height: 40px;
+      border-radius: 50%;
+      background: white;
+      box-shadow: 0 2px 16px rgba(0,0,0,0.4);
+    }
+    .slider-handle::after {
+      width: 0; height: 0;
+      border-top: 7px solid transparent;
+      border-bottom: 7px solid transparent;
+      border-right: 7px solid var(--bg-primary);
+      box-shadow: 11px 0 0 0 var(--bg-primary);
+      /* ← and → arrows via CSS */
+    }
+    .slider-arrows {
+      position: absolute;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      display: flex; align-items: center; gap: 10px;
+      pointer-events: none;
+      z-index: 11;
+      color: #09090b;
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    /* ── ANTI-PATTERNS BADGES ── */
+    .anti-patterns {
+      display: flex; flex-wrap: wrap; gap: 6px;
+      margin-top: 12px;
+    }
+    .ap-badge {
+      display: inline-flex; align-items: center; gap: 4px;
+      padding: 3px 8px;
+      border-radius: 4px;
+      font-size: 11px;
+      font-family: var(--font-mono);
+    }
+    .ap-badge.bad  { background: rgba(248,113,113,0.1); color: var(--danger); border: 1px solid rgba(248,113,113,0.2); }
+    .ap-badge.good { background: var(--accent-muted); color: var(--accent); border: 1px solid rgba(52,211,153,0.2); }
+
+    /* ── BEFORE PANEL (slop) ── */
+    .before-panel {
+      background: linear-gradient(135deg, #0f0f2e 0%, #1a0a2e 40%, #0a1628 100%);
+      font-family: 'Inter', system-ui, sans-serif;
+      min-height: 520px;
+    }
+
+    /* BEFORE: Hero */
+    .before-hero {
+      text-align: center;
+      padding: 80px 40px;
+      background: linear-gradient(180deg, rgba(139,92,246,0.25) 0%, transparent 100%);
+    }
+    .before-hero h1 {
+      font-size: 52px; font-weight: 800;
+      background: linear-gradient(135deg, #a78bfa, #60a5fa, #f472b6);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      margin-bottom: 16px; line-height: 1.1;
+    }
+    .before-hero p {
+      font-size: 20px; color: #c4b5fd;
+      max-width: 500px; margin: 0 auto 32px;
+    }
+    .before-hero-ctas {
+      display: flex; gap: 12px; justify-content: center;
+    }
+    .before-btn-primary {
+      padding: 14px 28px;
+      background: linear-gradient(135deg, #7c3aed, #2563eb);
+      color: white; border: none; border-radius: 8px;
+      font-size: 16px; font-weight: 600; cursor: pointer;
+    }
+    .before-btn-secondary {
+      padding: 14px 28px;
+      background: transparent;
+      color: #a78bfa; border: 1px solid #7c3aed;
+      border-radius: 8px; font-size: 16px; cursor: pointer;
+    }
+    .before-stats {
+      display: flex; justify-content: center; gap: 48px;
+      padding: 32px 40px;
+      border-top: 1px solid rgba(139,92,246,0.2);
+    }
+    .before-stat { text-align: center; }
+    .before-stat-num { font-size: 32px; font-weight: 700; color: #a78bfa; }
+    .before-stat-label { font-size: 14px; color: #6b7280; margin-top: 4px; }
+    .before-features {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 16px; padding: 32px 40px;
+    }
+    .before-card {
+      background: rgba(139,92,246,0.1);
+      border: 1px solid rgba(139,92,246,0.3);
+      border-radius: 12px; padding: 24px;
+      text-align: center;
+    }
+    .before-card-icon { font-size: 32px; margin-bottom: 12px; }
+    .before-card h3 { font-size: 18px; font-weight: 600; color: #e9d5ff; margin-bottom: 8px; }
+    .before-card p { font-size: 14px; color: #9ca3af; }
+    .before-badge-row {
+      display: flex; justify-content: center; gap: 8px;
+      padding: 0 40px 32px;
+      flex-wrap: wrap;
+    }
+    .before-trust-badge {
+      padding: 6px 14px;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 999px; font-size: 13px; color: #9ca3af;
+    }
+
+    /* ── AFTER PANEL (premium) ── */
+    .after-panel {
+      background: #09090b;
+      min-height: 520px;
+    }
+
+    /* AFTER: Navbar */
+    .after-nav {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 40px;
+      height: 56px;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+      backdrop-filter: blur(12px);
+      position: sticky; top: 0;
+      background: rgba(9,9,11,0.8);
+      z-index: 10;
+    }
+    .after-nav-logo {
+      display: flex; align-items: center; gap: 8px;
+      font-weight: 600; font-size: 15px; color: #fafafa;
+      font-family: var(--font-mono);
+    }
+    .after-nav-logo-dot {
+      width: 6px; height: 6px; border-radius: 50%;
+      background: var(--accent);
+    }
+    .after-nav-links {
+      display: flex; gap: 24px; list-style: none;
+    }
+    .after-nav-links li a {
+      font-size: 13px; color: #a1a1aa;
+      text-decoration: none;
+      transition: color 150ms;
+    }
+    .after-nav-cta {
+      display: flex; align-items: center; gap: 8px;
+    }
+    .after-btn-ghost {
+      padding: 6px 14px;
+      background: transparent;
+      color: #a1a1aa;
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 6px; font-size: 13px;
+      font-family: var(--font);
+      cursor: pointer;
+    }
+    .after-btn-accent {
+      padding: 6px 14px;
+      background: var(--accent);
+      color: #09090b;
+      border: none; border-radius: 6px;
+      font-size: 13px; font-weight: 600;
+      font-family: var(--font);
+      cursor: pointer;
+    }
+
+    /* AFTER: Hero */
+    .after-hero {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 48px; align-items: center;
+      padding: 64px 40px 48px;
+    }
+    .after-hero-left {}
+    .after-hero-eyebrow {
+      display: inline-flex; align-items: center; gap: 6px;
+      font-size: 11px; font-family: var(--font-mono);
+      color: var(--accent); letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 20px;
+    }
+    .after-hero h1 {
+      font-size: clamp(28px, 3.5vw, 42px);
+      font-weight: 700;
+      letter-spacing: -0.04em;
+      line-height: 1.05;
+      color: #fafafa;
+      margin-bottom: 16px;
+    }
+    .after-hero h1 span {
+      color: var(--accent);
+    }
+    .after-hero-sub {
+      font-size: 15px; color: #a1a1aa;
+      line-height: 1.65;
+      margin-bottom: 28px;
+      max-width: 400px;
+    }
+    .after-hero-ctas {
+      display: flex; align-items: center; gap: 10px;
+      margin-bottom: 28px;
+    }
+    .after-cta-primary {
+      display: flex; align-items: center; gap: 8px;
+      padding: 10px 20px;
+      background: var(--accent);
+      color: #09090b;
+      border: none; border-radius: 8px;
+      font-size: 14px; font-weight: 600;
+      font-family: var(--font);
+      cursor: pointer;
+    }
+    .after-cta-ghost {
+      display: flex; align-items: center; gap: 6px;
+      padding: 10px 20px;
+      background: transparent;
+      color: #a1a1aa;
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 8px; font-size: 14px;
+      font-family: var(--font);
+      cursor: pointer;
+      transition: border-color 200ms;
+    }
+    .after-hero-trust {
+      display: flex; align-items: center; gap: 8px;
+      font-size: 12px; color: var(--text-tertiary);
+      font-family: var(--font-mono);
+    }
+    .after-trust-avatars {
+      display: flex;
+    }
+    .after-trust-avatar {
+      width: 20px; height: 20px; border-radius: 50%;
+      border: 1.5px solid var(--bg-primary);
+      margin-left: -6px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 9px; font-weight: 600;
+      color: white;
+    }
+    .after-trust-avatar:first-child { margin-left: 0; }
+    .av1 { background: #0ea5e9; }
+    .av2 { background: #a78bfa; }
+    .av3 { background: #f97316; }
+    .av4 { background: #34d399; }
+
+    /* Code preview */
+    .after-hero-right {
+      position: relative;
+    }
+    .code-card {
+      background: #18181b;
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 12px;
+      overflow: hidden;
+    }
+    .code-card-header {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 10px 16px;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+    .code-card-dots { display: flex; gap: 6px; }
+    .code-dot { width: 10px; height: 10px; border-radius: 50%; }
+    .dot-r { background: #f87171; }
+    .dot-y { background: #fbbf24; }
+    .dot-g { background: var(--accent); }
+    .code-card-title { font-size: 11px; color: var(--text-tertiary); font-family: var(--font-mono); }
+    .code-card-badge { font-size: 10px; padding: 2px 6px; background: var(--accent-muted); color: var(--accent); border-radius: 4px; font-family: var(--font-mono); }
+    .code-body {
+      padding: 20px;
+      font-family: var(--font-mono);
+      font-size: 12px;
+      line-height: 2;
+    }
+    .code-line { display: flex; gap: 16px; }
+    .code-ln { color: #3f3f46; min-width: 16px; text-align: right; }
+    .code-c-green { color: #34d399; }
+    .code-c-red { color: #f87171; }
+    .code-c-blue { color: #60a5fa; }
+    .code-c-yellow { color: #fbbf24; }
+    .code-c-gray { color: #71717a; }
+    .code-c-white { color: #fafafa; }
+    .code-c-purple { color: #c084fc; }
+
+    .diff-add { background: rgba(52,211,153,0.08); margin: 0 -20px; padding: 0 20px; }
+    .diff-rm  { background: rgba(248,113,113,0.08); margin: 0 -20px; padding: 0 20px; }
+
+    .code-annotation {
+      margin: 8px 0 0;
+      padding: 8px 12px;
+      background: var(--accent-muted);
+      border: 1px solid rgba(52,211,153,0.2);
+      border-radius: 6px;
+      display: flex; align-items: flex-start; gap: 8px;
+    }
+    .code-annotation-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--accent); margin-top: 5px; flex-shrink: 0; }
+    .code-annotation-text { font-size: 11px; color: var(--accent); font-family: var(--font-mono); line-height: 1.5; }
+
+    /* AFTER: Metrics bar */
+    .after-metrics {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 0;
+      border-top: 1px solid rgba(255,255,255,0.06);
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+      margin: 0 40px;
+    }
+    .after-metric {
+      padding: 24px 0;
+      text-align: left;
+      border-right: 1px solid rgba(255,255,255,0.06);
+    }
+    .after-metric:last-child { border-right: none; }
+    .after-metric-inner { padding: 0 24px; }
+    .after-metric-num {
+      font-size: 28px; font-weight: 700;
+      letter-spacing: -0.04em;
+      color: #fafafa;
+      font-family: var(--font-mono);
+    }
+    .after-metric-num span { color: var(--accent); }
+    .after-metric-label { font-size: 12px; color: var(--text-secondary); margin-top: 4px; }
+    .after-metric-delta {
+      display: inline-flex; align-items: center; gap: 3px;
+      font-size: 11px; color: var(--accent);
+      font-family: var(--font-mono); margin-top: 4px;
+    }
+
+    /* AFTER: Feature grid */
+    .after-features {
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      grid-template-rows: auto auto;
+      gap: 12px;
+      padding: 40px 40px 48px;
+    }
+    .af-card {
+      background: var(--bg-surface);
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 12px;
+      padding: 20px;
+      transition: border-color 200ms;
+    }
+    .af-card:hover { border-color: rgba(255,255,255,0.12); }
+
+    /* Bento spans */
+    .af-span-2 { grid-column: span 2; }
+    .af-span-3 { grid-column: span 3; }
+    .af-span-4 { grid-column: span 4; }
+
+    .af-card-tag {
+      font-size: 10px; font-family: var(--font-mono);
+      color: var(--text-tertiary); text-transform: uppercase;
+      letter-spacing: 0.1em; margin-bottom: 12px;
+    }
+    .af-card h3 { font-size: 14px; font-weight: 600; color: var(--text-primary); margin-bottom: 6px; }
+    .af-card p { font-size: 12px; color: var(--text-secondary); line-height: 1.5; }
+
+    .af-icon {
+      width: 32px; height: 32px;
+      border-radius: 8px;
+      background: var(--bg-elevated);
+      border: 1px solid rgba(255,255,255,0.08);
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 14px;
+    }
+
+    /* Mini sparkline */
+    .af-sparkline { margin-top: 16px; }
+    .af-sparkline svg { display: block; }
+
+    /* Mini command palette */
+    .af-command {
+      margin-top: 14px;
+      background: var(--bg-elevated);
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 6px;
+      padding: 8px;
+    }
+    .af-cmd-row {
+      display: flex; align-items: center; gap: 8px;
+      padding: 4px 6px; border-radius: 4px;
+      font-size: 11px; color: var(--text-secondary);
+      font-family: var(--font-mono);
+    }
+    .af-cmd-row.active { background: var(--accent-muted); color: var(--accent); }
+    .af-kbd {
+      display: inline-flex; align-items: center;
+      padding: 1px 5px;
+      background: var(--bg-primary);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 3px;
+      font-size: 10px;
+      margin-left: auto;
+    }
+
+    /* ── DIVIDER ── */
+    .section-divider {
+      border: none;
+      border-top: 1px solid var(--border-subtle);
+      margin: 0;
+    }
+
+    /* ── ANTI-PATTERN ANALYSIS ── */
+    .analysis-block {
+      max-width: 1300px;
+      margin: 0 auto 80px;
+      padding: 0 24px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+    .analysis-panel {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      border-radius: 12px;
+      padding: 24px;
+    }
+    .analysis-panel h3 {
+      font-size: 13px; font-weight: 600;
+      font-family: var(--font-mono);
+      letter-spacing: 0.06em;
+      margin-bottom: 16px;
+      display: flex; align-items: center; gap: 8px;
+    }
+    .analysis-panel.bad h3  { color: var(--danger); }
+    .analysis-panel.good h3 { color: var(--accent); }
+    .analysis-item {
+      display: flex; align-items: flex-start; gap: 10px;
+      padding: 10px 0;
+      border-bottom: 1px solid var(--border-subtle);
+      font-size: 13px;
+    }
+    .analysis-item:last-child { border-bottom: none; padding-bottom: 0; }
+    .analysis-item-icon { flex-shrink: 0; margin-top: 1px; }
+    .analysis-item-text { color: var(--text-secondary); line-height: 1.5; }
+    .analysis-item-text strong { font-weight: 500; color: var(--text-primary); }
+    .analysis-code {
+      display: inline;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      background: var(--bg-elevated);
+      padding: 1px 5px;
+      border-radius: 3px;
+      color: var(--text-secondary);
+    }
+
+    /* ── COMMAND SHOWCASE ── */
+    .commands-section {
+      max-width: 900px;
+      margin: 0 auto 80px;
+      padding: 0 24px;
+    }
+    .commands-section h2 {
+      font-size: 22px; font-weight: 600;
+      letter-spacing: -0.02em;
+      margin-bottom: 8px;
+      text-align: center;
+    }
+    .commands-section > p {
+      text-align: center;
+      color: var(--text-secondary);
+      font-size: 14px;
+      margin-bottom: 32px;
+    }
+    .cmd-grid {
+      display: grid; grid-template-columns: repeat(2, 1fr);
+      gap: 10px;
+    }
+    .cmd-card {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      border-radius: 10px;
+      padding: 16px 20px;
+      display: flex; align-items: flex-start; gap: 12px;
+      transition: border-color 200ms;
+      cursor: default;
+    }
+    .cmd-card:hover { border-color: var(--border-visible); }
+    .cmd-name {
+      font-family: var(--font-mono);
+      font-size: 13px; font-weight: 500;
+      color: var(--accent);
+      white-space: nowrap;
+      min-width: 140px;
+    }
+    .cmd-desc { font-size: 13px; color: var(--text-secondary); line-height: 1.5; }
+
+    /* ── FOOTER ── */
+    .footer {
+      border-top: 1px solid var(--border-subtle);
+      padding: 32px 24px;
+      text-align: center;
+    }
+    .footer p { font-size: 13px; color: var(--text-tertiary); }
+    .footer a { color: var(--accent); text-decoration: none; }
+    .footer-badge {
+      display: inline-flex; align-items: center; gap: 6px;
+      padding: 4px 12px;
+      background: var(--accent-muted);
+      border: 1px solid rgba(52,211,153,0.2);
+      border-radius: 999px;
+      font-size: 11px; font-family: var(--font-mono);
+      color: var(--accent);
+      margin-bottom: 12px;
+    }
+
+    /* Scrollbar */
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: var(--bg-primary); }
+    ::-webkit-scrollbar-thumb { background: var(--bg-elevated); border-radius: 3px; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 768px) {
+      .comp-labels, .analysis-block { grid-template-columns: 1fr; }
+      .after-hero { grid-template-columns: 1fr; }
+      .after-features { grid-template-columns: repeat(2, 1fr); }
+      .af-span-2, .af-span-3, .af-span-4 { grid-column: span 2; }
+      .before-features { grid-template-columns: 1fr 1fr; }
+      .cmd-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- INTRO -->
+  <section class="intro">
+    <div class="badge">
+      <div class="badge-dot"></div>
+      uxui-AI-Prompt · Phase 0 Demo
+    </div>
+    <h1>Skip the slop.<br/><em>Ship the premium.</em></h1>
+    <p>A side-by-side comparison of what AI generates by default vs. what it builds with the right skill.</p>
+    <div class="intro-meta">
+      <span>⟵ Drag to compare ⟶</span>
+      <div class="dot-sep"></div>
+      <span>8 slash commands</span>
+      <div class="dot-sep"></div>
+      <span>7 brand presets</span>
+    </div>
+  </section>
+
+  <!-- SECTION 1: HERO SECTION -->
+  <div class="section-label">
+    <h2>01 — Hero Section</h2>
+    <p><strong>CodeLens</strong> — AI code review tool. Prompt: <code style="font-family:var(--font-mono);font-size:13px;background:var(--bg-surface);padding:2px 7px;border-radius:4px;color:var(--accent)">/build landing AI-powered code review tool</code></p>
+  </div>
+
+  <div class="comparison-block">
+    <div class="comp-labels">
+      <div class="comp-label before">
+        <div class="comp-label-icon">✕</div>
+        BEFORE — Generic AI output
+      </div>
+      <div class="comp-label after">
+        <div class="comp-label-icon">✓</div>
+        AFTER — uxui-AI-Prompt
+      </div>
+    </div>
+
+    <div class="slider-container" id="slider1">
+      <!-- AFTER (background) -->
+      <div class="slider-after">
+        <div class="after-panel">
+          <!-- Navbar -->
+          <nav class="after-nav">
+            <div class="after-nav-logo">
+              <div class="after-nav-logo-dot"></div>
+              CodeLens
+            </div>
+            <ul class="after-nav-links">
+              <li><a href="#">Product</a></li>
+              <li><a href="#">Pricing</a></li>
+              <li><a href="#">Docs</a></li>
+            </ul>
+            <div class="after-nav-cta">
+              <button class="after-btn-ghost">Sign in</button>
+              <button class="after-btn-accent">Start free trial</button>
+            </div>
+          </nav>
+
+          <!-- Hero -->
+          <div class="after-hero">
+            <div class="after-hero-left">
+              <div class="after-hero-eyebrow">
+                <svg width="6" height="6" viewBox="0 0 6 6" fill="none"><circle cx="3" cy="3" r="3" fill="#34d399"/></svg>
+                AI Code Review · Now in GA
+              </div>
+              <h1>Ship code that works.<br/><span>Every time.</span></h1>
+              <p class="after-hero-sub">CodeLens catches the bugs your team misses — before they reach production. 47.2% fewer incidents. 3.1× faster reviews.</p>
+              <div class="after-hero-ctas">
+                <button class="after-cta-primary">
+                  Start free trial
+                  <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 7h8M8 4l3 3-3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </button>
+                <button class="after-cta-ghost">
+                  <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><circle cx="7" cy="7" r="5.5" stroke="currentColor" stroke-width="1.2"/><path d="M5.5 5.5l3 1.5-3 1.5V5.5z" fill="currentColor"/></svg>
+                  Watch 2-min demo
+                </button>
+              </div>
+              <div class="after-hero-trust">
+                <div class="after-trust-avatars">
+                  <div class="after-trust-avatar av1">M</div>
+                  <div class="after-trust-avatar av2">S</div>
+                  <div class="after-trust-avatar av3">A</div>
+                  <div class="after-trust-avatar av4">J</div>
+                </div>
+                Used by 2,847 engineering teams
+              </div>
+            </div>
+            <div class="after-hero-right">
+              <div class="code-card">
+                <div class="code-card-header">
+                  <div class="code-card-dots">
+                    <div class="code-dot dot-r"></div>
+                    <div class="code-dot dot-y"></div>
+                    <div class="code-dot dot-g"></div>
+                  </div>
+                  <div class="code-card-title">auth.ts · PR #284</div>
+                  <div class="code-card-badge">3 issues</div>
+                </div>
+                <div class="code-body">
+                  <div class="code-line diff-rm">
+                    <span class="code-ln code-c-red">-</span>
+                    <span><span class="code-c-purple">const</span> <span class="code-c-blue">token</span> <span class="code-c-white">=</span> <span class="code-c-yellow">req.query.token</span></span>
+                  </div>
+                  <div class="code-line diff-add">
+                    <span class="code-ln code-c-green">+</span>
+                    <span><span class="code-c-purple">const</span> <span class="code-c-blue">token</span> <span class="code-c-white">=</span> <span class="code-c-green">sanitize</span><span class="code-c-white">(</span><span class="code-c-yellow">req.query.token</span><span class="code-c-white">)</span></span>
+                  </div>
+                  <div class="code-line" style="margin-top:8px">
+                    <span class="code-ln code-c-gray">3</span>
+                    <span><span class="code-c-purple">if</span> <span class="code-c-white">(</span><span class="code-c-blue">!token</span><span class="code-c-white">)</span> <span class="code-c-purple">return</span> <span class="code-c-yellow">res</span><span class="code-c-white">.</span><span class="code-c-green">status</span><span class="code-c-white">(</span><span class="code-c-blue">401</span><span class="code-c-white">)</span></span>
+                  </div>
+                  <div class="code-line diff-rm">
+                    <span class="code-ln code-c-red">-</span>
+                    <span><span class="code-c-yellow">db</span><span class="code-c-white">.</span><span class="code-c-green">query</span><span class="code-c-white">(</span><span class="code-c-yellow">`SELECT * FROM users WHERE id=${</span><span class="code-c-blue">id</span><span class="code-c-yellow">}`</span><span class="code-c-white">)</span></span>
+                  </div>
+                  <div class="code-line diff-add">
+                    <span class="code-ln code-c-green">+</span>
+                    <span><span class="code-c-yellow">db</span><span class="code-c-white">.</span><span class="code-c-green">query</span><span class="code-c-white">(</span><span class="code-c-yellow">'SELECT * FROM users WHERE id=?'</span><span class="code-c-white">, [</span><span class="code-c-blue">id</span><span class="code-c-white">])</span></span>
+                  </div>
+                </div>
+                <div style="padding: 0 20px 20px;">
+                  <div class="code-annotation">
+                    <div class="code-annotation-dot"></div>
+                    <div class="code-annotation-text">SQL injection risk detected — parameterized query required</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Metrics -->
+          <div class="after-metrics">
+            <div class="after-metric">
+              <div class="after-metric-inner">
+                <div class="after-metric-num"><span>47.2%</span></div>
+                <div class="after-metric-label">fewer production incidents</div>
+                <div class="after-metric-delta">↑ vs last quarter</div>
+              </div>
+            </div>
+            <div class="after-metric">
+              <div class="after-metric-inner">
+                <div class="after-metric-num"><span>3.1×</span></div>
+                <div class="after-metric-label">faster code reviews</div>
+                <div class="after-metric-delta">across 2,847 teams</div>
+              </div>
+            </div>
+            <div class="after-metric">
+              <div class="after-metric-inner">
+                <div class="after-metric-num">12<span>min</span></div>
+                <div class="after-metric-label">average review time</div>
+                <div class="after-metric-delta">↓ from 41 min</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- BEFORE (clipped overlay) -->
+      <div class="slider-before" id="slider1-before">
+        <div class="slider-before-inner">
+          <div class="before-panel">
+            <div class="before-hero">
+              <h1>AI-Powered<br/>Code Review</h1>
+              <p>The best AI tool for reviewing your code and catching bugs automatically</p>
+              <div class="before-hero-ctas">
+                <button class="before-btn-primary">Get Started Free</button>
+                <button class="before-btn-secondary">Learn More</button>
+              </div>
+            </div>
+            <div class="before-badge-row">
+              <div class="before-trust-badge">⭐ 4.9/5 Rating</div>
+              <div class="before-trust-badge">✓ 10,000+ Users</div>
+              <div class="before-trust-badge">🚀 Free Forever</div>
+              <div class="before-trust-badge">🔒 Secure</div>
+            </div>
+            <div class="before-stats">
+              <div class="before-stat">
+                <div class="before-stat-num">50%</div>
+                <div class="before-stat-label">Fewer Bugs</div>
+              </div>
+              <div class="before-stat">
+                <div class="before-stat-num">3x</div>
+                <div class="before-stat-label">Faster Reviews</div>
+              </div>
+              <div class="before-stat">
+                <div class="before-stat-num">10k+</div>
+                <div class="before-stat-label">Happy Users</div>
+              </div>
+            </div>
+            <div class="before-features">
+              <div class="before-card">
+                <div class="before-card-icon">🤖</div>
+                <h3>AI Review</h3>
+                <p>Our AI automatically reviews your code</p>
+              </div>
+              <div class="before-card">
+                <div class="before-card-icon">🔒</div>
+                <h3>Security</h3>
+                <p>Find security issues in your codebase</p>
+              </div>
+              <div class="before-card">
+                <div class="before-card-icon">⚡</div>
+                <h3>Fast</h3>
+                <p>Get results in seconds not hours</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Handle -->
+      <div class="slider-handle" id="slider1-handle">
+        <div class="slider-arrows">
+          <svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M6 2L3 5l3 3" stroke="#09090b" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M4 2l3 3-3 3" stroke="#09090b" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+      </div>
+    </div>
+
+    <!-- Anti-pattern tags -->
+    <div class="anti-patterns" style="margin-top:12px;">
+      <span style="font-size:11px;color:var(--text-tertiary);font-family:var(--font-mono);margin-right:4px;">BEFORE violations:</span>
+      <span class="ap-badge bad">centered hero</span>
+      <span class="ap-badge bad">purple gradient</span>
+      <span class="ap-badge bad">round stats (50%)</span>
+      <span class="ap-badge bad">emojis in UI</span>
+      <span class="ap-badge bad">vague CTAs</span>
+    </div>
+    <div class="anti-patterns" style="margin-top:6px;">
+      <span style="font-size:11px;color:var(--text-tertiary);font-family:var(--font-mono);margin-right:4px;">AFTER applied:</span>
+      <span class="ap-badge good">asymmetric layout</span>
+      <span class="ap-badge good">organic stats (47.2%)</span>
+      <span class="ap-badge good">specific social proof</span>
+      <span class="ap-badge good">contextual CTAs</span>
+      <span class="ap-badge good">dark-mode first</span>
+    </div>
+  </div>
+
+  <hr class="section-divider" />
+
+  <!-- SECTION 2: FEATURES BENTO -->
+  <div class="section-label">
+    <h2>02 — Feature Grid</h2>
+    <p>Generic 3-col cards vs. <strong>asymmetric bento grid</strong> with live micro-interactions</p>
+  </div>
+
+  <div class="comparison-block">
+    <div class="comp-labels">
+      <div class="comp-label before">
+        <div class="comp-label-icon">✕</div>
+        BEFORE — 3 equal cards, no hierarchy
+      </div>
+      <div class="comp-label after">
+        <div class="comp-label-icon">✓</div>
+        AFTER — Bento grid, size = importance
+      </div>
+    </div>
+
+    <div class="slider-container" id="slider2">
+      <div class="slider-after">
+        <div class="after-panel">
+          <div class="after-features">
+            <!-- Large card: AI Review -->
+            <div class="af-card af-span-3" style="background: linear-gradient(135deg, rgba(52,211,153,0.05) 0%, var(--bg-surface) 60%);">
+              <div class="af-card-tag">Core feature</div>
+              <div class="af-icon">
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 5h10M3 8h7M3 11h4" stroke="#34d399" stroke-width="1.2" stroke-linecap="round"/><circle cx="12" cy="10" r="2.5" stroke="#34d399" stroke-width="1.2"/><path d="M14 12l1.5 1.5" stroke="#34d399" stroke-width="1.2" stroke-linecap="round"/></svg>
+              </div>
+              <h3>AI Code Review</h3>
+              <p>Context-aware analysis across your entire PR. Understands your codebase conventions and flags deviations — not just syntax errors.</p>
+              <div class="af-sparkline" style="margin-top:16px;">
+                <svg width="100%" height="40" viewBox="0 0 280 40" fill="none" preserveAspectRatio="none">
+                  <polyline points="0,35 40,28 80,32 120,15 160,20 200,8 240,12 280,5" stroke="#34d399" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+                  <polyline points="0,35 40,28 80,32 120,15 160,20 200,8 240,12 280,5 280,40 0,40" fill="rgba(52,211,153,0.06)"/>
+                </svg>
+              </div>
+              <div style="font-size:11px;color:var(--text-tertiary);font-family:var(--font-mono);margin-top:6px;">Issues caught — last 30 days</div>
+            </div>
+
+            <!-- Medium: Security -->
+            <div class="af-card af-span-2">
+              <div class="af-card-tag">Security</div>
+              <div class="af-icon">
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M8 2L3 4.5v4C3 11 5.5 13.5 8 14c2.5-.5 5-3 5-5.5v-4L8 2z" stroke="#f87171" stroke-width="1.2" stroke-linejoin="round"/><path d="M6 8l1.5 1.5L10 6" stroke="#f87171" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </div>
+              <h3>Security Scanner</h3>
+              <p>OWASP Top 10 · SQLi · XSS · Secrets in diff. Blocks merge on critical severity.</p>
+            </div>
+
+            <!-- Small: Performance -->
+            <div class="af-card">
+              <div class="af-card-tag">Perf</div>
+              <div class="af-icon">
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M2 12l4-5 3 3 4-6" stroke="#fbbf24" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </div>
+              <h3>Perf Audit</h3>
+              <p>N+1 queries, missing indexes, bundle impact.</p>
+            </div>
+
+            <!-- Small: CI/CD -->
+            <div class="af-card">
+              <div class="af-card-tag">CI/CD</div>
+              <div class="af-icon">
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="4" cy="8" r="2" stroke="#60a5fa" stroke-width="1.2"/><circle cx="12" cy="4" r="1.5" stroke="#60a5fa" stroke-width="1.2"/><circle cx="12" cy="12" r="1.5" stroke="#60a5fa" stroke-width="1.2"/><path d="M6 8h2.5M10.5 4.5L6.5 7M10.5 11.5L6.5 9" stroke="#60a5fa" stroke-width="1.1" stroke-linecap="round"/></svg>
+              </div>
+              <h3>CI Integration</h3>
+              <p>GitHub Actions, GitLab CI, Bitbucket Pipelines.</p>
+            </div>
+
+            <!-- Large: Analytics -->
+            <div class="af-card af-span-4">
+              <div class="af-card-tag">Analytics</div>
+              <div class="af-icon">
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><rect x="2" y="10" width="3" height="4" rx="1" fill="#c084fc" fill-opacity=".4" stroke="#c084fc" stroke-width="1"/><rect x="6.5" y="6" width="3" height="8" rx="1" fill="#c084fc" fill-opacity=".4" stroke="#c084fc" stroke-width="1"/><rect x="11" y="3" width="3" height="11" rx="1" fill="#c084fc" fill-opacity=".6" stroke="#c084fc" stroke-width="1"/></svg>
+              </div>
+              <h3>Team Analytics</h3>
+              <p>Who reviews what, response times, defect density by author and module. Spot bottlenecks before they become incidents.</p>
+              <div class="af-command">
+                <div class="af-cmd-row active">
+                  <svg width="10" height="10" viewBox="0 0 10 10" fill="none"><circle cx="5" cy="5" r="4" fill="rgba(52,211,153,0.3)"/><circle cx="5" cy="5" r="2" fill="#34d399"/></svg>
+                  <span>marcus.chen — 23 reviews this week</span>
+                  <span class="af-kbd">↵</span>
+                </div>
+                <div class="af-cmd-row">
+                  <svg width="10" height="10" viewBox="0 0 10 10" fill="none"><circle cx="5" cy="5" r="4" stroke="rgba(255,255,255,0.15)" stroke-width="1"/></svg>
+                  <span>auth/ — highest defect density</span>
+                  <span class="af-kbd">↵</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Small: Custom Rules -->
+            <div class="af-card af-span-2">
+              <div class="af-card-tag">Custom</div>
+              <div class="af-icon">
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M13 3L10 6l-4-2-4 5" stroke="#34d399" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/><circle cx="13" cy="3" r="1.5" fill="#34d399"/></svg>
+              </div>
+              <h3>Custom Rules</h3>
+              <p>Write rules in plain English. "Always use parameterized queries."</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- BEFORE overlay -->
+      <div class="slider-before" id="slider2-before">
+        <div class="slider-before-inner">
+          <div class="before-panel" style="padding: 40px;">
+            <div style="text-align:center;margin-bottom:32px;">
+              <h2 style="font-size:32px;font-weight:700;background:linear-gradient(135deg,#a78bfa,#60a5fa);-webkit-background-clip:text;-webkit-text-fill-color:transparent;">Features</h2>
+              <p style="color:#9ca3af;margin-top:8px;">Everything you need to review code</p>
+            </div>
+            <div class="before-features" style="grid-template-columns:repeat(3,1fr);">
+              <div class="before-card">
+                <div class="before-card-icon">🤖</div>
+                <h3>AI Review</h3>
+                <p>Our AI automatically reviews your code and finds issues</p>
+              </div>
+              <div class="before-card">
+                <div class="before-card-icon">🔒</div>
+                <h3>Security</h3>
+                <p>Find security vulnerabilities in your code</p>
+              </div>
+              <div class="before-card">
+                <div class="before-card-icon">⚡</div>
+                <h3>Performance</h3>
+                <p>Optimize your code for better performance</p>
+              </div>
+              <div class="before-card">
+                <div class="before-card-icon">🔧</div>
+                <h3>CI/CD</h3>
+                <p>Integrate with your CI/CD pipeline easily</p>
+              </div>
+              <div class="before-card">
+                <div class="before-card-icon">📊</div>
+                <h3>Analytics</h3>
+                <p>Track your team's code quality metrics</p>
+              </div>
+              <div class="before-card">
+                <div class="before-card-icon">⚙️</div>
+                <h3>Custom Rules</h3>
+                <p>Create custom rules for your team</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="slider-handle" id="slider2-handle">
+        <div class="slider-arrows">
+          <svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M6 2L3 5l3 3" stroke="#09090b" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M4 2l3 3-3 3" stroke="#09090b" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+      </div>
+    </div>
+
+    <div class="anti-patterns" style="margin-top:12px;">
+      <span style="font-size:11px;color:var(--text-tertiary);font-family:var(--font-mono);margin-right:4px;">BEFORE violations:</span>
+      <span class="ap-badge bad">equal-sized cards</span>
+      <span class="ap-badge bad">emoji icons</span>
+      <span class="ap-badge bad">generic copy</span>
+      <span class="ap-badge bad">no hierarchy</span>
+    </div>
+    <div class="anti-patterns" style="margin-top:6px;">
+      <span style="font-size:11px;color:var(--text-tertiary);font-family:var(--font-mono);margin-right:4px;">AFTER applied:</span>
+      <span class="ap-badge good">bento asymmetry</span>
+      <span class="ap-badge good">SVG icons</span>
+      <span class="ap-badge good">specific copy</span>
+      <span class="ap-badge good">size = importance</span>
+      <span class="ap-badge good">live data viz</span>
+    </div>
+  </div>
+
+  <hr class="section-divider" />
+
+  <!-- ANALYSIS -->
+  <div class="section-label">
+    <h2>03 — Anti-Pattern Analysis</h2>
+    <p>What <strong>/audit</strong> would flag on the "before" output</p>
+  </div>
+
+  <div class="analysis-block">
+    <div class="analysis-panel bad">
+      <h3>
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><circle cx="7" cy="7" r="6" stroke="#f87171" stroke-width="1.2"/><path d="M5 5l4 4M9 5l-4 4" stroke="#f87171" stroke-width="1.2" stroke-linecap="round"/></svg>
+        BEFORE — /audit would flag 8 violations
+      </h3>
+      <div class="analysis-item">
+        <div class="analysis-item-icon" style="color:var(--danger);">✕</div>
+        <div class="analysis-item-text">
+          <strong>Centered hero</strong> — <code class="analysis-code">DESIGN_VARIANCE=8</code> requires asymmetric layout. Hero H1 is center-aligned on a marketing page.
+        </div>
+      </div>
+      <div class="analysis-item">
+        <div class="analysis-item-icon" style="color:var(--danger);">✕</div>
+        <div class="analysis-item-text">
+          <strong>Saturated gradient</strong> — <code class="analysis-code">#7c3aed → #2563eb</code> violates the "no neon/saturated gradients" rule. Saturation &gt; 80%.
+        </div>
+      </div>
+      <div class="analysis-item">
+        <div class="analysis-item-icon" style="color:var(--danger);">✕</div>
+        <div class="analysis-item-text">
+          <strong>Round stats</strong> — "50% fewer bugs", "3x faster", "10k+ users". Organic numbers required (47.2%, 3.1×, 2,847 teams).
+        </div>
+      </div>
+      <div class="analysis-item">
+        <div class="analysis-item-icon" style="color:var(--danger);">✕</div>
+        <div class="analysis-item-text">
+          <strong>Emojis in UI</strong> — 🤖🔒⚡🔧📊⚙️ are banned in production UI copy. Use SVG icons with consistent stroke weight.
+        </div>
+      </div>
+      <div class="analysis-item">
+        <div class="analysis-item-icon" style="color:var(--danger);">✕</div>
+        <div class="analysis-item-text">
+          <strong>Vague CTAs</strong> — "Get Started Free" and "Learn More" provide no context. Requires specificity: "Start free trial" / "Watch 2-min demo".
+        </div>
+      </div>
+      <div class="analysis-item">
+        <div class="analysis-item-icon" style="color:var(--danger);">✕</div>
+        <div class="analysis-item-text">
+          <strong>Equal feature cards</strong> — 6 identical cards with no visual hierarchy. Bento grid required: card size must map to feature importance.
+        </div>
+      </div>
+      <div class="analysis-item">
+        <div class="analysis-item-icon" style="color:var(--danger);">✕</div>
+        <div class="analysis-item-text">
+          <strong>Generic social proof</strong> — "10,000+ Users", "⭐ 4.9/5 Rating". No specificity. Requires named teams and concrete metrics.
+        </div>
+      </div>
+      <div class="analysis-item">
+        <div class="analysis-item-icon" style="color:var(--danger);">✕</div>
+        <div class="analysis-item-text">
+          <strong>Purple accent everywhere</strong> — Accent color used for backgrounds, borders, gradients, stats. 60-30-10 rule violated.
+        </div>
+      </div>
+    </div>
+
+    <div class="analysis-panel good">
+      <h3>
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><circle cx="7" cy="7" r="6" stroke="#34d399" stroke-width="1.2"/><path d="M4.5 7l2 2 3-3" stroke="#34d399" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        AFTER — /audit passes all checks
+      </h3>
+      <div class="analysis-item">
+        <div class="analysis-item-icon" style="color:var(--accent);">✓</div>
+        <div class="analysis-item-text">
+          <strong>Asymmetric hero</strong> — 50/50 grid, headline left-aligned. Respects <code class="analysis-code">DESIGN_VARIANCE=8</code>.
+        </div>
+      </div>
+      <div class="analysis-item">
+        <div class="analysis-item-icon" style="color:var(--accent);">✓</div>
+        <div class="analysis-item-text">
+          <strong>Single accent</strong> — <code class="analysis-code">#34d399</code> emerald used only for emphasis: CTA, stats highlights, micro-dots. Saturation &lt; 60%.
+        </div>
+      </div>
+      <div class="analysis-item">
+        <div class="analysis-item-icon" style="color:var(--accent);">✓</div>
+        <div class="analysis-item-text">
+          <strong>Organic numbers</strong> — 47.2%, 3.1×, 2,847 teams, 12 min avg. All with sourced deltas ("↓ from 41 min").
+        </div>
+      </div>
+      <div class="analysis-item">
+        <div class="analysis-item-icon" style="color:var(--accent);">✓</div>
+        <div class="analysis-item-text">
+          <strong>SVG icon system</strong> — Consistent 16px icons, 1.2px stroke, matching accent color per category.
+        </div>
+      </div>
+      <div class="analysis-item">
+        <div class="analysis-item-icon" style="color:var(--accent);">✓</div>
+        <div class="analysis-item-text">
+          <strong>Specific CTAs</strong> — "Start free trial" + arrow, "Watch 2-min demo" + play icon. Both have clear value propositions.
+        </div>
+      </div>
+      <div class="analysis-item">
+        <div class="analysis-item-icon" style="color:var(--accent);">✓</div>
+        <div class="analysis-item-text">
+          <strong>Bento hierarchy</strong> — AI Review (3-col), Security (2-col), Analytics (4-col). Size signals importance.
+        </div>
+      </div>
+      <div class="analysis-item">
+        <div class="analysis-item-icon" style="color:var(--accent);">✓</div>
+        <div class="analysis-item-text">
+          <strong>Named social proof</strong> — Avatar initials + "2,847 engineering teams". Specific and credible.
+        </div>
+      </div>
+      <div class="analysis-item">
+        <div class="analysis-item-icon" style="color:var(--accent);">✓</div>
+        <div class="analysis-item-text">
+          <strong>WCAG AA contrast</strong> — All text/background pairs verified. <code class="analysis-code">#a1a1aa on #09090b</code> = 5.9:1.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <hr class="section-divider" />
+
+  <!-- COMMAND SHOWCASE -->
+  <section class="commands-section">
+    <div class="section-label" style="padding-top:48px;">
+      <h2>04 — The 8 Slash Commands</h2>
+      <p>Each command loads the right references automatically — no manual context needed</p>
+    </div>
+    <div class="cmd-grid">
+      <div class="cmd-card">
+        <div class="cmd-name">/build</div>
+        <div class="cmd-desc">Generate a full page from scratch — dark-mode premium by default. Specify page type and description.</div>
+      </div>
+      <div class="cmd-card">
+        <div class="cmd-name">/polish</div>
+        <div class="cmd-desc">Final pre-ship pass. Tightens contrast, spacing, copy, micro-interactions. Non-destructive.</div>
+      </div>
+      <div class="cmd-card">
+        <div class="cmd-name">/audit</div>
+        <div class="cmd-desc">WCAG 2.2 AA + anti-slop report. Outputs <code class="analysis-code">file:line</code> violations. No edits.</div>
+      </div>
+      <div class="cmd-card">
+        <div class="cmd-name">/critique</div>
+        <div class="cmd-desc">UX design review as a principal designer. Nielsen 10 heuristics, cognitive load analysis. No edits.</div>
+      </div>
+      <div class="cmd-card">
+        <div class="cmd-name">/animate</div>
+        <div class="cmd-desc">Add motion patterns — perpetual micro-interactions, spring physics. Respects <code class="analysis-code">prefers-reduced-motion</code>.</div>
+      </div>
+      <div class="cmd-card">
+        <div class="cmd-name">/imagify</div>
+        <div class="cmd-desc">Gemini pipeline — replace placeholders with cinematic AI images. Falls back to curated picsum.</div>
+      </div>
+      <div class="cmd-card">
+        <div class="cmd-name">/dials</div>
+        <div class="cmd-desc">Adjust the 3 design dials live: <code class="analysis-code">variance=N motion=N density=N</code>. Rebalances the output.</div>
+      </div>
+      <div class="cmd-card">
+        <div class="cmd-name">/variant</div>
+        <div class="cmd-desc">Swap brand preset — re-theme colors, typography, spacing, motion. 7 presets: vercel, linear, stripe…</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-badge">
+      <div class="badge-dot"></div>
+      uxui-AI-Prompt · Phase 0
+    </div>
+    <p>Built with obsessive attention to detail · <a href="https://github.com/GlamgarOnDiscord/uxui-AI-Prompt">GitHub</a> · MIT License</p>
+  </footer>
+
+  <script>
+    function initSlider(containerId, beforeId, handleId) {
+      const container = document.getElementById(containerId);
+      const before = document.getElementById(beforeId);
+      const handle = document.getElementById(handleId);
+
+      if (!container || !before || !handle) return;
+
+      let isDragging = false;
+      let startPercent = 50;
+
+      function setPercent(pct) {
+        pct = Math.max(5, Math.min(95, pct));
+        before.style.width = pct + '%';
+        handle.style.left = pct + '%';
+      }
+
+      // Init at 50%
+      setPercent(50);
+
+      function getPercent(clientX) {
+        const rect = container.getBoundingClientRect();
+        return ((clientX - rect.left) / rect.width) * 100;
+      }
+
+      container.addEventListener('mousedown', (e) => {
+        isDragging = true;
+        setPercent(getPercent(e.clientX));
+        container.style.cursor = 'ew-resize';
+      });
+
+      window.addEventListener('mousemove', (e) => {
+        if (!isDragging) return;
+        setPercent(getPercent(e.clientX));
+      });
+
+      window.addEventListener('mouseup', () => {
+        isDragging = false;
+      });
+
+      // Touch
+      container.addEventListener('touchstart', (e) => {
+        isDragging = true;
+        setPercent(getPercent(e.touches[0].clientX));
+      }, { passive: true });
+
+      window.addEventListener('touchmove', (e) => {
+        if (!isDragging) return;
+        setPercent(getPercent(e.touches[0].clientX));
+      }, { passive: true });
+
+      window.addEventListener('touchend', () => { isDragging = false; });
+
+      // Animate hint on load
+      let animated = false;
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting && !animated) {
+            animated = true;
+            // Small hint: slide left then back
+            setTimeout(() => {
+              let pct = 50;
+              const anim = setInterval(() => {
+                pct -= 1;
+                setPercent(pct);
+                if (pct <= 30) {
+                  clearInterval(anim);
+                  const back = setInterval(() => {
+                    pct += 0.7;
+                    setPercent(pct);
+                    if (pct >= 50) clearInterval(back);
+                  }, 16);
+                }
+              }, 12);
+            }, 600);
+          }
+        });
+      }, { threshold: 0.3 });
+      observer.observe(container);
+    }
+
+    initSlider('slider1', 'slider1-before', 'slider1-handle');
+    initSlider('slider2', 'slider2-before', 'slider2-handle');
+  </script>
+</body>
+</html>
