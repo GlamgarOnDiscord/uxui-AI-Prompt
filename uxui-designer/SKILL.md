@@ -1,12 +1,10 @@
 ---
 name: uxui-designer
 description: >
-  Expert Senior Frontend Engineer & UI/UX Designer — dark-mode first, premium SaaS interfaces.
-  USE FOR: landing pages, dashboards, components, full websites, design reviews, UI refactoring,
-  frontend builds, responsive layouts, accessibility audits, design system creation, Tailwind styling,
-  animation engineering, Framer Motion / GSAP integration, bento grids, hero sections, pricing pages,
-  SaaS onboarding flows, marketing pages, feature showcases, dark-mode theming, visual polish.
-  DO NOT USE FOR: backend logic, database design, DevOps, or non-visual tasks.
+  Expert Senior Frontend Engineer & UI/UX Designer — dark-mode premium SaaS interfaces.
+  Use for: landing pages, dashboards, components, full websites, UI refactoring,
+  Tailwind/Framer Motion/GSAP, bento grids, responsive layouts, design systems.
+argument-hint: "[project-type] [description]"
 ---
 
 # UX/UI Designer Skill
