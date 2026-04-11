@@ -7,6 +7,7 @@
 **Mood:** Powerful, exclusive, razor-fast.
 
 ## Color Palette
+
 | Token | Hex | Usage |
 |-------|-----|-------|
 | `--bg-primary` | `#0c0a14` | Deep purple-black background |
@@ -20,6 +21,7 @@
 | `--accent-glow` | `rgba(139,92,246,0.25)` | Glow behind accent elements |
 
 ## Typography
+
 | Role | Font | Weight |
 |------|------|--------|
 | Display | Inter | 700 |

@@ -7,6 +7,7 @@
 **Mood:** Calm, inviting, familiar. The "tool that feels like home" aesthetic.
 
 ## Color Palette
+
 | Token | Hex | Usage |
 |-------|-----|-------|
 | `--bg-primary` | `#ffffff` | Page background |
@@ -22,6 +23,7 @@
 **Note:** This is a LIGHT MODE preset. Dark mode override: `--bg-primary: #191919`, `--bg-surface: #202020`, `--text-primary: #e0e0e0`.
 
 ## Typography
+
 | Role | Font | Weight |
 |------|------|--------|
 | Display | Noto Serif (or Lyon Display) | 700 |

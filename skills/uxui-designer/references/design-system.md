@@ -1,16 +1,16 @@
 # Design System Reference
 
-## Table des matières
-- [Palette couleurs — Dark Mode](#palette-couleurs--dark-mode)
-- [Palette couleurs — Light Mode](#palette-couleurs--light-mode)
-- [Règles couleurs](#règles-couleurs)
-- [Typographie](#typographie)
+## Table of Contents
+- [Color Palette — Dark Mode](#color-palette--dark-mode)
+- [Color Palette — Light Mode](#color-palette--light-mode)
+- [Color Rules](#color-rules)
+- [Typography](#typography)
 - [Layout & Spacing](#layout--spacing)
 - [Component Styles](#component-styles)
 - [Effects & Backgrounds](#effects--backgrounds)
 - [Glassmorphism](#glassmorphism)
 - [Icon Libraries & SVG Rules](#icon-libraries--svg-rules)
-- [Accessibilité (WCAG)](#accessibilité-wcag)
+- [Accessibility (WCAG)](#accessibility-wcag)
 - [Anti-Patterns](#anti-patterns)
 - [Performance & Code Quality](#performance--code-quality)
 

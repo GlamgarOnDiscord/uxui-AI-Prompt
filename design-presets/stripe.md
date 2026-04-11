@@ -7,6 +7,7 @@
 **Mood:** Premium, approachable, grown-up. The "we handle money" aesthetic.
 
 ## Color Palette
+
 | Token | Hex | Usage |
 |-------|-----|-------|
 | `--bg-primary` | `#0a2540` | Deep navy page background |
@@ -21,6 +22,7 @@
 | `--gradient` | `linear-gradient(135deg, #635bff, #00d4ff, #ff6b6b)` | Prismatic hero gradients |
 
 ## Typography
+
 | Role | Font | Weight |
 |------|------|--------|
 | Display | Sohne (fallback: Inter) | 600 |

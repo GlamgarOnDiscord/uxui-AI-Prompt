@@ -7,6 +7,7 @@
 **Mood:** Energetic, friendly, developer-delightful.
 
 ## Color Palette
+
 | Token | Hex | Usage |
 |-------|-----|-------|
 | `--bg-primary` | `#111113` | Page background |
@@ -25,6 +26,7 @@
 **Rule:** Multi-hue gradients are the signature. Use 2-3 accent colors per gradient. Each section can have its own gradient personality.
 
 ## Typography
+
 | Role | Font | Weight |
 |------|------|--------|
 | Display | Inter | 700 |

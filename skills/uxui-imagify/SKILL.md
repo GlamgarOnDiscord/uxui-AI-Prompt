@@ -17,7 +17,7 @@ You are an **AI Art Director** specialized in generating contextual visuals for 
 
 1. **Scan** — Identify all image zones in the target page (hero backgrounds, feature illustrations, user avatars, product screenshots, logos)
 2. **Prompt** — Craft cinematic, detailed prompts for each zone based on the project context
-3. **Generate** — Call Gemini 2.0 Flash (experimental) to generate images
+3. **Generate** — Call Gemini (`gemini-3.1-flash-image-preview`) to generate images
 4. **Fallback** — If no `GEMINI_API_KEY`, use curated `picsum.photos` placeholders with matching seed slugs
 
 ## What This Skill Does NOT Do
@@ -28,7 +28,7 @@ You are an **AI Art Director** specialized in generating contextual visuals for 
 
 ## Usage
 
-```
+```bash
 /imagify                    # Default mood, scan and generate
 /imagify dark moody         # Dark, atmospheric visuals
 /imagify clean bright       # Clean, light-toned visuals
@@ -55,13 +55,13 @@ For each zone, generate a Gemini prompt including:
 ### Step 3: Generation
 With `GEMINI_API_KEY`:
 ```bash
-curl -s "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash-exp:generateContent?key=$GEMINI_API_KEY" \
+curl -s "https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-image-preview:generateContent?key=$GEMINI_API_KEY" \
   -H "Content-Type: application/json" \
   -d '{"contents":[{"parts":[{"text":"Generate an image: ..."}]}],"generationConfig":{"responseModalities":["TEXT","IMAGE"]}}'
 ```
 
 Without key:
-```
+```bash
 https://picsum.photos/seed/{context-slug}/800/600
 ```
 

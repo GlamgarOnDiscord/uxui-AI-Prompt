@@ -125,7 +125,7 @@ Run the Gemini image generation pipeline.
 **What it does:**
 1. Scans the page for image zones (hero backgrounds, feature illustrations, logos, avatars)
 2. Crafts cinematic prompts for each zone
-3. With `GEMINI_API_KEY`: generates via Gemini 2.0 Flash
+3. With `GEMINI_API_KEY`: generates via `gemini-3.1-flash-image-preview`
 4. Without key: falls back to curated `picsum.photos` placeholders
 
 **Example:**

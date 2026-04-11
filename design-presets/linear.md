@@ -7,6 +7,7 @@
 **Mood:** Focused intensity. Every element earns its place.
 
 ## Color Palette
+
 | Token | Hex | Usage |
 |-------|-----|-------|
 | `--bg-primary` | `#0a0a0f` | Page background |
@@ -21,6 +22,7 @@
 | `--danger` | `#e5484d` | Errors |
 
 ## Typography
+
 | Role | Font | Weight |
 |------|------|--------|
 | Display | Inter | 600 |

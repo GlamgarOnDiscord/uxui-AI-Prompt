@@ -7,6 +7,7 @@
 **Mood:** Technical, trustworthy, information-dense. Feels like home for engineers.
 
 ## Color Palette
+
 | Token | Hex | Usage |
 |-------|-----|-------|
 | `--bg-primary` | `#1e1e1e` | Editor background |
@@ -27,6 +28,7 @@
 **Rule:** Use syntax-highlighting colors semantically. Blue for navigation, green for success, orange for warnings, red for errors.
 
 ## Typography
+
 | Role | Font | Weight |
 |------|------|--------|
 | All text | JetBrains Mono | 400 |

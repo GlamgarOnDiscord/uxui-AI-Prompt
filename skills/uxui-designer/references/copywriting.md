@@ -22,7 +22,7 @@
 - NO generic placeholder names ("John Doe", "Sarah Chan") — invent believable, specific names that feel like real people
 - NO startup slop brand names ("Acme", "Nexus", "SmartFlow") — create contextual, premium names that match the product domain
 - NO predictable round numbers (`99.99%`, `50%`) for fake metrics — they instantly signal "fabricated" to the reader
-- NO emojis anywhere in production code, markup, or copy
+- NO emojis anywhere in production code, markup, or copy — exception: preset-level overrides (e.g., `notion` preset allows structural emoji callouts when explicitly defined in its `DESIGN.md`)
 
 ## Good CTA Examples
 

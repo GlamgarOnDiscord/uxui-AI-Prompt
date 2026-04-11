@@ -7,6 +7,7 @@
 **Mood:** Surgical, confident, developer-native.
 
 ## Color Palette
+
 | Token | Hex | Usage |
 |-------|-----|-------|
 | `--bg-primary` | `#000000` | Page background |
@@ -22,6 +23,7 @@
 **Rule:** No color accents. White is the only "accent". Hierarchy through weight and size only.
 
 ## Typography
+
 | Role | Font | Weight |
 |------|------|--------|
 | All text | Geist | 400–700 |

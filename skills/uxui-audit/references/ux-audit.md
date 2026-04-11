@@ -158,7 +158,7 @@ These are the most common AI-generated UI failures. Flag every occurrence.
 
 When running `/audit`, output in this format:
 
-```
+```markdown
 ## UX/UI Audit Report
 
 ### Summary
@@ -176,6 +176,6 @@ When running `/audit`, output in this format:
 - `file.tsx:103` — Default shadcn button, no customization [anti-slop]
 
 ### Info (nice to fix)
-- `file.tsx:200` — Could use skeleton loader instead of spinner
-- Consider adding keyboard shortcuts [Nielsen #7]
+- `file.tsx:200` — Loading state causes layout shift; result should render in-place [Nielsen #1]
+- `file.tsx:220` — No keyboard navigation for power users [Nielsen #7]
 ```
