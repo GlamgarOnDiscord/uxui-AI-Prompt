@@ -57,4 +57,4 @@ Before submitting, verify:
 
 ## License
 
-By contributing, you agree that your contributions will be released under the same open license as this repository (use, modify, and share freely with credit).
+By contributing, you agree that your contributions will be released under the [MIT License](./LICENSE).
