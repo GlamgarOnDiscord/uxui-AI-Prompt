@@ -27,7 +27,7 @@ A dark-mode pricing page with:
 
 ### Interactive States
 - Monthly/yearly toggle updates all prices with number scramble animation
-- Accordion: only one open at a time, `grid-template-rows: 0fr → 1fr` transition (avoids layout-triggering `max-height`)
+- Accordion: only one open at a time, content revealed via `transform: scaleY()` + `opacity` transition on the inner wrapper (transform/opacity-only — no layout triggers)
 - Hover on cards: subtle `translateY(-4px)` + border brightness
 
 ### Anti-Slop Checks

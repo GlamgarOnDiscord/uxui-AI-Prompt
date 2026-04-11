@@ -81,14 +81,19 @@ if [ ! -f "DESIGN.md" ]; then
   echo -e "  ${GREEN}✓${NC} DESIGN.md (project root)"
 fi
 
-# Design presets — install relative to first target's agent config root
-AGENT_ROOT=$(dirname "$(dirname "${TARGETS[0]}")")
-PRESET_DIR="${AGENT_ROOT}/design-presets"
-mkdir -p "$PRESET_DIR"
+# Design presets — install relative to each target's agent config root
+TMPDIR_PRESETS=$(mktemp -d)
 for preset in vercel.md linear.md stripe.md raycast.md superhuman.md notion.md vs-code.md; do
-  curl -fsSL "$RAW/design-presets/$preset" -o "$PRESET_DIR/$preset"
+  curl -fsSL "$RAW/design-presets/$preset" -o "$TMPDIR_PRESETS/$preset"
   echo -e "  ${GREEN}✓${NC} design-presets/$preset"
 done
+for TARGET in "${TARGETS[@]}"; do
+  AGENT_ROOT=$(dirname "$(dirname "$TARGET")")
+  PRESET_DIR="${AGENT_ROOT}/design-presets"
+  mkdir -p "$PRESET_DIR"
+  cp "$TMPDIR_PRESETS/"* "$PRESET_DIR/"
+done
+rm -rf "$TMPDIR_PRESETS"
 
 echo ""
 echo -e "${GREEN}══════════════════════════════════════${NC}"

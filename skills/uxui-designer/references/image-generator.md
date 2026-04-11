@@ -146,11 +146,11 @@ Available aspect ratios: `1:1`, `1:4`, `1:8`, `2:3`, `3:2`, `3:4`, `4:1`, `4:3`,
 
 ### Method A — REST API + Python (curl + python3)
 
-This approach uses `curl` to call the API and `python3` to decode the base64 image from the response. **Requires python3.** Prefer this when the project already has Python in its stack.
+This approach uses `curl` to call the API, `jq` to safely build the JSON payload, and `python3` to decode the base64 image from the response. **Requires jq and python3.** Prefer this when the project already has Python in its stack.
 
 ```bash
 # Generate a single image via the Gemini REST API
-# Requirements: curl, python3, GEMINI_API_KEY set in environment
+# Requirements: curl, jq, python3, GEMINI_API_KEY set in environment
 
 PROMPT="A vast underground data center corridor stretching into darkness, captured at blue hour, rows of server racks casting deep geometric shadows, a single column of soft teal light cuts through volumetric fog from the far end, ultra-wide shot, 24mm lens, long-exposure glow on indicator LEDs, award-winning architectural photography composition, no text, no UI, no people"
 MODEL="gemini-3.1-flash-image-preview"

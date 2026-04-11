@@ -24,7 +24,6 @@
 | `--accent-yellow` | `#dcdcaa` | Functions |
 | `--accent-purple` | `#c586c0` | Control flow |
 | `--accent-cyan` | `#4ec9b0` | Types, classes |
-
 | `--danger` | `#f44747` | Errors, destructive actions |
 
 **Rule:** Use syntax-highlighting colors semantically. Blue for navigation, green for success, orange for warnings, red for errors.
