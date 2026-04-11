@@ -16,11 +16,11 @@
 
 ---
 
-## Palette couleurs — Dark Mode
+## Color Palette — Dark Mode
 
 | Element | Classes | Notes |
 |---------|---------|-------|
-| Backgrounds | `bg-black`, `bg-zinc-950`, `bg-[#09090b]` | Never pure grays; use Zinc/Slate |
+| Backgrounds | `bg-zinc-950`, `bg-[#09090b]` | Never pure black (`#000000`); use Zinc/Slate off-black tokens |
 | Surfaces | `bg-zinc-900/50` + `backdrop-blur-sm` | Subtle glass effect |
 | Borders | `border border-white/5` or `border-white/10` | Ultra-thin and subtle |
 | Headings | `text-white` | High contrast |
@@ -28,7 +28,7 @@
 | Subtle Text | `text-zinc-500`, `text-zinc-600` | Labels, captions |
 | Accents | Emerald, Teal, or muted Indigo | Sparingly — glows and CTAs only |
 
-## Palette couleurs — Light Mode
+## Color Palette — Light Mode
 
 Only if requested by the user.
 
@@ -38,10 +38,10 @@ Only if requested by the user.
 | Surfaces | `#ffffff` with `border border-slate-200/50` | 1px border for depth |
 | Text | `#0f172a`, `text-zinc-800` | Never pure black |
 
-## Règles couleurs
+## Color Rules
 
-- Évite les couleurs saturées/néon (electric purple, electric blue, magenta, turquoise) — elles créent un look "Web3/AI" cheap et non professionnel
-- Utilise Off-Black (`bg-zinc-950`, `bg-[#09090b]`) plutôt que `#000000` — le noir pur est trop dur et crée un contraste inconfortable avec les surfaces
+- Avoid saturated/neon colors (electric purple, electric blue, magenta, turquoise) — they create a cheap "Web3/AI" look
+- Use off-black (`bg-zinc-950`, `bg-[#09090b]`) instead of `#000000` — pure black is too harsh and creates uncomfortable contrast with surfaces
 - **AI Purple/Blue ban:** No purple button glows, no neon gradients. Use neutral bases (Zinc/Slate) with a single high-contrast accent (Emerald, Deep Rose, or Electric Blue muted)
 - Max 1 accent color. Saturation < 80%
 - Stick to one palette — do not mix warm and cool grays in the same project

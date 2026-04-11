@@ -80,7 +80,7 @@ Easy to search, focused on the task, concrete steps.
 | 2.4.7 | Focus visible | All interactive elements have visible focus indicator (`ring-2`) |
 | 2.4.11 | Focus not obscured | Focus indicator not hidden by sticky headers or overlays |
 | 2.5.5 | Target size | Interactive targets minimum **24x24px** (44x44px recommended) |
-| 2.5.8 | Target spacing | Minimum 8px between adjacent targets |
+| 2.5.8 | Target Size (Minimum) | Interactive targets minimum **24x24px** unless inline text or native control |
 
 ### Understandable
 

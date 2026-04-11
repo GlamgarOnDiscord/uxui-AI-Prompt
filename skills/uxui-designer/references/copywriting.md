@@ -8,7 +8,7 @@
 - Highlight operational benefits (time saved, cost reduction, clarity)
 - Include user proof (testimonials, logos, concrete figures, use cases)
 - Use action-oriented, specific CTAs
-- Always add a hover effect on CTAs
+- Always add `:hover`, `:focus-visible`, and `:active` states on CTAs — hover alone is insufficient for keyboard and touch users
 - Use organic, realistic data — messy numbers feel more trustworthy because real metrics are never round (`47.2%`, `+1 (312) 847-1928`, `$2.4M ARR`)
 
 ## Don'ts ❌
