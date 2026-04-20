@@ -16,6 +16,21 @@
 
 ---
 
+## ⚡ Critical Rules — Read First
+
+> These 8 rules are placed first intentionally. They are the most violated constraints. Internalize before reading anything else.
+
+1. **No Inter / Roboto / Arial / Space Grotesk** — use Geist, Syne, Cabinet Grotesk, DM Sans, or Bricolage Grotesque
+2. **No centered hero when `DESIGN_VARIANCE > 4`** — split, asymmetric, or left-aligned only
+3. **No 3 equal-width horizontal cards** — bento, zigzag, or asymmetric grid
+4. **No pure black (#000000)** — use `bg-zinc-950` or `bg-[#09090b]`
+5. **No neon/purple accents** — one muted accent max (emerald, teal, deep rose)
+6. **No h-screen** — use `min-h-[100dvh]`
+7. **No window.addEventListener('scroll')** — use Framer Motion or GSAP ScrollTrigger
+8. **No round numbers in metrics** — `47.2%` not `50%`, `11,240` not `10,000+`
+
+---
+
 ## Color Palette — Dark Mode
 
 | Element | Classes | Notes |
@@ -248,6 +263,23 @@ Use sparingly. Beyond `backdrop-blur`, add a 1px inner border (`border-white/10`
 - NO uncompressed oversized images
 - NO horizontal scroll
 - NO `window.addEventListener('scroll')` for scroll animations — use Framer Motion or GSAP ScrollTrigger instead (RAF batching and intersection observation handled; **GSAP ScrollTrigger requires scoped cleanup in `useEffect` return: `const ctx = gsap.context(() => { /* create ScrollTriggers here */ }, containerRef); return () => ctx.revert();`**)
+
+### Content & Copy Anti-Patterns ❌
+- NO corporate filler openers: "In today's fast-paced world", "We help teams...", "The future of..."
+- NO round fake numbers: `99.99%`, `50%`, `$1M+`, `10,000+ users` — use organic specifics like `47.2%`, `$1.3M`, `11,240 users`
+- NO generic startup slop names or taglines that could apply to any product
+- NO CTA copy like "Learn More" or "Get Started" when a specific action is possible
+- NO repeated value props saying the same thing three times in different words
+- NO fake testimonials with obviously placeholder names and impossible metrics
+- NO logo strip used as the only proof element — it must accompany a concrete claim
+
+### Code & Implementation Anti-Patterns ❌
+- NO `use client` on every component — isolate interactivity to leaf nodes only
+- NO visible scaffold fingerprints in production output (TODO comments, placeholder function names, unused imports)
+- NO dashboard screenshot in a hero section at a scale where the UI is unreadable
+- NO ShadCN defaults used without customization (always override radii, colors, and shadows)
+- NO nested scroll containers inside showcase cards that expose browser-default scrollbars
+- NO mixing GSAP and Framer Motion inside the same component tree without isolation
 
 ---
 

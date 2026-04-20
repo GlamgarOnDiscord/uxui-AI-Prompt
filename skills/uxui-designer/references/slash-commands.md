@@ -16,11 +16,15 @@ Generate a complete page from scratch.
 
 **What happens:**
 1. Loads design-system, page-structure, motion-patterns references
-2. Selects tech stack based on complexity (React/Next.js or static HTML)
-3. Generates all mandatory sections (minimum 5)
-4. Applies current dial values for motion/variance/density
-5. Runs pre-flight checklist
-6. Invokes image-generator as final step
+2. Runs Style Auto-Router — detects mood from brief, applies dial overrides
+3. Loads style-recipes for the detected mood (components, layout, motion direction)
+4. Selects tech stack based on complexity (React/Next.js or static HTML)
+5. Runs Output Algorithm (12-step sequence before writing any code)
+6. Generates all mandatory sections (minimum 5)
+7. Applies motion patterns based on MOTION_INTENSITY
+8. Runs pre-flight checklist
+9. Invokes image-generator as final step
+10. Runs Self-Check (5 anti-slop criteria) — if 2+ fail, fixes and re-checks before delivering
 
 **Flags:**
 - Add `--static` to force HTML/CSS/JS output
