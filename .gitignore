@@ -16,7 +16,7 @@ node_modules/
 .env.production
 *.key
 *.pem
-GEMINI_API_KEY
+# GEMINI_API_KEY should be stored in ignored .env files (variable names are not gitignore patterns)
 
 # OS files
 .DS_Store
