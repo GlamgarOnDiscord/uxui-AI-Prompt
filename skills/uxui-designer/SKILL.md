@@ -50,7 +50,7 @@ Generate a full page from scratch. Runs the complete workflow: onboarding (skipp
 6. Build all mandatory sections (minimum 5)
 7. Apply motion patterns based on `MOTION_INTENSITY`
 8. Run pre-flight checklist
-9. Invoke [image-generator.md](references/image-generator.md) as final step
+9. Invoke [image-generator.md](references/image-generator.md)
 10. **Run Self-Check** (see below)
 
 ### Self-Check Validation Loop
