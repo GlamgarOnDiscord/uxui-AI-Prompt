@@ -24,7 +24,7 @@
 2. **No centered hero when `DESIGN_VARIANCE > 4`** — split, asymmetric, or left-aligned only
 3. **No 3 equal-width horizontal cards** — bento, zigzag, or asymmetric grid
 4. **No pure black (#000000)** — use `bg-zinc-950` or `bg-[#09090b]`
-5. **No neon/purple accents** — one muted accent max (emerald, teal, deep rose)
+5. **No neon/purple accents** — one muted accent max (emerald, deep rose, or muted electric blue)
 6. **No h-screen** — use `min-h-[100dvh]`
 7. **No window.addEventListener('scroll')** — use Framer Motion or GSAP ScrollTrigger
 8. **No round numbers in metrics** — `47.2%` not `50%`, `11,240` not `10,000+`
