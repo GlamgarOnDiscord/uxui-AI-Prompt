@@ -106,7 +106,7 @@ Before writing hero markup, verify all 7 conditions:
 - [ ] **Focal point** — One dominant visual element (headline, image, diagram) — not two competing
 - [ ] **Fixed envelope** — Hero reads as a complete scene on a 1280px screen. Does not bleed accidentally into the next section
 - [ ] **Support element** — One secondary detail (proof stat, badge, sub-headline) that supports the focal point without competing
-- [ ] **Single next step** — One primary CTA with specific copy. A second CTA is allowed only if clearly lower-contrast
+- [ ] **CTA hierarchy** — Include primary + secondary CTA with specific copy, and keep the secondary clearly lower-contrast
 - [ ] **Visual anchor** — If no image: the composition must use typography scale, spatial cropping, or a diagram. An H1 on a flat background is not enough
 - [ ] **Mobile order** — The hero collapses to a clean single-column layout on < 768px without losing identity
 - [ ] **Nav relationship** — The nav and hero look like they belong to the same page, not like two separate templates stacked
