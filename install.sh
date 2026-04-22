@@ -62,7 +62,7 @@ curl -fsSL "$RAW/skills/uxui-designer/SKILL.md" -o "$TMPDIR_SKILL/SKILL.md"
 echo -e "  ${GREEN}✓${NC} SKILL.md"
 
 mkdir -p "$TMPDIR_SKILL/references"
-for ref in design-system.md motion-patterns.md copywriting.md page-structure.md dashboard.md image-generator.md slash-commands.md ux-audit.md; do
+for ref in design-system.md motion-patterns.md copywriting.md page-structure.md dashboard.md image-generator.md slash-commands.md style-recipes.md ux-audit.md; do
   curl -fsSL "$RAW/skills/uxui-designer/references/$ref" -o "$TMPDIR_SKILL/references/$ref"
   echo -e "  ${GREEN}✓${NC} references/$ref"
 done
