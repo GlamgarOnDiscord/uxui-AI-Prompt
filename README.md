@@ -189,8 +189,13 @@ uxui-AI-Prompt/
 ```
 
 ```
-User prompt → SKILL.md → lazy-load references → /build → /polish → /imagify → done
+User prompt → Intent → Plan (Design Contract) → Build → Verify → Refine (edit-local) → optional /imagify
 ```
+
+### Prompt v2 principles (applied in `prompt.md`)
+- **Phase-based generation:** Intent → Plan → Build → Verify → Refine.
+- **Edit-local default:** small requests patch targeted sections instead of regenerating whole pages.
+- **Fallback-safe media step:** Gemini image generation is optional when the `image-generator` agent is unavailable.
 
 <br />
 
