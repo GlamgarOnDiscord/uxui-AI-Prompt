@@ -147,7 +147,6 @@ uxui-AI-Prompt/
 │
 ├── DESIGN.md                      ← Stitch-compatible root design spec
 ├── prompt.md                      ← Standalone prompt (any AI tool)
-├── PROMPT_V2_BLUEPRINT.md         ← Research-backed Prompt v2 rationale + rollout
 ├── install.sh                     ← One-liner installer
 │
 ├── design-presets/                ← 7 brand presets (DESIGN.md format)
@@ -199,8 +198,6 @@ User prompt → Intent → Plan (Design Contract) → Build → Verify → Refin
 - **Fallback-safe media step:** Gemini image generation is optional when the `image-generator` agent is unavailable.
 - **Design Contract required:** machine-checkable spec before implementation.
 - **Quality Gate:** self-score (8/10 minimum) before final output.
-
-See [`PROMPT_V2_BLUEPRINT.md`](./PROMPT_V2_BLUEPRINT.md) for rationale, KPIs, and rollout plan.
 
 <br />
 
