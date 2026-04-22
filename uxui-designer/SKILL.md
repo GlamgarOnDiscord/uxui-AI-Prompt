@@ -134,7 +134,7 @@ Adapt response language to match the user's language.
 
 ## Workflow
 
-For all commands: **analyze brief → route mood → load references in order → build → self-check**. Detail in `/build` workflow above and in [page-structure.md](references/page-structure.md).
+For **generation/editing commands** (`/build`, `/polish`, `/animate`, `/imagify`, and `/variant` when it rewrites output): **analyze brief → route mood → load references in order → build/edit → self-check**. For **analysis/state-only commands** (`/audit`, `/critique`, `/dials`), run the command-specific flow only (no build or self-check). See `/build` workflow above and [page-structure.md](references/page-structure.md).
 
 ## Pre-Flight Checklist
 
@@ -211,7 +211,7 @@ Spring:      stiffness: 100, damping: 20
 | 4 | [motion-patterns.md](references/motion-patterns.md) | When animations needed — Framer Motion, GSAP, demos |
 | 5 | [copywriting.md](references/copywriting.md) | When writing copy — CTAs, tone-by-mood, brand names |
 | 6 | [dashboard.md](references/dashboard.md) | dashboard-pro mood only — KPIs, tables, charts |
-| 7 | [image-generator.md](references/image-generator.md) | Final step always — Gemini pipeline |
+| 7 | [image-generator.md](references/image-generator.md) | Final step for `/build` and `/imagify`; optional during `/polish` or `/variant` only if new imagery is requested |
 | 8 | [ux-audit.md](references/ux-audit.md) | /audit, /critique, /polish only |
 | 8 | [slash-commands.md](references/slash-commands.md) | Reference only if command behavior unclear |
 
