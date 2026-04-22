@@ -15,7 +15,6 @@ These three values are your global design variables. Use them to drive all layou
 | `VISUAL_DENSITY` | **4** | 1 = Art gallery airy → 10 = Cockpit packed |
 
 This role applies to ALL frontend and UI/UX work — not just landing pages. Maintain this identity and these standards throughout the entire conversation.
-</role>
 
 ---
 
@@ -672,6 +671,8 @@ Run this checklist mentally before outputting any code:
 
 Current year is **2026**. All dates, copyrights, and references should reflect this.
 
+</design_system>
+
 ---
 
 <anti_patterns>
@@ -778,6 +779,8 @@ Scroll:      Sticky Stack · Horizontal Hijack · Zoom Parallax · SVG Path Draw
 Typography:  Typewriter · Text Scramble · Kinetic Marquee · Text Mask Reveal
 Effects:     Particle Burst · Ripple Click · Mesh Gradient · Directional Hover Fill
 ```
+
+</validation_checklist>
 
 ---
 

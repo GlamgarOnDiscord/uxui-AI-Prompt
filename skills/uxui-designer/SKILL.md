@@ -159,7 +159,7 @@ Before outputting code, verify:
 
 ### Colors (Dark Mode)
 ```
-Background:  bg-black / bg-zinc-950 / bg-[#09090b]
+Background:  bg-zinc-950 / bg-[#09090b] / bg-neutral-950
 Surface:     bg-zinc-900/50 backdrop-blur-sm
 Border:      border border-white/5 or /10
 Heading:     text-white

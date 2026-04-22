@@ -10,7 +10,7 @@
 
 | Token | Hex | Usage |
 |-------|-----|-------|
-| `--bg-primary` | `#000000` | Page background |
+| `--bg-primary` | `#09090b` | Page background |
 | `--bg-surface` | `#111111` | Cards, panels |
 | `--bg-elevated` | `#1a1a1a` | Hover states |
 | `--border-subtle` | `rgba(255,255,255,0.08)` | Borders |
