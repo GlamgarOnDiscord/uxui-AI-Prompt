@@ -573,6 +573,39 @@ export default function ComponentName() {
 - If `image-generator` is available: invoke it at the end to replace placeholders (`picsum.photos`, `placehold.co`) with Gemini visuals.
 - If unavailable: keep deterministic placeholders + meaningful `alt` text and continue without blocking.
 
+### DESIGN CONTRACT (required before code)
+Output a compact contract (JSON-like or markdown table) before implementation.
+
+```json
+{
+  "artifact": "landing|dashboard|component|full-app",
+  "audience": "who this is for",
+  "primary_goal": "conversion or user outcome",
+  "stack": "nextjs-tailwind | react-tailwind | html-tailwind",
+  "design_dials": { "variance": 8, "motion": 6, "density": 4 },
+  "sections": ["header", "hero", "proof", "features", "faq", "cta", "footer"],
+  "layout_map": [
+    "header(sticky)",
+    "hero(split-left-copy-right-visual)",
+    "features(bento-grid-3cols@md)",
+    "faq(accordion)",
+    "cta(framed)",
+    "footer(4-columns)"
+  ],
+  "states_required": ["loading", "empty", "error"],
+  "a11y": { "contrast": "WCAG AA", "keyboard": true, "aria_decorative_svg": true },
+  "performance": { "animate_only": ["transform", "opacity"], "avoid": ["layout-thrash", "large-unoptimized-images"] }
+}
+```
+
+### EDIT-LOCAL PROTOCOL (for incremental requests)
+When a user asks for a small change, do **not** regenerate the full page.
+
+- **Localized edits only:** modify the targeted section/component.
+- **Preserve contract:** keep existing palette, typography, spacing, and motion unless user requests a style shift.
+- **Return a concise diff mindset:** mention what changed + where (`section/component`).
+- **Escalate to full rewrite only if:** architecture/brand/stack changes globally.
+
 ---
 
 ## FINAL PRE-FLIGHT CHECK
@@ -616,18 +649,21 @@ Current year is **2026**. All dates, copyrights, and references should reflect t
 
 </anti_patterns>
 
-3. **Tech Stack:** Which do you prefer?
-   - React/Next.js with Tailwind CSS
-   - Static HTML/CSS/JavaScript with Tailwind
-   - Other ?
-
-4. **Starting Point:** Are we improving an existing page, or starting from scratch?
-
 <validation_checklist>
 
 ## PRE-DELIVERY VALIDATION
 
 Verify every item before delivering code. Fix failures before responding.
+
+### QUALITY GATE (self-score before final output)
+Score each from 0 to 2. Minimum ship score: **8/10**.
+- Visual hierarchy clarity
+- Responsive integrity
+- Accessibility compliance
+- Interaction quality (states + motion)
+- Copy specificity (non-generic)
+
+If score < 8, run one refinement pass before delivering.
 
 - [ ] Minimum 5 distinct sections
 - [ ] Semantic HTML5 elements used correctly
