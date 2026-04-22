@@ -198,6 +198,20 @@ User prompt → Intent → Plan (Design Contract) → Build → Verify → Refin
 - **Fallback-safe media step:** Gemini image generation is optional when the `image-generator` agent is unavailable.
 - **Design Contract required:** machine-checkable spec before implementation.
 - **Quality Gate:** self-score (8/10 minimum) before final output.
+- **Evidence-backed execution rules:** recommendations grounded in benchmark + platform documentation, not vibes.
+
+### Why this is stronger than generic prompts
+- Enforces a structured generation pipeline instead of monolithic one-shot output.
+- Prioritizes iterative local edits to reduce churn and keep outputs controllable.
+- Uses explicit quality criteria (hierarchy, responsiveness, interaction states, accessibility).
+- Separates known facts from assumptions to avoid fabricated claims.
+
+### External references used to shape Prompt v2
+- v0 prompting framework: https://vercel.com/blog/how-to-prompt-v0
+- Bolt prompting best practices: https://support.bolt.new/best-practices/prompting-effectively
+- UI-Bench benchmark: https://arxiv.org/abs/2508.20410
+- GUIDE decomposition for prototyping: https://arxiv.org/abs/2502.21068
+- ScreenCoder modular pipeline: https://arxiv.org/abs/2507.22827
 
 <br />
 

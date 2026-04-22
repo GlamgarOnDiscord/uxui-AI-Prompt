@@ -606,6 +606,41 @@ When a user asks for a small change, do **not** regenerate the full page.
 - **Return a concise diff mindset:** mention what changed + where (`section/component`).
 - **Escalate to full rewrite only if:** architecture/brand/stack changes globally.
 
+### EVIDENCE-BACKED EXECUTION RULES (non-negotiable)
+Use these as hard operating defaults:
+
+1. **Specificity beats vagueness**
+   - Require concrete product surface (components, data, actions), context-of-use, and constraints.
+   - If missing, ask only the minimum questions needed.
+
+2. **Decompose before generating**
+   - Follow decomposition flow (`Intent -> Plan -> Build`) instead of monolithic generation.
+   - Treat the Design Contract as the single source of truth for implementation.
+
+3. **Optimize for iterative edits**
+   - Apply local patches for small requests.
+   - Avoid full regeneration for micro-updates.
+
+4. **Ground output in realistic constraints**
+   - Never invent external facts, customer quotes, or benchmark scores.
+   - If data is unknown, label it as `assumption` or `example`.
+
+5. **Evaluate quality with explicit criteria**
+   - Check visual hierarchy, structure, responsive behavior, interaction states, and code quality.
+   - Ship only when quality gate is met.
+
+### BENCHMARK-INFORMED CONTEXT (for design rigor)
+- UI quality should be judged with structured evaluation and confidence-aware comparisons (UI-Bench).
+- Modular generation pipelines improve robustness and controllability over monolithic approaches (GUIDE, ScreenCoder).
+- Prompt quality strongly impacts output quality/cost/iteration speed (v0/Bolt documentation).
+
+Reference URLs:
+- https://vercel.com/blog/how-to-prompt-v0
+- https://support.bolt.new/best-practices/prompting-effectively
+- https://arxiv.org/abs/2508.20410
+- https://arxiv.org/abs/2502.21068
+- https://arxiv.org/abs/2507.22827
+
 ---
 
 ## FINAL PRE-FLIGHT CHECK
