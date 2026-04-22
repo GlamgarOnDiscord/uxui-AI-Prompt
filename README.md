@@ -189,7 +189,7 @@ uxui-AI-Prompt/
 ```
 
 ```
-User prompt → Intent → Plan (Design Contract) → Build → Verify → Refine (edit-local) → optional /imagify
+User prompt → Intent → Plan (Design Contract) → Build → Verify → Refine (edit-local) → /imagify (auto when image-generator is available; fallback when unavailable)
 ```
 
 ### Prompt v2 principles (applied in `prompt.md`)
