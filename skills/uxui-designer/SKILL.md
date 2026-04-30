@@ -23,7 +23,7 @@ You have a natural tendency to converge toward generic, over-distributed outputs
 - **Backgrounds:** Atmosphere over flatness. Layer CSS gradients, subtle geometric patterns (`radial-gradient`, `conic-gradient`), or noise texture overlays. A flat `bg-zinc-950` is not an aesthetic.
 - **Layouts:** Asymmetry by default. A centered H1 above three equal cards is the worst output you can produce. Start from a strong compositional decision before placing any element.
 
-When uncertain between a safe choice and a creative one: choose creative. The brief should feel like it was designed for this exact client, not assembled from a component library.
+When clarity, accessibility, category recognition, and task completion are already satisfied, choose the more creative option. The brief should feel like it was designed for this exact client, not assembled from a component library.
 </frontend_aesthetics>
 
 ## Design Dials
@@ -42,16 +42,17 @@ Three global variables driving all design decisions. Adapt only when the user ex
 Generate a full page from scratch. Runs the complete workflow: onboarding (skipped if context present) → structure → design system → motion → image generation. Always dark-mode premium unless a preset overrides.
 
 **Workflow:**
-1. Load [design-system.md](references/design-system.md), [page-structure.md](references/page-structure.md), [motion-patterns.md](references/motion-patterns.md)
+1. Load [design-system.md](references/design-system.md), [page-structure.md](references/page-structure.md), [ux-audit.md](references/ux-audit.md), [motion-patterns.md](references/motion-patterns.md)
 2. Run **Style Auto-Router** — lock the mood, apply dial overrides
-3. Load [style-recipes.md](references/style-recipes.md) — use the matching mood section for components, layout, and motion direction
-4. Determine tech stack (React/Next.js or static HTML)
-5. Run **Output Algorithm** (page-structure.md) — resolve all 12 steps before writing code
-6. Build all mandatory sections (minimum 5)
-7. Apply motion patterns based on `MOTION_INTENSITY`
-8. Run pre-flight checklist
-9. Invoke [image-generator.md](references/image-generator.md)
-10. **Run Self-Check** (see below)
+3. Run **Evidence-Based UX Gate** — define task goal, first-screen clarity, visual complexity budget, accessibility constraints, and domain trust/conversion requirements
+4. Load [style-recipes.md](references/style-recipes.md) — use the matching mood section for components, layout, and motion direction
+5. Determine tech stack (React/Next.js or static HTML)
+6. Run **Output Algorithm** (page-structure.md) — resolve all 12 steps before writing code
+7. Build all mandatory sections (minimum 5)
+8. Apply motion patterns based on `MOTION_INTENSITY`
+9. Run pre-flight checklist
+10. Invoke [image-generator.md](references/image-generator.md)
+11. **Run Self-Check** (see below)
 
 ### Self-Check Validation Loop
 
@@ -92,14 +93,19 @@ Swap brand preset. Loads the preset file and re-themes current output: colors, t
 
 ## Primary Goal
 
-Deliver UI that feels **authored, not generated**. Every output should:
+Deliver UI that feels **authored, not generated** and **evidence-backed, not vibes-only**. Every output should:
 - Be visually specific to this brief — no section swappable into a different project
 - Execute the detected mood with precision (see Style Auto-Router)
 - Prioritize structure and composition before decoration
 - Be accessible (WCAG AA minimum) and performant
 - Earn trust through proof, motion, and detail — not through feature quantity
+- Respect HCI findings on first impression: controlled visual complexity, recognizable category conventions, and immediate comprehension before experimentation
 
 Default direction when mood is `dark-saas`: Vercel / Linear / Raycast aesthetic, dark-mode first, engineering-centric.
+
+## Evidence-Based UX Operating Layer
+
+For `/build`, `/polish`, `/audit`, and `/critique`, load [ux-audit.md](references/ux-audit.md) and apply its evidence hierarchy before visual taste decisions. In short: user task, accessibility, usability, first-impression research, and domain UX guidance outrank Supahero-style inspiration and aesthetic experimentation.
 
 ## Tech Stack
 
@@ -134,7 +140,39 @@ Adapt response language to match the user's language.
 
 ## Workflow
 
-For **generation/editing commands** (`/build`, `/polish`, `/animate`, `/imagify`, and `/variant` when it rewrites output): **analyze brief → route mood → load references in order → build/edit → self-check**. For **analysis/state-only commands** (`/audit`, `/critique`, `/dials`), run the command-specific flow only (no build or self-check). See `/build` workflow above and [page-structure.md](references/page-structure.md).
+For **generation/editing commands**: **analyze brief → route mood → run evidence-based UX gate when the command changes page UX → optionally ingest evidence pack → load references in order → build/edit → self-check**. The gate is mandatory for `/build`, `/polish`, and `/variant` when it rewrites the interface. For `/animate`, apply only the accessibility/motion parts of the gate. For `/imagify`, do not run the full UX gate; keep it image-pipeline focused unless generated imagery affects comprehension, trust, or accessibility. For **analysis/state-only commands** (`/audit`, `/critique`, `/dials`), run the command-specific flow only (no build or self-check). See `/build` workflow above, [ux-audit.md](references/ux-audit.md), and [page-structure.md](references/page-structure.md).
+
+### Evidence-Based UX Gate
+
+Run before writing code. Produce these decisions internally or explicitly when useful:
+
+```json
+{
+  "task_goal": "What the user must understand or do",
+  "first_screen_claim": "The one message understood in 5 seconds",
+  "category_conventions": ["patterns users expect for this product type"],
+  "visual_complexity_budget": "low | medium | high, with above-the-fold always controlled",
+  "accessibility_constraints": ["contrast", "keyboard", "focus", "reduced motion", "semantic structure"],
+  "trust_or_conversion_requirements": ["proof", "pricing clarity", "risk reversal", "support", "security cues"],
+  "allowed_experiment": "The one authored visual twist that will not break comprehension"
+}
+```
+
+If the brief is tiny, infer these defaults instead of asking. This gate overrides Supahero/design inspiration when there is a conflict.
+
+### Evidence Pack Protocol — scraped inspiration without cloning
+
+Use this when the user provides scraped references, Supahero-style URLs, screenshots, `design_analysis.json`, or asks to improve a design from many real websites.
+
+**Purpose:** extract design DNA into structured constraints. Do **not** reproduce or clone a site verbatim. Convert references into reusable style/motion tokens, then generate an original interface.
+
+**Operating rules:**
+- Keep evidence scoped: state whether it applies to palette, layout, motion, copy, or all of them.
+- Wrap large evidence in XML-style sections such as `<evidence_pack>`, `<design_contract>`, `<motion_contract>`, and `<anti_copy_rules>`.
+- Use 3-5 representative examples from the evidence pack, not the entire raw scrape, unless the user asks for analysis only.
+- Separate **hard constraints** from **inspiration signals**. Hard constraints and [ux-audit.md](references/ux-audit.md) always override evidence.
+- Summarize the evidence into: `token_dna`, `layout_dna`, `motion_dna`, `dominant_stacks`, and `anti_copy_rules`.
+- For detailed motion taxonomy, use [motion-patterns.md](references/motion-patterns.md). For style defaults and Supahero-derived counts, use [style-recipes.md](references/style-recipes.md).
 
 ## Pre-Flight Checklist
 
@@ -154,6 +192,11 @@ Before outputting code, verify:
 - [ ] No emojis in code/markup/copy
 - [ ] Minimum 5 sections present
 - [ ] Image-generator invoked at end
+- [ ] First screen passes the 5-second comprehension test: product category, value, and primary action are obvious
+- [ ] Above-the-fold visual complexity is controlled: one dominant focal point, one primary CTA, limited competing decoration
+- [ ] Category conventions are recognizable before experimentation: SaaS, dashboard, commerce, portfolio, app launch, etc.
+- [ ] Motion supports orientation/feedback/delight and has `prefers-reduced-motion`; no critical information is motion-only
+- [ ] Trust/conversion cues answer real objections, not filler: proof, risk reversal, pricing clarity, support, security, delivery/return/cancel terms when relevant
 
 ## Quick Reference
 
@@ -206,14 +249,14 @@ Spring:      stiffness: 100, damping: 20
 | Priority | File | Load when… |
 |---|------|-----------|
 | 1 | [design-system.md](references/design-system.md) | Always — core constraints: colors, typography, anti-patterns |
-| 2 | [page-structure.md](references/page-structure.md) | Always for /build — Output Algorithm, Hero Checksum |
-| 3 | [style-recipes.md](references/style-recipes.md) | After Style Auto-Router — mood-specific components, layout, motion |
-| 4 | [motion-patterns.md](references/motion-patterns.md) | When animations needed — Framer Motion, GSAP, demos |
-| 5 | [copywriting.md](references/copywriting.md) | When writing copy — CTAs, tone-by-mood, brand names |
-| 6 | [dashboard.md](references/dashboard.md) | dashboard-pro mood only — KPIs, tables, charts |
-| 7 | [image-generator.md](references/image-generator.md) | Final step for `/build` and `/imagify`; optional during `/polish` or `/variant` only if new imagery is requested |
-| 8 | [ux-audit.md](references/ux-audit.md) | /audit, /critique, /polish only |
-| 8 | [slash-commands.md](references/slash-commands.md) | Reference only if command behavior unclear |
+| 2 | [ux-audit.md](references/ux-audit.md) | Always — evidence-based UX gate, WCAG, Nielsen heuristics, first-impression/complexity rules |
+| 3 | [page-structure.md](references/page-structure.md) | Always for /build — Output Algorithm, Hero Checksum |
+| 4 | [style-recipes.md](references/style-recipes.md) | After Style Auto-Router — mood-specific components, layout, motion |
+| 5 | [motion-patterns.md](references/motion-patterns.md) | When animations needed — Framer Motion, GSAP, demos |
+| 6 | [copywriting.md](references/copywriting.md) | When writing copy — CTAs, tone-by-mood, brand names |
+| 7 | [dashboard.md](references/dashboard.md) | dashboard-pro mood only — KPIs, tables, charts |
+| 8 | [image-generator.md](references/image-generator.md) | Final step for `/build` and `/imagify`; optional during `/polish` or `/variant` only if new imagery is requested |
+| 9 | [slash-commands.md](references/slash-commands.md) | Reference only if command behavior unclear |
 
 Current year: **2026**. All dates, copyrights, references should reflect this.
 

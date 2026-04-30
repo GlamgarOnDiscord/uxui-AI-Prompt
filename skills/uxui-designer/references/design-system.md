@@ -18,7 +18,7 @@
 
 ## ⚡ Critical Rules — Read First
 
-> These 8 rules are placed first intentionally. They are the most violated constraints. Internalize before reading anything else.
+> These 12 rules are placed first intentionally. They are the most violated constraints. Internalize before reading anything else.
 
 1. **No Inter / Roboto / Arial / Space Grotesk** — use Geist, Syne, Cabinet Grotesk, DM Sans, or Bricolage Grotesque
 2. **No centered hero when `DESIGN_VARIANCE > 4`** — split, asymmetric, or left-aligned only
@@ -28,6 +28,10 @@
 6. **No h-screen** — use `min-h-[100dvh]`
 7. **No window.addEventListener('scroll')** — use Framer Motion or GSAP ScrollTrigger
 8. **No round numbers in metrics** — `47.2%` not `50%`, `11,240` not `10,000+`
+9. **No vibes-only beauty** — every major visual decision must support clarity, trust, hierarchy, or task completion
+10. **No overloaded first viewport** — keep above-the-fold visual complexity controlled with one dominant focal point and one primary CTA
+11. **No category-breaking novelty** — experimentation is allowed only after the page type remains recognizable
+12. **No motion-only meaning** — motion can enhance orientation/feedback/delight, but critical info must remain static, readable, and reduced-motion safe
 
 ---
 
