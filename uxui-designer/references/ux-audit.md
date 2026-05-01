@@ -24,7 +24,7 @@ Based on HCI research about website first impressions and aesthetic judgments:
 
 | Finding | Practical rule for generation/audit |
 |---|---|
-| Users form durable aesthetic impressions extremely quickly (often cited around 50-500ms). | The first viewport must communicate product category, value, and primary action immediately. No ambiguous abstract hero without context. |
+| Users form durable aesthetic impressions as fast as 50ms (Lindgaard et al., 2006; Tuch et al., 2012). | The first viewport must communicate product category, value, and primary action immediately. No ambiguous abstract hero without context. |
 | Visual complexity is a strong predictor of first-impression appeal. | Keep the above-the-fold area low-to-medium complexity: one dominant visual anchor, one primary CTA, limited competing decorations. |
 | Prototypicality improves quick comprehension and perceived appeal. | Keep category conventions recognizable: SaaS needs clear nav/CTA/proof; dashboard needs data hierarchy; e-commerce needs product, price, trust, delivery/return cues. |
 | Colorfulness matters, but usually less than perceived complexity. | Do not solve weak design by adding more gradients/colors. Improve hierarchy, spacing, alignment, and information grouping first. |
@@ -228,7 +228,7 @@ These are the most common AI-generated UI failures. Flag every occurrence.
 
 When running `/audit`, output in this format:
 
-```
+```md
 ## UX/UI Audit Report
 
 ### Summary

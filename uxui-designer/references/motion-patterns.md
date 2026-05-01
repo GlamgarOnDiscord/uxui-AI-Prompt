@@ -40,7 +40,7 @@ When working from scraped references or screenshots, convert animation observati
       "stagger_ms": 40,
       "duration_ms": 420,
       "easing": "cubic-bezier(.22,1,.36,1)",
-      "properties": ["opacity", "transform", "filter: blur"]
+      "properties": ["opacity", "transform"]
     },
     "scroll_choreography": {
       "trigger": "section enters 15% viewport",

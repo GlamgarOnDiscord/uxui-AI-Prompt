@@ -7,7 +7,7 @@ Generate a complete page from scratch.
 **Page types:** `landing`, `dashboard`, `pricing`, `auth`, `settings`, `profile`, `blog`, `docs`, `changelog`
 
 **Examples:**
-```
+```bash
 /build landing AI-powered code review tool for engineering teams
 /build dashboard Analytics dashboard for an e-commerce SaaS
 /build pricing Three-tier pricing for a developer tool
@@ -15,16 +15,17 @@ Generate a complete page from scratch.
 ```
 
 **What happens:**
-1. Loads design-system, page-structure, motion-patterns references
+1. Loads design-system, ux-audit, page-structure, and motion-patterns references
 2. Runs Style Auto-Router — detects mood from brief, applies dial overrides
-3. Loads style-recipes for the detected mood (components, layout, motion direction)
-4. Selects tech stack based on complexity (React/Next.js or static HTML)
-5. Runs Output Algorithm (12-step sequence before writing any code)
-6. Generates all mandatory sections (minimum 5)
-7. Applies motion patterns based on MOTION_INTENSITY
-8. Runs pre-flight checklist
-9. Invokes image-generator as final step
-10. Runs Self-Check (5 anti-slop criteria) — if 2+ fail, fixes and re-checks before delivering
+3. Runs **Evidence-Based UX Gate** — define task goal, first-screen clarity, visual complexity budget, accessibility constraints, and domain trust/conversion requirements
+4. Loads style-recipes for the detected mood (components, layout, motion direction)
+5. Selects tech stack based on complexity (React/Next.js or static HTML)
+6. Runs Output Algorithm (12-step sequence before writing any code)
+7. Generates all mandatory sections (minimum 5)
+8. Applies motion patterns based on MOTION_INTENSITY
+9. Runs pre-flight checklist
+10. Invokes image-generator as final step
+11. Runs Self-Check (5 anti-slop criteria) — if 2+ fail, fixes and re-checks before delivering
 
 **Flags:**
 - Add `--static` to force HTML/CSS/JS output
@@ -47,7 +48,7 @@ Final pre-ship quality pass on existing code. Non-destructive.
 - Typography hierarchy
 
 **Example:**
-```
+```bash
 /polish
 /polish src/components/Hero.tsx
 ```
@@ -69,7 +70,7 @@ WCAG 2.2 AA + anti-slop report. **No code changes.** Output only.
 - Missing ARIA attributes
 
 **Example:**
-```
+```bash
 /audit
 /audit src/app/page.tsx
 ```
@@ -90,7 +91,7 @@ UX design review written as a principal designer. **No code changes.**
 - Specific recommendations with priority
 
 **Example:**
-```
+```bash
 /critique
 /critique src/components/Dashboard.tsx
 ```
@@ -112,7 +113,7 @@ Add motion patterns to existing code.
 **Always respects `prefers-reduced-motion: reduce`.**
 
 **Example:**
-```
+```bash
 /animate
 /animate 8
 /animate 3
@@ -133,7 +134,7 @@ Run the Gemini image generation pipeline.
 4. Without key: falls back to curated `picsum.photos` placeholders
 
 **Example:**
-```
+```bash
 /imagify
 /imagify dark moody
 /imagify clean bright
@@ -146,7 +147,7 @@ Run the Gemini image generation pipeline.
 Adjust design dials mid-session. Accepts partial sets.
 
 **Examples:**
-```
+```bash
 /dials variance=6 motion=8 density=3
 /dials motion=2
 /dials density=9
@@ -167,6 +168,7 @@ Adjust design dials mid-session. Accepts partial sets.
 Swap brand preset. Re-themes the current output.
 
 **Available presets:**
+
 | Name | One-line |
 |------|----------|
 | `vercel` | Black/white, Geist, zero accent |
@@ -180,7 +182,7 @@ Swap brand preset. Re-themes the current output.
 **What changes:** Colors, fonts, spacing, border-radius, motion intensity, banned patterns.
 
 **Example:**
-```
+```bash
 /variant linear
 /variant raycast
 ```

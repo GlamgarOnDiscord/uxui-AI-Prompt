@@ -614,7 +614,7 @@ Output a compact contract (JSON-like or markdown table) before implementation.
       "load": ["staggered nav/label/headline/CTA/visual"],
       "scroll": ["fade-up", "mask reveal", "sticky chapter", "marquee"],
       "hover": ["directional fill", "border brightening", "icon shift", "active scale"],
-      "rules": ["animate transform/opacity/filter only", "respect prefers-reduced-motion"]
+      "rules": ["animate transform/opacity only", "respect prefers-reduced-motion"]
     },
     "anti_copy_rules": ["do not copy exact HTML/CSS/assets", "translate patterns into original composition"]
   },

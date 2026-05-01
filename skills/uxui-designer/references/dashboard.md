@@ -5,7 +5,7 @@
 ### Bento 2.0 Grid
 Dashboard layouts use asymmetric CSS Grid — never equal-width cards in a row.
 
-```
+```css
 /* Typical SaaS dashboard grid */
 grid-template-columns: 280px 1fr;        /* sidebar + main */
 grid-template-columns: repeat(4, 1fr);   /* metric cards */
@@ -30,7 +30,7 @@ grid-template-rows: auto 1fr;            /* header + content */
 ## Metric Cards
 
 ### KPI Card Anatomy
-```
+```text
 ┌─────────────────────────┐
 │ Label        ↑ +12.3%   │  ← label: text-sm text-zinc-500
 │ $47,291.84              │  ← value: text-3xl font-semibold tabular-nums
@@ -44,7 +44,7 @@ grid-template-rows: auto 1fr;            /* header + content */
 - Sparkline: SVG path, `stroke-width: 1.5`, accent color at `opacity-0.5`
 
 ### Card Grid
-```
+```txt
 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4
 ```
 
@@ -79,7 +79,7 @@ Never more than 5 colors in a single chart.
 - **Donut/Pie:** Max 5 segments. Center: key metric or total.
 
 ### Chart Container
-```
+```txt
 bg-zinc-900/30 border border-white/5 rounded-xl p-6
 ```
 Title top-left. Legend inline or bottom. Time range selector top-right.

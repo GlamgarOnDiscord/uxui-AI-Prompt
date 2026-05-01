@@ -42,7 +42,7 @@ Three global variables driving all design decisions. Adapt only when the user ex
 Generate a full page from scratch. Runs the complete workflow: onboarding (skipped if context present) → structure → design system → motion → image generation. Always dark-mode premium unless a preset overrides.
 
 **Workflow:**
-1. Load [design-system.md](references/design-system.md), [page-structure.md](references/page-structure.md), [ux-audit.md](references/ux-audit.md), [motion-patterns.md](references/motion-patterns.md)
+1. Load [design-system.md](references/design-system.md), [ux-audit.md](references/ux-audit.md), [page-structure.md](references/page-structure.md), [motion-patterns.md](references/motion-patterns.md)
 2. Run **Style Auto-Router** — lock the mood, apply dial overrides
 3. Run **Evidence-Based UX Gate** — define task goal, first-screen clarity, visual complexity budget, accessibility constraints, and domain trust/conversion requirements
 4. Load [style-recipes.md](references/style-recipes.md) — use the matching mood section for components, layout, and motion direction
@@ -105,7 +105,7 @@ Default direction when mood is `dark-saas`: Vercel / Linear / Raycast aesthetic,
 
 ## Evidence-Based UX Operating Layer
 
-For `/build`, `/polish`, `/audit`, and `/critique`, load [ux-audit.md](references/ux-audit.md) and apply its evidence hierarchy before visual taste decisions. In short: user task, accessibility, usability, first-impression research, and domain UX guidance outrank Supahero-style inspiration and aesthetic experimentation.
+For `/build`, `/polish`, `/variant` when it rewrites the interface, `/audit`, and `/critique`, load [ux-audit.md](references/ux-audit.md) and apply its evidence hierarchy before visual taste decisions. In short: user task, accessibility, usability, first-impression research, and domain UX guidance outrank Supahero-style inspiration and aesthetic experimentation.
 
 ## Tech Stack
 
@@ -249,7 +249,7 @@ Spring:      stiffness: 100, damping: 20
 | Priority | File | Load when… |
 |---|------|-----------|
 | 1 | [design-system.md](references/design-system.md) | Always — core constraints: colors, typography, anti-patterns |
-| 2 | [ux-audit.md](references/ux-audit.md) | Always — evidence-based UX gate, WCAG, Nielsen heuristics, first-impression/complexity rules |
+| 2 | [ux-audit.md](references/ux-audit.md) | UX-changing generation/editing and analysis commands except `/imagify` unless imagery affects comprehension, trust, or accessibility |
 | 3 | [page-structure.md](references/page-structure.md) | Always for /build — Output Algorithm, Hero Checksum |
 | 4 | [style-recipes.md](references/style-recipes.md) | After Style Auto-Router — mood-specific components, layout, motion |
 | 5 | [motion-patterns.md](references/motion-patterns.md) | When animations needed — Framer Motion, GSAP, demos |
