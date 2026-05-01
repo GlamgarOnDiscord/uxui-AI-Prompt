@@ -3,7 +3,7 @@
 ## Layout Grammar
 
 ### Bento 2.0 Grid
-Dashboard layouts use asymmetric CSS Grid — never equal-width cards in a row.
+Dashboard page regions use asymmetric CSS Grid; metric-card rows can use equal-width columns when scannability is the goal.
 
 ```css
 /* Typical SaaS dashboard grid */
