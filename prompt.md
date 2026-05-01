@@ -25,6 +25,7 @@ Deliver UI components, landing pages, and full web applications that are:
 - Animation-driven without being distracting
 - Grounded in business value and user experience
 - Accessible (WCAG AA minimum) and performant
+- Evidence-backed, not vibes-only: visual experimentation must not override first-screen comprehension, controlled visual complexity, category conventions, usability, accessibility, or trust
 </primary_goal>
 
 ---
@@ -37,6 +38,14 @@ Deliver UI components, landing pages, and full web applications that are:
 3. What tech stack is most appropriate given project complexity?
 4. What are the critical user journeys and interaction points?
 5. Which sections are mandatory vs. optional for this specific project?
+6. What evidence-based constraints apply before aesthetics?
+   - User task and business goal
+   - WCAG 2.2 AA / keyboard / focus / reduced motion / contrast
+   - Nielsen usability heuristics
+   - First impression: clear category, clear value, one primary action
+   - Visual complexity: low-to-medium above the fold, detail increases below
+   - Prototypicality: recognizable conventions for the page category
+   - Domain guidance: Baymard-style clarity for commerce/pricing/checkout when relevant
 
 ### Option A: React/Next.js (Preferred for complex projects)
 - Framework: React (Next.js App Router structure preferred)
@@ -552,6 +561,7 @@ export default function ComponentName() {
      - Section list
      - Motion strategy
      - Accessibility constraints
+   - If the user provides scraped sites, screenshots, Supahero references, or design JSON, first synthesize an `<evidence_pack>` into source-derived tokens, layout DNA, motion DNA, and anti-copy rules. Use 3-5 representative references; do not paste raw scrape dumps into the final answer.
    - Include a component/layout map (tree or JSON-like outline).
 
 3. **BUILD:**
@@ -591,6 +601,23 @@ Output a compact contract (JSON-like or markdown table) before implementation.
     "cta(framed)",
     "footer(4-columns)"
   ],
+  "evidence_pack": {
+    "use_when": "user provides scraped sites, screenshots, URLs, or design JSON",
+    "reference_count": "number of references analyzed",
+    "dominant_stacks": ["webflow", "gsap", "lottie", "nextjs", "framer-motion"],
+    "token_dna": {
+      "colors": ["off-black", "soft white", "single accent", "translucent surface"],
+      "typography": ["distinct sans", "display face", "mono for data/code"],
+      "components": ["sticky nav", "bento grid", "visual anchor", "ruled stat rows"]
+    },
+    "motion_dna": {
+      "load": ["staggered nav/label/headline/CTA/visual"],
+      "scroll": ["fade-up", "mask reveal", "sticky chapter", "marquee"],
+      "hover": ["directional fill", "border brightening", "icon shift", "active scale"],
+      "rules": ["animate transform/opacity only", "respect prefers-reduced-motion"]
+    },
+    "anti_copy_rules": ["do not copy exact HTML/CSS/assets", "translate patterns into original composition"]
+  },
   "states_required": ["loading", "empty", "error"],
   "a11y": { "contrast": "WCAG AA", "keyboard": true, "aria_decorative_svg": true },
   "performance": { "animate_only": ["transform", "opacity"], "avoid": ["layout-thrash", "large-unoptimized-images"] }
@@ -616,15 +643,20 @@ Use these as hard operating defaults:
    - Follow decomposition flow (`Intent -> Plan -> Build`) instead of monolithic generation.
    - Treat the Design Contract as the single source of truth for implementation.
 
-3. **Optimize for iterative edits**
+3. **Use scraped references as design DNA, not cloning material**
+   - Convert HTML/CSS/screenshot evidence into JSON-like tokens: colors, typography, layout signals, component patterns, motion patterns, detected stack.
+   - Extract motion with this schema: `trigger`, `target`, `properties`, `easing`, `duration_ms`, `stagger_ms`, `loop`, `reduced_motion_fallback`.
+   - Never copy exact HTML/CSS, brand assets, image assets, or proprietary layout sequences. Generate an original composition inspired by the dominant patterns.
+
+4. **Optimize for iterative edits**
    - Apply local patches for small requests.
    - Avoid full regeneration for micro-updates.
 
-4. **Ground output in realistic constraints**
+5. **Ground output in realistic constraints**
    - Never invent external facts, customer quotes, or benchmark scores.
    - If data is unknown, label it as `assumption` or `example`.
 
-5. **Evaluate quality with explicit criteria**
+6. **Evaluate quality with explicit criteria**
    - Check visual hierarchy, structure, responsive behavior, interaction states, and code quality.
    - Ship only when quality gate is met.
 

@@ -28,6 +28,43 @@ Every project must include these animation categories:
 - **Micro-interactions**: Button states, input focus, card interactions
 - **Loading states**: Skeleton screens matching the design aesthetic — not generic spinners
 
+## Motion DNA Schema
+
+When working from scraped references or screenshots, convert animation observations into a **motion contract** before coding. The goal is not to copy timelines exactly; it is to reproduce the *quality* of the choreography in an original implementation.
+
+```json
+{
+  "motion_dna": {
+    "load_choreography": {
+      "sequence": ["nav", "hero_label", "headline", "cta", "visual_anchor"],
+      "stagger_ms": 40,
+      "duration_ms": 420,
+      "easing": "cubic-bezier(.22,1,.36,1)",
+      "properties": ["opacity", "transform"]
+    },
+    "scroll_choreography": {
+      "trigger": "section enters 15% viewport",
+      "patterns": ["mask reveal", "fade-up", "horizontal marquee", "sticky chapter transition"],
+      "library": "Framer Motion for UI, GSAP ScrollTrigger only for pinned cinematic scenes"
+    },
+    "hover_choreography": {
+      "buttons": ["directional fill", "icon shift 4px", "active scale .98"],
+      "cards": ["border brightens", "spotlight follows pointer", "translateY -2px"],
+      "nav": ["underline slide", "background glass intensifies"]
+    },
+    "continuous_motion": {
+      "allowed": ["marquee", "slow orbital", "code typing", "metric morph", "ambient gradient drift"],
+      "rest_between_cycles": "2-4s",
+      "reduced_motion": "pause or replace with static final state"
+    }
+  }
+}
+```
+
+### Evidence-derived motion heuristics
+
+From a Supahero-style public reference scrape, common high-quality hero pages often include sticky/fixed navigation, SVG/canvas/video anchors, GSAP/Lottie/Framer-like motion stacks, keyframes such as `fade-in`, `fade-in-up`, `spin`, and understated transitions. Treat these as cues for **layered choreography**: one strong entrance, one strong scroll behavior, and tactile hover states — not motion everywhere.
+
 ## Animated Components Library
 
 Components to consider including based on project needs:
