@@ -24,8 +24,8 @@ Generate a complete page from scratch.
 7. Generates all mandatory sections (minimum 5)
 8. Applies motion patterns based on MOTION_INTENSITY
 9. Runs pre-flight checklist
-10. Invokes image-generator as final step
-11. Runs Self-Check (5 anti-slop criteria) — if 2+ fail, fixes and re-checks before delivering
+10. Runs Self-Check (5 anti-slop criteria) — if 2+ fail, fixes and re-checks before delivering
+11. Invokes image-generator as final step after Self-Check passes
 
 **Flags:**
 - Add `--static` to force HTML/CSS/JS output
@@ -37,6 +37,7 @@ Generate a complete page from scratch.
 ## `/polish`
 
 Final pre-ship quality pass on existing code. Non-destructive.
+Applies the **Evidence-Based UX Gate** when changes affect page UX (clarity, accessibility, trust, or conversion cues).
 
 **What it checks and fixes:**
 - Contrast ratios (adjusts colors to meet WCAG AA)
@@ -101,6 +102,7 @@ UX design review written as a principal designer. **No code changes.**
 ## `/animate [intensity]`
 
 Add motion patterns to existing code.
+Applies only the accessibility/motion subset of the **Evidence-Based UX Gate** (reduced motion, readability, orientation, and no motion-only critical information).
 
 **What it adds:**
 - Scroll-triggered reveals (fade-in, slide-in, scale-in with stagger)
@@ -124,6 +126,7 @@ Add motion patterns to existing code.
 ## `/imagify [mood]`
 
 Run the Gemini image generation pipeline.
+Skips the full **Evidence-Based UX Gate** by default; still enforce comprehension, trust, and accessibility checks when generated imagery affects meaning.
 
 **Mood keywords:** `dark moody`, `clean bright`, `cinematic`, `minimal`, `warm`, `cold`, `dramatic`
 
@@ -166,6 +169,7 @@ Adjust design dials mid-session. Accepts partial sets.
 ## `/variant <preset-name>`
 
 Swap brand preset. Re-themes the current output.
+Applies the **Evidence-Based UX Gate** when preset changes materially rewrite page UX.
 
 **Available presets:**
 

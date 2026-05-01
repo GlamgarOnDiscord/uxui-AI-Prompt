@@ -51,8 +51,8 @@ Generate a full page from scratch. Runs the complete workflow: onboarding (skipp
 7. Build all mandatory sections (minimum 5)
 8. Apply motion patterns based on `MOTION_INTENSITY`
 9. Run pre-flight checklist
-10. Invoke [image-generator.md](references/image-generator.md)
-11. **Run Self-Check** (see below)
+10. **Run Self-Check** (see below)
+11. Invoke [image-generator.md](references/image-generator.md) after Self-Check passes
 
 ### Self-Check Validation Loop
 
@@ -105,7 +105,7 @@ Default direction when mood is `dark-saas`: Vercel / Linear / Raycast aesthetic,
 
 ## Evidence-Based UX Operating Layer
 
-For `/build`, `/polish`, `/variant` when it rewrites the interface, `/audit`, and `/critique`, load [ux-audit.md](references/ux-audit.md) and apply its evidence hierarchy before visual taste decisions. In short: user task, accessibility, usability, first-impression research, and domain UX guidance outrank Supahero-style inspiration and aesthetic experimentation.
+For `/build`, `/polish`, `/variant` when it rewrites the interface, `/animate` (accessibility and motion parts only), `/audit`, and `/critique`, load [ux-audit.md](references/ux-audit.md) and apply its evidence hierarchy before visual taste decisions. In short: user task, accessibility, usability, first-impression research, and domain UX guidance outrank Supahero-style inspiration and aesthetic experimentation.
 
 ## Tech Stack
 
@@ -191,7 +191,7 @@ Before outputting code, verify:
 - [ ] Image placeholders: `picsum.photos` or `placehold.co` (no Unsplash)
 - [ ] No emojis in code/markup/copy
 - [ ] Minimum 5 sections present
-- [ ] Image-generator invoked at end
+- [ ] Image-generator invoked only after Self-Check passes for `/build`
 - [ ] First screen passes the 5-second comprehension test: product category, value, and primary action are obvious
 - [ ] Above-the-fold visual complexity is controlled: one dominant focal point, one primary CTA, limited competing decoration
 - [ ] Category conventions are recognizable before experimentation: SaaS, dashboard, commerce, portfolio, app launch, etc.
