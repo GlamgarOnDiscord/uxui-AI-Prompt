@@ -108,7 +108,7 @@ Default direction when mood is `dark-saas`: Vercel / Linear / Raycast aesthetic,
 
 ## Evidence-Based UX Operating Layer
 
-For `/build`, `/polish`, `/variant` when it rewrites the interface, `/animate` (accessibility and motion parts only), `/audit`, and `/critique`, load [ux-audit.md](references/ux-audit.md) and apply its evidence hierarchy before visual taste decisions. For `/imagify`, skip the full gate but still enforce comprehension, trust, and accessibility checks when generated imagery affects meaning. In short: user task, accessibility, usability, first-impression research, and domain UX guidance outrank Supahero-style inspiration and aesthetic experimentation.
+For `/build`, `/polish`, `/variant` when it rewrites the interface, and `/animate` (accessibility and motion parts only), load [ux-audit.md](references/ux-audit.md) and apply its evidence hierarchy before visual taste decisions. For `/audit` and `/critique`, load [ux-audit.md](references/ux-audit.md) and apply the same hierarchy as an evaluation rubric only (no design edits). For `/imagify`, skip the full gate but still enforce comprehension, trust, and accessibility checks when generated imagery affects meaning. In short: user task, accessibility, usability, first-impression research, and domain UX guidance outrank Supahero-style inspiration and aesthetic experimentation.
 
 ## Tech Stack
 
