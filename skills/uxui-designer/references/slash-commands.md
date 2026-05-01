@@ -108,9 +108,9 @@ Applies only the accessibility/motion subset of the **Evidence-Based UX Gate** (
 - Scroll-triggered reveals (fade-in, slide-in, scale-in with stagger)
 - Hover effects on interactive elements
 - Micro-interactions (button press, input focus, card hover)
-- Perpetual animations when intensity > 5 (pulse, shimmer, float)
+- Perpetual animations when intensity > 5 (pulse, shimmer, float) — only for `prefers-reduced-motion: no-preference`
 - Spring physics on interactive elements when intensity > 6
-- Autonomous demos (ghost cursor, type-delete-retype) when intensity > 7
+- Autonomous demos (ghost cursor, type-delete-retype) when intensity > 7 — only for `prefers-reduced-motion: no-preference`
 
 **Always respects `prefers-reduced-motion: reduce`.**
 
@@ -135,6 +135,12 @@ Skips the full **Evidence-Based UX Gate** by default; still enforce comprehensio
 2. Crafts cinematic prompts for each zone
 3. With `GEMINI_API_KEY`: generates via `gemini-3.1-flash-image-preview`
 4. Without key: falls back to curated `picsum.photos` placeholders
+
+**Anti-slop / meaning-safety checks (still enforced when imagery affects meaning):**
+- No ambiguous, misleading, or meaning-changing imagery; keep visuals consistent with page content and user task
+- Do not fabricate real people, brands, testimonials, product states, or results; mark synthetic/provenance where relevant
+- Preserve information hierarchy, readable overlays, alt text, and accessibility for meaningful image zones
+- Reference the canonical **Evidence-Based Anti-Slop Checks** before accepting imagery that affects comprehension or trust
 
 **Example:**
 ```bash
@@ -169,7 +175,7 @@ Adjust design dials mid-session. Accepts partial sets.
 ## `/variant <preset-name>`
 
 Swap brand preset. Re-themes the current output.
-Applies the **Evidence-Based UX Gate** when preset changes materially rewrite page UX.
+Applies the **Evidence-Based UX Gate** when preset changes materially rewrite page UX: above-the-fold hierarchy or CTA semantics change, layout reflows roughly >20% of the first viewport, accessibility-critical structure changes, contrast drops below WCAG AA, or motion intensity/banned-pattern changes affect comprehension. Example: moving the primary CTA into a new hero composition triggers the gate; swapping accent hue while preserving contrast and layout does not.
 
 **Available presets:**
 

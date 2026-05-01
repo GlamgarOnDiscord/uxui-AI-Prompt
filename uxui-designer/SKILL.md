@@ -44,15 +44,16 @@ Generate a full page from scratch. Runs the complete workflow: onboarding (skipp
 **Workflow:**
 1. Load [design-system.md](references/design-system.md), [ux-audit.md](references/ux-audit.md), [page-structure.md](references/page-structure.md), [motion-patterns.md](references/motion-patterns.md)
 2. Run **Style Auto-Router** — lock the mood, apply dial overrides
-3. Run **Evidence-Based UX Gate** — define task goal, first-screen clarity, visual complexity budget, accessibility constraints, and domain trust/conversion requirements
-4. Load [style-recipes.md](references/style-recipes.md) — use the matching mood section for components, layout, and motion direction
-5. Determine tech stack (React/Next.js or static HTML)
-6. Run **Output Algorithm** (page-structure.md) — resolve all 12 steps before writing code
-7. Build all mandatory sections (minimum 5)
-8. Apply motion patterns based on `MOTION_INTENSITY`
-9. Run pre-flight checklist
-10. **Run Self-Check** (see below)
-11. Invoke [image-generator.md](references/image-generator.md) after Self-Check passes
+3. Optionally ingest **Evidence Pack Protocol** — extract `token_dna`, `layout_dna`, `motion_dna`, `dominant_stacks`, and `anti_copy_rules` before gating
+4. Run **Evidence-Based UX Gate** — define task goal, first-screen clarity, visual complexity budget, accessibility constraints, and domain trust/conversion requirements
+5. Load [style-recipes.md](references/style-recipes.md) — use the matching mood section for components, layout, and motion direction
+6. Determine tech stack (React/Next.js or static HTML)
+7. Run **Output Algorithm** (page-structure.md) — resolve all 12 steps before writing code
+8. Build all mandatory sections (minimum 5)
+9. Apply motion patterns based on `MOTION_INTENSITY`
+10. Run pre-flight checklist
+11. **Run Self-Check** (see below)
+12. Invoke [image-generator.md](references/image-generator.md) after Self-Check passes
 
 ### Self-Check Validation Loop
 
@@ -63,10 +64,10 @@ After generating output, verify against these 5 criteria before delivering:
 [ ] The hero has one dominant focal point and one primary CTA with specific copy
 [ ] No two adjacent sections use the same layout grammar (both cards, both splits, etc.)
 [ ] Font choice is not Inter, Roboto, Arial, or Space Grotesk
-[ ] At least one design decision would surprise a designer who expected "default AI output"
+[ ] At least one design decision, drawn from the Evidence Gate's `allowed_experiment`, would surprise a designer who expected "default AI output"
 ```
 
-**If 2 or more boxes are unchecked:** do not deliver. Apply the Failure Mode Recovery, fix the specific failures, and re-check. Only deliver when 4 or 5 boxes pass.
+**If 2 or more boxes are unchecked:** do not deliver. Apply the Failure Mode Recovery, verify any unexpected design move against `allowed_experiment`, fix the specific failures, and re-check. Only deliver when 4 or 5 boxes pass.
 
 ### `/polish`
 Final pre-ship pass. Loads [design-system.md](references/design-system.md) + [ux-audit.md](references/ux-audit.md). Tightens contrast, spacing, copy, micro-interactions, tactile feedback. Non-destructive to page structure.
@@ -82,6 +83,8 @@ Add motion patterns to existing code. Loads [motion-patterns.md](references/moti
 
 ### `/imagify [mood]`
 Run Gemini pipeline only. Loads [image-generator.md](references/image-generator.md). Audits image zones, crafts cinematic prompts, generates or inserts placeholders if no `GEMINI_API_KEY`. Optional mood keyword (e.g., "dark moody", "clean bright").
+
+Meaning-affecting imagery = any generated image that changes user decisions, conveys factual/product information, labels or scopes content, replaces explanatory UI text, or affects trust/accessibility. For those zones, run a quick no-rewrite verification: accurate alt text/caption, no critical unlabeled text-in-image, readable contrast/overlays, no misleading people/brands/results, cultural/safety check, and clear synthetic/provenance status where relevant.
 
 ### `/dials variance=N motion=N density=N`
 Adjust design dials mid-session. Accepts partial sets. Changes apply to all subsequent generation.
@@ -140,7 +143,7 @@ Adapt response language to match the user's language.
 
 ## Workflow
 
-For **generation/editing commands**: **analyze brief → route mood → run evidence-based UX gate when the command changes page UX → optionally ingest evidence pack → load references in order → build/edit → self-check**. The gate is mandatory for `/build`, `/polish`, and `/variant` when it rewrites the interface. For `/animate`, apply only the accessibility/motion parts of the gate. For `/imagify`, do not run the full UX gate; keep it image-pipeline focused unless generated imagery affects comprehension, trust, or accessibility. For **analysis/state-only commands** (`/audit`, `/critique`, `/dials`), run the command-specific flow only (no build or self-check). See `/build` workflow above, [ux-audit.md](references/ux-audit.md), and [page-structure.md](references/page-structure.md).
+For **generation/editing commands**: **analyze brief → route mood → optionally ingest evidence pack → run evidence-based UX gate when the command changes page UX → load references in order → build/edit → self-check**. The gate is mandatory for `/build`, `/polish`, and `/variant` when it rewrites the interface; `/animate` applies only its accessibility/motion subset, while `/imagify` stays image-pipeline focused unless generated imagery affects comprehension, trust, or accessibility. **Analysis/state-only commands** (`/audit`, `/critique`, `/dials`) run the command-specific flow only (no build or self-check). See `/build` workflow above, [ux-audit.md](references/ux-audit.md), and [page-structure.md](references/page-structure.md).
 
 ### Evidence-Based UX Gate
 
