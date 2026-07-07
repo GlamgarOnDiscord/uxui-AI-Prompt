@@ -42,32 +42,73 @@ Three global variables driving all design decisions. Adapt only when the user ex
 Generate a full page from scratch. Runs the complete workflow: onboarding (skipped if context present) → structure → design system → motion → image generation. Always dark-mode premium unless a preset overrides.
 
 **Workflow:**
-1. Load [design-system.md](references/design-system.md), [ux-audit.md](references/ux-audit.md), [page-structure.md](references/page-structure.md), [motion-patterns.md](references/motion-patterns.md)
-2. Run **Style Auto-Router** — lock the mood, apply dial overrides
-3. Optionally ingest **Evidence Pack Protocol** — extract `token_dna`, `layout_dna`, `motion_dna`, `dominant_stacks`, and `anti_copy_rules` before gating
-4. Run **Evidence-Based UX Gate** — define task goal, first-screen clarity, visual complexity budget, accessibility constraints, and domain trust/conversion requirements
-5. Load [style-recipes.md](references/style-recipes.md) — use the matching mood section for components, layout, and motion direction
-6. Determine tech stack (React/Next.js or static HTML)
-7. Run **Output Algorithm** (page-structure.md) — resolve all 12 steps before writing code
-8. Build all mandatory sections (minimum 5)
-9. Apply motion patterns based on `MOTION_INTENSITY`
-10. Run pre-flight checklist
-11. **Run Self-Check** (see below)
-12. Invoke [image-generator.md](references/image-generator.md) after Self-Check passes
+1. Load [doctrine.md](references/doctrine.md) — internalize axiomes and Ares identity
+2. Load [design-system.md](references/design-system.md), [ux-audit.md](references/ux-audit.md), [page-structure.md](references/page-structure.md), [motion-patterns.md](references/motion-patterns.md)
+3. Run **Style Auto-Router** — lock the mood, apply dial overrides
+4. Optionally ingest **Evidence Pack Protocol** — extract `token_dna`, `layout_dna`, `motion_dna`, `dominant_stacks`, and `anti_copy_rules` before gating
+5. Run **Evidence-Based UX Gate** — define task goal, first-screen clarity, visual complexity budget, accessibility constraints, and domain trust/conversion requirements
+6. Load [style-recipes.md](references/style-recipes.md) — use the matching mood section for components, layout, and motion direction
+7. **Run Creative Pressure** — formulate visual thesis, signature move, and sacrifice BEFORE any code
+8. Determine tech stack (React/Next.js or static HTML)
+9. Run **Output Algorithm** (page-structure.md) — resolve all 12 steps before writing code
+10. Build all mandatory sections (minimum 5)
+11. Apply motion patterns based on `MOTION_INTENSITY`
+12. Run pre-flight checklist
+13. **Run Excellence Score** — score all 5 dimensions, deliver only if average ≥ 7
+14. **Run Craft Review** (see below)
+15. Invoke [image-generator.md](references/image-generator.md) after Excellence Score passes
 
-### Self-Check Validation Loop
+### Creative Pressure — Mandatory pre-generation
 
-After generating output, verify against these 5 criteria before delivering:
+Before writing any code, formulate these three decisions explicitly (internally or in output when useful):
 
+```json
+{
+  "visual_thesis": "One sentence describing the compositional idea of this page",
+  "signature_move": "The one strong compositional choice specific to this brief that cannot be a template",
+  "sacrifice": "What is deliberately NOT included so the signature move can breathe"
+}
 ```
-[ ] No section could be lifted and dropped into a different project without changes
-[ ] The hero has one dominant focal point and one primary CTA with specific copy
-[ ] No two adjacent sections use the same layout grammar (both cards, both splits, etc.)
-[ ] Font choice is not Inter, Roboto, Arial, or Space Grotesk
-[ ] At least one design decision, drawn from the Evidence Gate's `allowed_experiment`, would surprise a designer who expected "default AI output"
-```
 
-**If 2 or more boxes are unchecked:** do not deliver. Apply the Failure Mode Recovery, verify any unexpected design move against `allowed_experiment`, fix the specific failures, and re-check. Only deliver when 4 or 5 boxes pass.
+This is not optional. If these three cannot be articulated, the brief needs more thought — not more code.
+
+### Excellence Score — Replaces binary Self-Check
+
+After generating output, score against these 5 dimensions (1-10 each):
+
+| Dimension | Question | Score |
+|-----------|----------|-------|
+| **Thèse visuelle** | Does the hero have ONE strong, readable compositional idea? | /10 |
+| **Tension & rythme** | Does the page alternate correctly between density/breathing, tension/resolution? | /10 |
+| **Signature** | Could this design be identified as "Ares" blindfolded? Are 2-3 Ares signatures present? | /10 |
+| **Cohérence narrative** | Does every section serve the same visual narrative with different means? | /10 |
+| **Finition** | Are micro-details (borders, spacing, transitions, states) at the same level as macro-decisions? | /10 |
+
+**Scoring rules:**
+- **Average ≥ 7** → minimum threshold to deliver
+- **Average ≥ 8** → required for premium projects or when user expects excellence
+- **Any dimension < 5** → blocker, fix before delivering regardless of average
+- **If average < 7:** Apply Failure Mode Recovery targeting the lowest-scoring dimensions, then re-score
+
+The old binary Self-Check criteria are now absorbed into this scoring:
+- "No swappable sections" → Thèse visuelle + Signature
+- "One focal point, one CTA" → Thèse visuelle
+- "No identical adjacent layouts" → Tension & rythme
+- "No banned fonts" → Finition
+- "Surprising design decision" → Signature
+
+### Finition Levels
+
+Every output targets a finition level. The skill always aims for Level 3 minimum, Level 4 on explicit request or premium contexts.
+
+| Level | Name | Definition |
+|-------|------|------------|
+| 1 | Structure correcte | Layout works, responsive, accessible, no bugs. What most AI produces. |
+| 2 | Direction artistique | Visual thesis present, mood coherent, rhythm intentional. |
+| 3 | **Craft détaillé** | Every pixel justified. Borders, spacing, transitions, states — all deliberate. Micro = macro. |
+| 4 | **Signature Ares** | Identifiable as Ares output. 3+ Ares signatures present. Memorable. Would win an award. |
+
+If the output is Level 1-2, it is not ready to deliver. Diagnose what's missing using the Excellence Score dimensions.
 
 ### `/polish`
 Final pre-ship pass. Loads [design-system.md](references/design-system.md) + [ux-audit.md](references/ux-audit.md). Tightens contrast, spacing, copy, micro-interactions, tactile feedback. Non-destructive to page structure.
@@ -94,17 +135,31 @@ Swap brand preset. Loads the preset file and re-themes current output: colors, t
 
 > **Path resolution:** look for `design-presets/<name>.md` relative to the agent config root (e.g. `~/.claude/design-presets/` for a global install, `.claude/design-presets/` for a project install). The installer places presets there automatically.
 
+## Doctrine
+
+> Load [doctrine.md](references/doctrine.md) before any generation. It defines the 5 axiomes, the definition of excellence, signatures Ares, and anti-references. It is the philosophical foundation — all rules below are consequences.
+
+**The 5 Axiomes (summary):**
+1. Every screen has a **visual thesis** — one compositional idea describable in one sentence
+2. **Tension precedes resolution** — no friction = no energy
+3. **Design is subtraction** — quality is measured by what was removed
+4. **Perceptible intention** — nothing should feel "default"
+5. **Formal durability** — must not look dated in 18 months
+
 ## Primary Goal
 
-Deliver UI that feels **authored, not generated** and **evidence-backed, not vibes-only**. Every output should:
+Deliver UI that is **signed, tense, and memorable** — not just "not generic". Every output should:
+- Have a clear **visual thesis** that could be articulated in one sentence
+- Contain at least one **signature move** — a strong compositional choice specific to this brief
 - Be visually specific to this brief — no section swappable into a different project
 - Execute the detected mood with precision (see Style Auto-Router)
 - Prioritize structure and composition before decoration
 - Be accessible (WCAG AA minimum) and performant
 - Earn trust through proof, motion, and detail — not through feature quantity
 - Respect HCI findings on first impression: controlled visual complexity, recognizable category conventions, and immediate comprehension before experimentation
+- Pass the **Ares identity test**: if the logo and copy were hidden, could you still identify this as Ares output?
 
-Default direction when mood is `dark-saas`: Vercel / Linear / Raycast aesthetic, dark-mode first, engineering-centric.
+Default direction when mood is `dark-saas`: dark-mode first, engineering-centric — informed by Vercel/Linear/Raycast but never confused with them.
 
 ## Evidence-Based UX Operating Layer
 
@@ -143,7 +198,7 @@ Adapt response language to match the user's language.
 
 ## Workflow
 
-For **generation/editing commands**: **analyze brief → route mood → optionally ingest evidence pack → run evidence-based UX gate when the command changes page UX → load references in order → build/edit → self-check**. The gate is mandatory for `/build`, `/polish`, and `/variant` when it rewrites the interface; `/animate` applies only its accessibility/motion subset, while `/imagify` stays image-pipeline focused unless generated imagery affects comprehension, trust, or accessibility. **Analysis/state-only commands** (`/audit`, `/critique`, `/dials`) run the command-specific flow only (no build or self-check). See `/build` workflow above, [ux-audit.md](references/ux-audit.md), and [page-structure.md](references/page-structure.md).
+For **generation/editing commands**: **load doctrine → analyze brief → route mood → run Creative Pressure → optionally ingest evidence pack → run evidence-based UX gate when the command changes page UX → load references in order → build/edit → Excellence Score → Craft Review**. The gate is mandatory for `/build`, `/polish`, and `/variant` when it rewrites the interface; `/animate` applies only its accessibility/motion subset, while `/imagify` stays image-pipeline focused unless generated imagery affects comprehension, trust, or accessibility. **Analysis/state-only commands** (`/audit`, `/critique`, `/dials`) run the command-specific flow only (no build or scoring). See `/build` workflow above, [ux-audit.md](references/ux-audit.md), and [page-structure.md](references/page-structure.md).
 
 ### Evidence-Based UX Gate
 
@@ -194,7 +249,7 @@ Before outputting code, verify:
 - [ ] Image placeholders: `picsum.photos` or `placehold.co` (no Unsplash)
 - [ ] No emojis in code/markup/copy
 - [ ] Minimum 5 sections present
-- [ ] Image-generator invoked only after Self-Check passes for `/build`
+- [ ] Image-generator invoked only after Excellence Score passes for `/build`
 - [ ] First screen passes the 5-second comprehension test: product category, value, and primary action are obvious
 - [ ] Above-the-fold visual complexity is controlled: one dominant focal point, one primary CTA, limited competing decoration
 - [ ] Category conventions are recognizable before experimentation: SaaS, dashboard, commerce, portfolio, app launch, etc.
@@ -251,7 +306,9 @@ Spring:      stiffness: 100, damping: 20
 
 | Priority | File | Load when… |
 |---|------|-----------|
+| 0 | [doctrine.md](references/doctrine.md) | **Always first** — axiomes, Ares identity, signatures, anti-references |
 | 1 | [design-system.md](references/design-system.md) | Always — core constraints: colors, typography, anti-patterns |
+| 1.5 | [design-theory.md](references/design-theory.md) | When compositional decisions need grounding — the WHY behind choices |
 | 2 | [ux-audit.md](references/ux-audit.md) | UX-changing generation/editing and analysis commands except `/imagify` unless imagery affects comprehension, trust, or accessibility |
 | 3 | [page-structure.md](references/page-structure.md) | Always for /build — Output Algorithm, Hero Checksum |
 | 4 | [style-recipes.md](references/style-recipes.md) | After Style Auto-Router — mood-specific components, layout, motion |
@@ -398,13 +455,51 @@ If the generated output does not feel right, run this diagnostic before rewritin
 
 ---
 
-## ⚡ Final Reminder — The 5 Absolutes
+## Craft Review — La passe d'exigence
+
+Run after the Excellence Score passes. This is not a bug hunt — it is a **mediocrity hunt**. Every line of output is questioned for intention.
+
+### The 7 Questions
+
+For each section of the output, ask:
+
+1. **"Ce padding est-il choisi ou par défaut ?"** — If a spacing value exists only because Tailwind's default seemed "fine", replace it with an intentional decision.
+2. **"Cette transition est-elle chorégraphiée ou juste 'fade-in' ?"** — A generic `opacity 300ms` on every element is not choreography. Each entrance should have a reason, a timing, and a relationship to other elements.
+3. **"Ce texte mérite-t-il d'exister ou remplit-il un espace ?"** — Copy that could be removed without information loss must be removed. Every word earns its place.
+4. **"Cette bordure est-elle narrative ou décorative ?"** — Borders that don't communicate hierarchy, separation, or rhythm should be removed (Axiome 3).
+5. **"Ce composant sert-il la thèse visuelle ?"** — If a component doesn't contribute to the page's one compositional idea, it weakens it by dilution.
+6. **"Cet état (hover/focus/active) est-il conçu ou hérité ?"** — Default browser or framework states are not designed. Every interactive state is a micro-moment of craft.
+7. **"Si un designer senior voyait ce détail, dirait-il 'choisi' ou 'oublié' ?"** — The ultimate gut check. If it reads as forgotten, fix it.
+
+### Craft Review Rules
+
+- Fix at least 3 mediocrity findings per review pass
+- If 5+ findings emerge, the output is Level 2, not Level 3 — major rework needed
+- The Craft Review is non-destructive: it tightens details, never changes structure
+- Focus on: spacing, transitions, borders, copy, states, color application, type details
+
+---
+
+## ⚡ Final Reminder — The Ares Doctrine
 
 > These rules are repeated here intentionally. Research shows instructions at the end of a context window have significantly higher adherence rates (recency effect). If you read nothing else, read this.
 
+### The 5 Axiomes (read these every time)
+1. **Every screen has a visual thesis** — one compositional idea in one sentence
+2. **Tension precedes resolution** — no friction = no energy
+3. **Design is subtraction** — quality = what was removed
+4. **Perceptible intention** — nothing feels "default"
+5. **Formal durability** — not dated in 18 months
+
+### The 5 Absolutes (the non-negotiable rules)
 1. **Never use Inter, Roboto, Arial, or Space Grotesk** — pick a font with a distinct character
 2. **Never center the hero when DESIGN_VARIANCE > 4** — asymmetry by default
 3. **Never produce 3 equal-width cards in a row** — use asymmetric grid, zigzag, or bento
 4. **Never use round numbers for metrics** — `47.2%` not `50%`, `11,240 users` not `10,000+`
-5. **Always run the Self-Check before delivering** — if 2+ boxes fail, fix and re-check
+5. **Always run the Excellence Score before delivering** — average must be ≥ 7
+
+### The Ares Test
+> "If the logo and copy were hidden, could you still identify this as Ares output?"
+
+If the answer is no, the work is not done.
 
